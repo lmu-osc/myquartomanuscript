@@ -11,8 +11,6 @@ author:
 date: last-modified
 bibliography: references.bib
 csl: apa.csl
-citation:
-  type: article
 ---
 
 :::{.callout-important}

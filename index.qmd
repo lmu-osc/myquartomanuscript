@@ -15,7 +15,7 @@ date: last-modified
 bibliography: references.bib
 csl: apa.csl
 citation:
-  type: article
+  url: "https://florianpargent.github.io/myquartomanuscript/"
 ---
 
 ```{r}
