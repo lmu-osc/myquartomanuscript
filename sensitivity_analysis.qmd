@@ -1,0 +1,36 @@
+---
+title: "Sensitivity Analysis: Impute Sensing Data with MiceRanger"
+subtitle: "Sensitivity Analysis"
+author:
+  - name: Florian Pargent
+    affiliation: LMU Munich
+  - name: David Goretzko
+    affiliation: Utrecht University
+  - name: Timo von Oertzen
+    affiliation: Bundeswehr University Munich and Max Planck Institute for Human Development
+date: last-modified
+bibliography: references.bib
+csl: apa.csl
+citation:
+  type: article
+---
+
+:::{.callout-important}
+This document is **an updated copy** of a [published commentary](https://doi.org/10.1093/jrsssb/qkad054), to showcase [Quarto manuscripts](https://quarto.org/docs/manuscripts/) in our [Quarto workshop](https://florianpargent.github.io/Quarto_LMU_OSC/). The official online repository of our published commentary can be found [here](https://osf.io/5symf/).
+:::
+
+The analysis presented in the [electronic supplemental material document](electronic_supplemental_material.qmd) are quite similar for more elaborate imputation schemes. For the interested reader, we prepared data imputed with the `miceRanger` package.
+
+```{r}
+#| eval: true
+library(miceRanger)
+phonedata_sensing = readRDS(file = "datasets/clusterdata.RDS")
+phonedata_sensing = phonedata_sensing[, c(1:1821)]
+set.seed(42)
+mice_obj_sensing = miceRanger(phonedata_sensing, m = 1, maxiter = 1, 
+  valueSelector = "meanMatch", verbose = FALSE)
+saveRDS(mice_obj_sensing, file = "mice_obj_sensing.RDS")
+```
+
+See the instructions on how to use this imputed dataset in the [electronic supplemental materials](electronic_supplemental_material.qmd#mobile-sensing-data).
+

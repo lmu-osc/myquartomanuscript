@@ -1,0 +1,2153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving
+and Interchange DTD v1.2 20190208//EN" "JATS-archivearticle1.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.2" article-type="article">
+  <front>
+    <journal-meta>
+      <journal-id/>
+      <journal-title-group>
+</journal-title-group>
+      <issn/>
+      <publisher>
+        <publisher-name/>
+      </publisher>
+    </journal-meta>
+    <article-meta>
+      <title-group>
+        <article-title>New Insights into PCA + Varimax for Psychological
+Researchers</article-title>
+        <subtitle>A short commentary on Rohe &amp; Zeng (2023)</subtitle>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" corresp="yes">
+          <contrib-id contrib-id-type="orcid">0000-0002-2388-553X</contrib-id>
+          <name>
+            <surname>Pargent</surname>
+            <given-names>Florian</given-names>
+          </name>
+          <string-name>Florian Pargent</string-name>
+          <email>florian.pargent@psy.lmu.de</email>
+          <xref ref-type="aff" rid="aff-1">a</xref>
+          <xref ref-type="corresp" rid="cor-1">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Goretzko</surname>
+            <given-names>David</given-names>
+          </name>
+          <string-name>David Goretzko</string-name>
+          <xref ref-type="aff" rid="aff-2">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Oertzen</surname>
+            <given-names>Timo</given-names>
+          </name>
+          <string-name>Timo von Oertzen</string-name>
+          <xref ref-type="aff" rid="aff-3">c</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff-1">
+        <institution-wrap>
+          <institution>Department of Psychology, LMU Munich</institution>
+        </institution-wrap>
+      </aff>
+      <aff id="aff-2">
+        <institution-wrap>
+          <institution>Utrecht University</institution>
+        </institution-wrap>
+      </aff>
+      <aff id="aff-3">
+        <institution-wrap>
+          <institution>Bundeswehr University Munich and Max Planck Institute for
+Human Development</institution>
+        </institution-wrap>
+      </aff>
+      <author-notes>
+        <corresp id="cor-1">florian.pargent@psy.lmu.de</corresp>
+      </author-notes>
+      <pub-date date-type="pub" publication-format="electronic" iso-8601-date="2024-03-04">
+        <year>2024</year>
+        <month>3</month>
+        <day>4</day>
+      </pub-date>
+      <history/>
+    </article-meta>
+  </front>
+  <body>
+    <boxed-text>
+      <p>
+        <bold>Important</bold>
+      </p>
+      <p>This document is <bold>an updated copy</bold> of a
+<ext-link ext-link-type="uri" xlink:href="https://doi.org/10.1093/jrsssb/qkad054">published
+commentary</ext-link>, to showcase
+<ext-link ext-link-type="uri" xlink:href="https://quarto.org/docs/manuscripts/">Quarto
+manuscripts</ext-link> in our
+<ext-link ext-link-type="uri" xlink:href="https://florianpargent.github.io/Quarto_LMU_OSC/">Quarto
+workshop</ext-link>. The official online repository of our published
+commentary can be found
+<ext-link ext-link-type="uri" xlink:href="https://osf.io/5symf/">here</ext-link>.</p>
+    </boxed-text>
+    <sec id="commentary">
+      <title>Commentary</title>
+      <p>As psychologists, we appreciate Rohe &amp; Zeng’s (R&amp;Z; Rohe
+  &amp; Zeng
+  (<xref alt="2023" rid="ref-rohe2023vintage" ref-type="bibr">2023</xref>))
+  new insights into “vintage” principal component analysis with varimax
+  rotation (PCA+VR). Theories of intelligence and personality, perhaps
+  psychology’s contributions best known outside of our field, have been
+  a direct product of PCA. PCA+VR is still widely used for developing
+  and evaluating psychological tests and questionnaires, although the
+  literature has fought against it in favor of more complex factor
+  analytic techniques
+  (<xref alt="Fokkema &amp; Greiff, 2017" rid="ref-fokkema2017how" ref-type="bibr">Fokkema
+  &amp; Greiff, 2017</xref>).</p>
+      <p>In our opinion, abandoning the simpler PCA(+VR) is a mistake and
+  R&amp;Z refute a common argument by proving that PCA+VR
+  <italic>can</italic> perform statistical inference in latent variable
+  models: The factor indeterminacy problem which plagued VR since its
+  invention only applies for the special case of normally distributed
+  factors. For any other distribution, perfect factor indeterminacy does
+  not apply, although identifiability might be weak. However,
+  distributions producing sparse components fulfill a
+  <italic>sufficient</italic> leptokurtic condition, which can be
+  confirmed by simple diagnostics.</p>
+      <p>Because the results are complicated, we relate them to
+  psychological applications. The examples in R&amp;Z only deal with
+  sparse binary network data, but in typical psychological applications,
+  the <inline-formula><alternatives><tex-math><![CDATA[A]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>A</mml:mi></mml:math></alternatives></inline-formula>
+  matrix consists of responses of <inline-formula><alternatives><tex-math><![CDATA[n]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>n</mml:mi></mml:math></alternatives></inline-formula>
+  persons to <inline-formula><alternatives><tex-math><![CDATA[d]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>d</mml:mi></mml:math></alternatives></inline-formula>
+  items which are either binary (e.g., intelligence tests),
+  integer-valued (e.g., personality questionnaires) or continuous (e.g.,
+  digital sensors). Psychologists are often interested in whether i)
+  items can be structured in a simple way to represent a small number of
+  meaningful components, and ii) those components can be interpreted as
+  psychological constructs that describe interindividual differences.
+  R&amp;Z show that “radial streaks” in the rotated loading matrix
+  <inline-formula><alternatives><tex-math><![CDATA[\hat{Y}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Y</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+  suggest that item loadings are identified and can be estimated with
+  PCA+VR from the data. Similarly, streaks in the component matrix
+  <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+  suggest that person scores can be estimated.</p>
+      <p>However, we question whether streaks are common in psychology with
+  regard to both aspects. Test and questionnaire items are traditionally
+  designed to measure only a single construct, so “simple structure”
+  reflected by streaks in <inline-formula><alternatives><tex-math><![CDATA[\hat{Y}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Y</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+  might be expected. Psychological constructs are often conceptualized
+  as roughly normally distributed, so streaks in
+  <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+  seem more questionable. In our online materials
+  (<ext-link ext-link-type="uri" xlink:href="https://osf.io/5symf/">https://osf.io/5symf/</ext-link>),
+  we analyze a dataset
+  (<xref alt="Stachl et al., 2020" rid="ref-stachl2020predicting" ref-type="bibr">Stachl
+  et al., 2020</xref>) containing both personality items
+  (<inline-formula><alternatives><tex-math><![CDATA[n =687]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>687</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>,
+  <inline-formula><alternatives><tex-math><![CDATA[d =300]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>d</mml:mi><mml:mo>=</mml:mo><mml:mn>300</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>)
+  and smartphone sensing variables (<inline-formula><alternatives><tex-math><![CDATA[n =624]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>624</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>,
+  <inline-formula><alternatives><tex-math><![CDATA[d =1821]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>d</mml:mi><mml:mo>=</mml:mo><mml:mn>1821</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>).
+  Streaks were found only in <inline-formula><alternatives><tex-math><![CDATA[\hat{Y}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Y</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+  but not in <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>.
+  It is also a cautionary example of how imputation of missing values in
+  combination with inappropriate data processing seemingly produce
+  streaks in <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+  that belong to uninterpretable components. Degree normalization as
+  discussed in R&amp;Z is not suitable for many psychological datasets
+  and other procedures like z-standardization are often required to
+  detect meaningful factors. Finally, we demonstrate R&amp;Z’s side
+  result that the matrix <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}\hat{B}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover><mml:mover><mml:mi>B</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:mrow></mml:math></alternatives></inline-formula>
+  from PCA+VR can estimate person scores simulated from oblique
+  leptokurtic components.</p>
+      <p>In our opinion, the main usefulness of PCA+VR not necessarily stems
+  from its ability to estimate latent variable models. PCA excels at
+  providing meaningful descriptions in practical applications but
+  R&amp;Z’s and our examples also show that there is rarely a single
+  definite structure. Components are most useful when they predict other
+  meaningful quantities, regardless of the assumed epistemological
+  nature of psychological constructs
+  (<xref alt="Yarkoni, 2020" rid="ref-yarkoni2020implicit" ref-type="bibr">Yarkoni,
+  2020</xref>).</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list>
+      <title>References</title>
+      <ref id="ref-rohe2023vintage">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Rohe</surname>
+              <given-names>Karl</given-names>
+            </name>
+            <name>
+              <surname>Zeng</surname>
+              <given-names>Muzhe</given-names>
+            </name>
+          </person-group>
+          <article-title>Vintage factor analysis with Varimax performs statistical inference</article-title>
+          <source>Journal of the Royal Statistical Society Series B: Statistical Methodology</source>
+          <year iso-8601-date="2023-07">2023</year>
+          <month>07</month>
+          <volume>85</volume>
+          <issue>4</issue>
+          <issn>1369-7412</issn>
+          <uri>https://doi.org/10.1093/jrsssb/qkad029</uri>
+          <pub-id pub-id-type="doi">10.1093/jrsssb/qkad029</pub-id>
+          <fpage>1037</fpage>
+          <lpage>1060</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-yarkoni2020implicit">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Yarkoni</surname>
+              <given-names>Tal</given-names>
+            </name>
+          </person-group>
+          <article-title>Implicit Realism Impedes Progress in Psychology: Comment on Fried (2020)</article-title>
+          <source>Psychological Inquiry</source>
+          <year iso-8601-date="2020-10">2020</year>
+          <month>10</month>
+          <date-in-citation content-type="access-date">
+            <year iso-8601-date="2022-06-08">2022</year>
+            <month>06</month>
+            <day>08</day>
+          </date-in-citation>
+          <volume>31</volume>
+          <issue>4</issue>
+          <issn>1047-840X, 1532-7965</issn>
+          <uri>https://www.tandfonline.com/doi/full/10.1080/1047840X.2020.1853478</uri>
+          <pub-id pub-id-type="doi">10.1080/1047840X.2020.1853478</pub-id>
+          <fpage>326</fpage>
+          <lpage>333</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-stachl2020predicting">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Stachl</surname>
+              <given-names>Clemens</given-names>
+            </name>
+            <name>
+              <surname>Au</surname>
+              <given-names>Quay</given-names>
+            </name>
+            <name>
+              <surname>Schoedel</surname>
+              <given-names>Ramona</given-names>
+            </name>
+            <name>
+              <surname>Gosling</surname>
+              <given-names>Samuel D</given-names>
+            </name>
+            <name>
+              <surname>Harari</surname>
+              <given-names>Gabriella M</given-names>
+            </name>
+            <name>
+              <surname>Buschek</surname>
+              <given-names>Daniel</given-names>
+            </name>
+            <name>
+              <surname>Völkel</surname>
+              <given-names>Sarah Theres</given-names>
+            </name>
+            <name>
+              <surname>Schuwerk</surname>
+              <given-names>Tobias</given-names>
+            </name>
+            <name>
+              <surname>Oldemeier</surname>
+              <given-names>Michelle</given-names>
+            </name>
+            <name>
+              <surname>Ullmann</surname>
+              <given-names>Theresa</given-names>
+            </name>
+            <name>
+              <surname>Hussmann</surname>
+              <given-names>Heinrich</given-names>
+            </name>
+            <name>
+              <surname>Bischl</surname>
+              <given-names>Bernd</given-names>
+            </name>
+            <name>
+              <surname>Bühner</surname>
+              <given-names>Markus</given-names>
+            </name>
+          </person-group>
+          <article-title>Predicting personality from patterns of behavior collected with smartphones</article-title>
+          <source>Proceedings of the National Academy of Sciences of the United States of America</source>
+          <year iso-8601-date="2020-07">2020</year>
+          <month>07</month>
+          <volume>117</volume>
+          <issue>30</issue>
+          <issn>10916490</issn>
+          <uri>www.pnas.org/cgi/doi/10.1073/pnas.1920484117</uri>
+          <pub-id pub-id-type="doi">10.1073/pnas.1920484117</pub-id>
+          <pub-id pub-id-type="pmid">32665436</pub-id>
+          <fpage>17680</fpage>
+          <lpage>17687</lpage>
+        </element-citation>
+      </ref>
+      <ref id="ref-fokkema2017how">
+        <element-citation publication-type="article-journal">
+          <person-group person-group-type="author">
+            <name>
+              <surname>Fokkema</surname>
+              <given-names>Marjolein</given-names>
+            </name>
+            <name>
+              <surname>Greiff</surname>
+              <given-names>Samuel</given-names>
+            </name>
+          </person-group>
+          <article-title>How Performing PCA and CFA on the Same Data Equals Trouble: Overfitting in the Assessment of Internal Structure and Some Editorial Thoughts on It</article-title>
+          <source>European Journal of Psychological Assessment</source>
+          <year iso-8601-date="2017-11">2017</year>
+          <month>11</month>
+          <date-in-citation content-type="access-date">
+            <year iso-8601-date="2022-05-06">2022</year>
+            <month>05</month>
+            <day>06</day>
+          </date-in-citation>
+          <volume>33</volume>
+          <issue>6</issue>
+          <issn>1015-5759, 2151-2426</issn>
+          <uri>https://econtent.hogrefe.com/doi/10.1027/1015-5759/a000460</uri>
+          <pub-id pub-id-type="doi">10.1027/1015-5759/a000460</pub-id>
+          <fpage>399</fpage>
+          <lpage>402</lpage>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+  <sub-article article-type="notebook" id="nb-12-nb-article">
+    <front-stub>
+      <title-group>
+        <article-title>New Insights into PCA + Varimax for Psychological
+Researchers</article-title>
+        <subtitle>A short commentary on Rohe &amp; Zeng (2023)</subtitle>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author" corresp="yes">
+          <contrib-id contrib-id-type="orcid">0000-0002-2388-553X</contrib-id>
+          <name>
+            <surname>Pargent</surname>
+            <given-names>Florian</given-names>
+          </name>
+          <string-name>Florian Pargent</string-name>
+          <email>florian.pargent@psy.lmu.de</email>
+          <xref ref-type="aff" rid="aff-1-nb-article">a</xref>
+          <xref ref-type="corresp" rid="cor-1-nb-article">*</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Goretzko</surname>
+            <given-names>David</given-names>
+          </name>
+          <string-name>David Goretzko</string-name>
+          <xref ref-type="aff" rid="aff-2-nb-article">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Oertzen</surname>
+            <given-names>Timo</given-names>
+          </name>
+          <string-name>Timo von Oertzen</string-name>
+          <xref ref-type="aff" rid="aff-3-nb-article">c</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff-1-nb-article">
+        <institution-wrap>
+          <institution>Department of Psychology, LMU Munich</institution>
+        </institution-wrap>
+      </aff>
+      <aff id="aff-2-nb-article">
+        <institution-wrap>
+          <institution>Utrecht University</institution>
+        </institution-wrap>
+      </aff>
+      <aff id="aff-3-nb-article">
+        <institution-wrap>
+          <institution>Bundeswehr University Munich and Max Planck Institute for
+Human Development</institution>
+        </institution-wrap>
+      </aff>
+      <author-notes>
+        <corresp id="cor-1-nb-article">florian.pargent@psy.lmu.de</corresp>
+      </author-notes>
+    </front-stub>
+    <body>
+      <sec id="nb-code-cell-1-nb-article" specific-use="notebook-code">
+        <code language="r script">phonedata_items = read.csv2("datasets/Items.csv")
+phonedata_items = na.omit(phonedata_items[, 3:302])
+phonedata_sensing = readRDS(file = "datasets/clusterdata.RDS")
+phonedata_sensing = phonedata_sensing[, c(1:1821)]</code>
+      </sec>
+      <boxed-text>
+        <disp-quote>
+          <p>
+            <bold>Important</bold>
+          </p>
+          <p>This document is <bold>an updated copy</bold> of a
+    <ext-link ext-link-type="uri" xlink:href="https://doi.org/10.1093/jrsssb/qkad054">published
+    commentary</ext-link>, to showcase
+    <ext-link ext-link-type="uri" xlink:href="https://quarto.org/docs/manuscripts/">Quarto
+    manuscripts</ext-link> in our
+    <ext-link ext-link-type="uri" xlink:href="https://florianpargent.github.io/Quarto_LMU_OSC/">Quarto
+    workshop</ext-link>. The official online repository of our published
+    commentary can be found
+    <ext-link ext-link-type="uri" xlink:href="https://osf.io/5symf/">here</ext-link>.</p>
+        </disp-quote>
+      </boxed-text>
+      <sec id="commentary-nb-article">
+        <title>Commentary</title>
+        <p>As psychologists, we appreciate Rohe &amp; Zeng’s (R&amp;Z; Rohe
+  &amp; Zeng
+  (<xref alt="2023" rid="ref-rohe2023vintage-nb-article" ref-type="bibr">2023</xref>))
+  new insights into “vintage” principal component analysis with varimax
+  rotation (PCA+VR). Theories of intelligence and personality, perhaps
+  psychology’s contributions best known outside of our field, have been
+  a direct product of PCA. PCA+VR is still widely used for developing
+  and evaluating psychological tests and questionnaires, although the
+  literature has fought against it in favor of more complex factor
+  analytic techniques
+  (<xref alt="Fokkema &amp; Greiff, 2017" rid="ref-fokkema2017how-nb-article" ref-type="bibr">Fokkema
+  &amp; Greiff, 2017</xref>).</p>
+        <p>In our opinion, abandoning the simpler PCA(+VR) is a mistake and
+  R&amp;Z refute a common argument by proving that PCA+VR
+  <italic>can</italic> perform statistical inference in latent variable
+  models: The factor indeterminacy problem which plagued VR since its
+  invention only applies for the special case of normally distributed
+  factors. For any other distribution, perfect factor indeterminacy does
+  not apply, although identifiability might be weak. However,
+  distributions producing sparse components fulfill a
+  <italic>sufficient</italic> leptokurtic condition, which can be
+  confirmed by simple diagnostics.</p>
+        <p>Because the results are complicated, we relate them to
+  psychological applications. The examples in R&amp;Z only deal with
+  sparse binary network data, but in typical psychological applications,
+  the <inline-formula><alternatives><tex-math><![CDATA[A]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>A</mml:mi></mml:math></alternatives></inline-formula>
+  matrix consists of responses of <inline-formula><alternatives><tex-math><![CDATA[n]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>n</mml:mi></mml:math></alternatives></inline-formula>
+  persons to <inline-formula><alternatives><tex-math><![CDATA[d]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>d</mml:mi></mml:math></alternatives></inline-formula>
+  items which are either binary (e.g., intelligence tests),
+  integer-valued (e.g., personality questionnaires) or continuous (e.g.,
+  digital sensors). Psychologists are often interested in whether i)
+  items can be structured in a simple way to represent a small number of
+  meaningful components, and ii) those components can be interpreted as
+  psychological constructs that describe interindividual differences.
+  R&amp;Z show that “radial streaks” in the rotated loading matrix
+  <inline-formula><alternatives><tex-math><![CDATA[\hat{Y}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Y</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+  suggest that item loadings are identified and can be estimated with
+  PCA+VR from the data. Similarly, streaks in the component matrix
+  <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+  suggest that person scores can be estimated.</p>
+        <p>However, we question whether streaks are common in psychology with
+  regard to both aspects. Test and questionnaire items are traditionally
+  designed to measure only a single construct, so “simple structure”
+  reflected by streaks in <inline-formula><alternatives><tex-math><![CDATA[\hat{Y}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Y</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+  might be expected. Psychological constructs are often conceptualized
+  as roughly normally distributed, so streaks in
+  <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+  seem more questionable. In our online materials
+  (<ext-link ext-link-type="uri" xlink:href="https://osf.io/5symf/">https://osf.io/5symf/</ext-link>),
+  we analyze a dataset
+  (<xref alt="Stachl et al., 2020" rid="ref-stachl2020predicting-nb-article" ref-type="bibr">Stachl
+  et al., 2020</xref>) containing both personality items
+  (<inline-formula><alternatives><tex-math><![CDATA[n =687]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>687</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>,
+  <inline-formula><alternatives><tex-math><![CDATA[d =300]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>d</mml:mi><mml:mo>=</mml:mo><mml:mn>300</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>)
+  and smartphone sensing variables (<inline-formula><alternatives><tex-math><![CDATA[n =624]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>n</mml:mi><mml:mo>=</mml:mo><mml:mn>624</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>,
+  <inline-formula><alternatives><tex-math><![CDATA[d =1821]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>d</mml:mi><mml:mo>=</mml:mo><mml:mn>1821</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>).
+  Streaks were found only in <inline-formula><alternatives><tex-math><![CDATA[\hat{Y}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Y</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+  but not in <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>.
+  It is also a cautionary example of how imputation of missing values in
+  combination with inappropriate data processing seemingly produce
+  streaks in <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+  that belong to uninterpretable components. Degree normalization as
+  discussed in R&amp;Z is not suitable for many psychological datasets
+  and other procedures like z-standardization are often required to
+  detect meaningful factors. Finally, we demonstrate R&amp;Z’s side
+  result that the matrix <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}\hat{B}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover><mml:mover><mml:mi>B</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:mrow></mml:math></alternatives></inline-formula>
+  from PCA+VR can estimate person scores simulated from oblique
+  leptokurtic components.</p>
+        <p>In our opinion, the main usefulness of PCA+VR not necessarily stems
+  from its ability to estimate latent variable models. PCA excels at
+  providing meaningful descriptions in practical applications but
+  R&amp;Z’s and our examples also show that there is rarely a single
+  definite structure. Components are most useful when they predict other
+  meaningful quantities, regardless of the assumed epistemological
+  nature of psychological constructs
+  (<xref alt="Yarkoni, 2020" rid="ref-yarkoni2020implicit-nb-article" ref-type="bibr">Yarkoni,
+  2020</xref>).</p>
+      </sec>
+    </body>
+    <back>
+      <ref-list>
+        <title>References</title>
+        <ref id="ref-rohe2023vintage-nb-article">
+          <element-citation publication-type="article-journal">
+            <person-group person-group-type="author">
+              <name>
+                <surname>Rohe</surname>
+                <given-names>Karl</given-names>
+              </name>
+              <name>
+                <surname>Zeng</surname>
+                <given-names>Muzhe</given-names>
+              </name>
+            </person-group>
+            <article-title>Vintage factor analysis with Varimax performs statistical inference</article-title>
+            <source>Journal of the Royal Statistical Society Series B: Statistical Methodology</source>
+            <year iso-8601-date="2023-07">2023</year>
+            <month>07</month>
+            <volume>85</volume>
+            <issue>4</issue>
+            <issn>1369-7412</issn>
+            <uri>https://doi.org/10.1093/jrsssb/qkad029</uri>
+            <pub-id pub-id-type="doi">10.1093/jrsssb/qkad029</pub-id>
+            <fpage>1037</fpage>
+            <lpage>1060</lpage>
+          </element-citation>
+        </ref>
+        <ref id="ref-yarkoni2020implicit-nb-article">
+          <element-citation publication-type="article-journal">
+            <person-group person-group-type="author">
+              <name>
+                <surname>Yarkoni</surname>
+                <given-names>Tal</given-names>
+              </name>
+            </person-group>
+            <article-title>Implicit Realism Impedes Progress in Psychology: Comment on Fried (2020)</article-title>
+            <source>Psychological Inquiry</source>
+            <year iso-8601-date="2020-10">2020</year>
+            <month>10</month>
+            <date-in-citation content-type="access-date">
+              <year iso-8601-date="2022-06-08">2022</year>
+              <month>06</month>
+              <day>08</day>
+            </date-in-citation>
+            <volume>31</volume>
+            <issue>4</issue>
+            <issn>1047-840X, 1532-7965</issn>
+            <uri>https://www.tandfonline.com/doi/full/10.1080/1047840X.2020.1853478</uri>
+            <pub-id pub-id-type="doi">10.1080/1047840X.2020.1853478</pub-id>
+            <fpage>326</fpage>
+            <lpage>333</lpage>
+          </element-citation>
+        </ref>
+        <ref id="ref-stachl2020predicting-nb-article">
+          <element-citation publication-type="article-journal">
+            <person-group person-group-type="author">
+              <name>
+                <surname>Stachl</surname>
+                <given-names>Clemens</given-names>
+              </name>
+              <name>
+                <surname>Au</surname>
+                <given-names>Quay</given-names>
+              </name>
+              <name>
+                <surname>Schoedel</surname>
+                <given-names>Ramona</given-names>
+              </name>
+              <name>
+                <surname>Gosling</surname>
+                <given-names>Samuel D</given-names>
+              </name>
+              <name>
+                <surname>Harari</surname>
+                <given-names>Gabriella M</given-names>
+              </name>
+              <name>
+                <surname>Buschek</surname>
+                <given-names>Daniel</given-names>
+              </name>
+              <name>
+                <surname>Völkel</surname>
+                <given-names>Sarah Theres</given-names>
+              </name>
+              <name>
+                <surname>Schuwerk</surname>
+                <given-names>Tobias</given-names>
+              </name>
+              <name>
+                <surname>Oldemeier</surname>
+                <given-names>Michelle</given-names>
+              </name>
+              <name>
+                <surname>Ullmann</surname>
+                <given-names>Theresa</given-names>
+              </name>
+              <name>
+                <surname>Hussmann</surname>
+                <given-names>Heinrich</given-names>
+              </name>
+              <name>
+                <surname>Bischl</surname>
+                <given-names>Bernd</given-names>
+              </name>
+              <name>
+                <surname>Bühner</surname>
+                <given-names>Markus</given-names>
+              </name>
+            </person-group>
+            <article-title>Predicting personality from patterns of behavior collected with smartphones</article-title>
+            <source>Proceedings of the National Academy of Sciences of the United States of America</source>
+            <year iso-8601-date="2020-07">2020</year>
+            <month>07</month>
+            <volume>117</volume>
+            <issue>30</issue>
+            <issn>10916490</issn>
+            <uri>www.pnas.org/cgi/doi/10.1073/pnas.1920484117</uri>
+            <pub-id pub-id-type="doi">10.1073/pnas.1920484117</pub-id>
+            <pub-id pub-id-type="pmid">32665436</pub-id>
+            <fpage>17680</fpage>
+            <lpage>17687</lpage>
+          </element-citation>
+        </ref>
+        <ref id="ref-fokkema2017how-nb-article">
+          <element-citation publication-type="article-journal">
+            <person-group person-group-type="author">
+              <name>
+                <surname>Fokkema</surname>
+                <given-names>Marjolein</given-names>
+              </name>
+              <name>
+                <surname>Greiff</surname>
+                <given-names>Samuel</given-names>
+              </name>
+            </person-group>
+            <article-title>How Performing PCA and CFA on the Same Data Equals Trouble: Overfitting in the Assessment of Internal Structure and Some Editorial Thoughts on It</article-title>
+            <source>European Journal of Psychological Assessment</source>
+            <year iso-8601-date="2017-11">2017</year>
+            <month>11</month>
+            <date-in-citation content-type="access-date">
+              <year iso-8601-date="2022-05-06">2022</year>
+              <month>05</month>
+              <day>06</day>
+            </date-in-citation>
+            <volume>33</volume>
+            <issue>6</issue>
+            <issn>1015-5759, 2151-2426</issn>
+            <uri>https://econtent.hogrefe.com/doi/10.1027/1015-5759/a000460</uri>
+            <pub-id pub-id-type="doi">10.1027/1015-5759/a000460</pub-id>
+            <fpage>399</fpage>
+            <lpage>402</lpage>
+          </element-citation>
+        </ref>
+      </ref-list>
+    </back>
+  </sub-article>
+  <sub-article article-type="notebook" id="nb-4-nb-1">
+    <front-stub>
+      <title-group>
+        <article-title>Electronic Supplemental Material: New Insights into PCA +
+Varimax for Psychological Researchers</article-title>
+        <subtitle>A short commentary on Rohe &amp; Zeng (2023)</subtitle>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Pargent</surname>
+            <given-names>Florian</given-names>
+          </name>
+          <string-name>Florian Pargent</string-name>
+          <xref ref-type="aff" rid="aff-1-nb-1">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Goretzko</surname>
+            <given-names>David</given-names>
+          </name>
+          <string-name>David Goretzko</string-name>
+          <xref ref-type="aff" rid="aff-2-nb-1">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Oertzen</surname>
+            <given-names>Timo</given-names>
+          </name>
+          <string-name>Timo von Oertzen</string-name>
+          <xref ref-type="aff" rid="aff-3-nb-1">c</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff-1-nb-1">
+        <institution-wrap>
+          <institution>LMU Munich</institution>
+        </institution-wrap>
+      </aff>
+      <aff id="aff-2-nb-1">
+        <institution-wrap>
+          <institution>Utrecht University</institution>
+        </institution-wrap>
+      </aff>
+      <aff id="aff-3-nb-1">
+        <institution-wrap>
+          <institution>Bundeswehr University Munich and Max Planck Institute for
+Human Development</institution>
+        </institution-wrap>
+      </aff>
+    </front-stub>
+    <body>
+      <boxed-text>
+        <disp-quote>
+          <p>
+            <bold>Important</bold>
+          </p>
+          <p>This document is <bold>an updated copy</bold> of a
+    <ext-link ext-link-type="uri" xlink:href="https://doi.org/10.1093/jrsssb/qkad054">published
+    commentary</ext-link>, to showcase
+    <ext-link ext-link-type="uri" xlink:href="https://quarto.org/docs/manuscripts/">Quarto
+    manuscripts</ext-link> in our
+    <ext-link ext-link-type="uri" xlink:href="https://florianpargent.github.io/Quarto_LMU_OSC/">Quarto
+    workshop</ext-link>. The official online repository of our published
+    commentary can be found
+    <ext-link ext-link-type="uri" xlink:href="https://osf.io/5symf/">here</ext-link>.</p>
+        </disp-quote>
+      </boxed-text>
+      <sec id="a-short-commentary-on-rohe-zeng-2023-nb-1">
+        <title>A Short Commentary on Rohe &amp; Zeng (2023)</title>
+        <p>In their paper <italic>“Vintage factor analysis with varimax
+  performs statistical inference”</italic>, Rohe and Zeng [R&amp;Z; Rohe
+  &amp; Zeng
+  (<xref alt="2023" rid="ref-rohe2023vintage-nb-1" ref-type="bibr">2023</xref>)]
+  demonstrate the usefulness of principal component analysis with
+  varimax rotation (PCA+VR), a combination they call <italic>vintage
+  factor analysis</italic>. The authors show that PCA+VR can be used to
+  estimate factor scores and factor loadings, if a certain leptokurtic
+  condition is fulfilled that can be assessed by simple visual
+  diagnostics. In a side result, they also imply that PCA+VR is able to
+  estimate factor scores even if the latent factors are correlated. In
+  our commentary <italic>“New Insights into PCA + Varimax for
+  Psychological Researchers”</italic>
+  (<xref alt="Pargent et al., 2023" rid="ref-pargent2023discussion-nb-1" ref-type="bibr">Pargent
+  et al., 2023</xref>), we briefly discuss some implications of these
+  results for psychological research and note that the suggested
+  diagnostics of “radial streaks” might give less clear results in
+  typical psychological applications. The commentary includes extensive
+  <italic>electronic supplemental materials</italic>, containing a data
+  example and a small simulation on estimating correlated factors, that
+  can be found at
+  <ext-link ext-link-type="uri" xlink:href="https://osf.io/5symf/">https://osf.io/5symf/</ext-link>.</p>
+        <p>In the current electronic supplementary materials, we present i) an
+  exemplary data analysis that is discussed in our comment, and ii) a
+  small simulation demonstrating the ability of PCA+VR to estimate
+  correlated factors.</p>
+      </sec>
+      <sec id="data-example-the-phonestudy-nb-1">
+        <title>Data Example: The PhoneStudy</title>
+        <sec id="nb-code-cell-1-nb-1" specific-use="notebook-code">
+          <code language="r script">library(knitr)
+library(vsp)
+library(Matrix)
+library(scales)
+  </code>
+        </sec>
+        <p>In contrast to the examples in R&amp;Z which only deal with sparse
+  binary network data, psychological applications (traditionally) deal
+  with i) questionnaire items or (increasingly) ii) digital data, e.g.,
+  mobile sensing. The <inline-formula><alternatives><tex-math><![CDATA[A]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>A</mml:mi></mml:math></alternatives></inline-formula>
+  matrix consists of i) integer-valued responses on
+  <inline-formula><alternatives><tex-math><![CDATA[d]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>d</mml:mi></mml:math></alternatives></inline-formula>
+  Likert items or ii) continuous values on
+  <inline-formula><alternatives><tex-math><![CDATA[d]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>d</mml:mi></mml:math></alternatives></inline-formula>
+  sensing variables, by <inline-formula><alternatives><tex-math><![CDATA[n]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>n</mml:mi></mml:math></alternatives></inline-formula>
+  persons. Degree normalization discussed by R&amp;Z does not seem
+  suitable here and z-standardization is often required to detect
+  meaningful factors in practice. We also do not share R&amp;Z’s
+  enthusiasm that “radial streaks” are common.</p>
+        <p>For the following demonstration, we use the publicly available
+  <italic>PhoneStudy</italic> behavioral patterns dataset, which has
+  been used to predict human personality from smartphone usage data
+  (<xref alt="Stachl et al., 2020" rid="ref-stachl2020predicting-nb-1" ref-type="bibr">Stachl
+  et al., 2020</xref>). The <italic>PhoneStudy</italic> collected i)
+  self-reported questionnaire data of personality traits measured with
+  the German Big Five Structure Inventory [BFSI; 5 factors and 30
+  facets, Arendasy et al.
+  (<xref alt="2011" rid="ref-arendasy_manual_2011-nb-1" ref-type="bibr">2011</xref>)],
+  ii) demographic variables (age, gender, education), and iii)
+  behavioral data from smartphone sensing (e.g., communication &amp;
+  social behavior, app-usage, music consumption, overall phone usage,
+  day-nighttime activity), bundled from several smaller studies. The
+  mobile sensing data was recorded for up to 30 days on the personal
+  smartphone of study volunteers.</p>
+        <p>Item responses to the personality questionnaire are contained in
+  the file <italic>datasets/Items.csv</italic> while aggregated
+  smartphone sensing variables are contained in the file
+  <italic>datasets/clusterdata.RDS</italic>. Both can be downloaded from
+  <ext-link ext-link-type="uri" xlink:href="https://osf.io/fxv3k/download">https://osf.io/fxv3k/download</ext-link>.
+  We include copies of the aggregated datasets in our project repository
+  for convenience. More details on the <italic>PhoneStudy</italic> data
+  can be found in Stachl et al.
+  (<xref alt="2020" rid="ref-stachl2020predicting-nb-1" ref-type="bibr">2020</xref>).
+  Mobile sensing variables are described in more detail at
+  <ext-link ext-link-type="uri" xlink:href="https://compstat-lmu.shinyapps.io/Personality_Prediction/#section-datadict">https://compstat-lmu.shinyapps.io/Personality_Prediction/#section-datadict</ext-link>.</p>
+        <sec id="item-response-data-nb-1">
+          <title>Item Response Data</title>
+          <p>Item responses to the 300 personality items of the Big Five
+    questionnaire are almost complete and we decided to use complete
+    case analysis here, although imputation would be possible as
+    well.</p>
+          <sec id="nb-code-cell-2-nb-1" specific-use="notebook-code">
+            <code language="r script">phonedata_items = read.csv2("datasets/Items.csv")
+phonedata_items = na.omit(phonedata_items[, 3:302])
+    </code>
+          </sec>
+          <p>As is common for psychometric analyses, we standardize the item
+    response data with <monospace>scale</monospace> and convert the
+    data.frame to a <italic>dgCMatrix</italic> that can be analyzed with
+    <monospace>vsp</monospace> R package. However, not standardizing the
+    items does not change the following results much here because there
+    cannot be large outliers in item responses and item variances due to
+    the fixed response format (all items are measured on a Likert scale
+    with 4 labeled categories).</p>
+          <sec id="nb-code-cell-3-nb-1" specific-use="notebook-code">
+            <code language="r script">items_mat_z = as.matrix(scale(phonedata_items))
+colnames(items_mat_z) = colnames(phonedata_items)
+items_mat_z = as(items_mat_z, "dgCMatrix")
+    </code>
+          </sec>
+          <p>The screeplot suggests a decrease in singular values after the
+    5th component. This is in line with the theory behind the
+    questionnaire that was constructed to measure the Big Five
+    personality factors.</p>
+          <sec id="nb-code-cell-4-nb-1" specific-use="notebook-code">
+            <code language="r script">screeplot(vsp(items_mat_z, rank = 50,
+  degree_normalize = FALSE, center = FALSE))
+    </code>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-4-1.png"/>
+          </sec>
+          <p>Note that each Big Five factor is represented in the
+    questionnaire by 6 lower order personality facets measured by 10
+    items each. Thus, theory would suggest that extracting 30 components
+    should also be meaningful.</p>
+          <p>To keep it simple, we extract only 5 components here.</p>
+          <sec id="nb-code-cell-5-nb-1" specific-use="notebook-code">
+            <code language="r script">pca_items_z = vsp(items_mat_z, rank = 5,
+  degree_normalize = FALSE, center = FALSE)
+    </code>
+          </sec>
+          <p>Note that we do set
+    <monospace>degree_normalize = FALSE</monospace> and
+    <monospace>center = FALSE</monospace> because we do not analyze
+    binary network data and we have already standardized our item
+    responses.</p>
+          <p>We search for <bold>radial streaks</bold> in the estimated
+    component and loading matrices:</p>
+          <sec id="nb-code-cell-6-nb-1" specific-use="notebook-code">
+            <code language="r script">pairs(as.matrix(pca_items_z$Z[, 1:5]), cex = 0.5, col = alpha("red", alpha = 0.2), 
+  main = "Estimated components (with standardization)")
+    </code>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-6-1.png"/>
+          </sec>
+          <p>We do not find streaks in the estimated component matrix
+    <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>.</p>
+          <sec id="nb-code-cell-7-nb-1" specific-use="notebook-code">
+            <code language="r script">pairs(as.matrix(pca_items_z$Y[, 1:5]), cex = 0.5, col = alpha("red", alpha = 0.3), 
+  main = "Estimated loadings (with standardization)")
+    </code>
+            <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-7-1.png"/>
+          </sec>
+          <p>However, we find noisy streaks in the estimated loading matrix
+    <inline-formula><alternatives><tex-math><![CDATA[\hat{Y}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Y</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>.
+    This <bold>simple structure</bold> is in line with the construction
+    process of the personality questionnaire, which has the goal that
+    each item measures only a single Big Five factor. Streaks are even
+    more pronounced when extracting 30 components.</p>
+          <p>Finally, we interpret the components by highlighting the 10 items
+    with the highest absolute loadings on each component.</p>
+          <sec id="nb-code-cell-8-nb-1" specific-use="notebook-code">
+            <code language="r script">n = 10
+top_vars_items_z = data.frame(
+  Extraversion = names(sort(abs(pca_items_z$Y[, 1]), decreasing = TRUE)[1:n]),
+  Conscientiousness = names(sort(abs(pca_items_z$Y[, 2]), decreasing = TRUE)[1:n]),
+  Agreeableness = names(sort(abs(pca_items_z$Y[, 3]), decreasing = TRUE)[1:n]),
+  EmotionalStability = names(sort(abs(pca_items_z$Y[, 4]), decreasing = TRUE)[1:n]),
+  Openness = names(sort(abs(pca_items_z$Y[, 5]), decreasing = TRUE)[1:n])
+)
+kable(top_vars_items_z)
+    </code>
+            <table-wrap>
+              <table>
+                <colgroup>
+                  <col width="18%"/>
+                  <col width="25%"/>
+                  <col width="19%"/>
+                  <col width="26%"/>
+                  <col width="12%"/>
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th align="left">Extraversion</th>
+                    <th align="left">Conscientiousness</th>
+                    <th align="left">Agreeableness</th>
+                    <th align="left">EmotionalStability</th>
+                    <th align="left">Openness</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td align="left">E1.1</td>
+                    <td align="left">C6.8</td>
+                    <td align="left">A6.8</td>
+                    <td align="left">ES6.10</td>
+                    <td align="left">O2.6</td>
+                  </tr>
+                  <tr>
+                    <td align="left">E4.3</td>
+                    <td align="left">C2.5</td>
+                    <td align="left">O3.3</td>
+                    <td align="left">ES1.3</td>
+                    <td align="left">O2.5</td>
+                  </tr>
+                  <tr>
+                    <td align="left">E2.7</td>
+                    <td align="left">C4.9</td>
+                    <td align="left">A6.10</td>
+                    <td align="left">ES2.3</td>
+                    <td align="left">O6.2</td>
+                  </tr>
+                  <tr>
+                    <td align="left">E2.2</td>
+                    <td align="left">ES5.6</td>
+                    <td align="left">A6.2</td>
+                    <td align="left">ES2.9</td>
+                    <td align="left">O2.10</td>
+                  </tr>
+                  <tr>
+                    <td align="left">E2.4</td>
+                    <td align="left">C3.6</td>
+                    <td align="left">O3.7</td>
+                    <td align="left">ES2.7</td>
+                    <td align="left">O5.4</td>
+                  </tr>
+                  <tr>
+                    <td align="left">E2.8</td>
+                    <td align="left">C5.6</td>
+                    <td align="left">E1.7</td>
+                    <td align="left">ES2.1</td>
+                    <td align="left">O1.6</td>
+                  </tr>
+                  <tr>
+                    <td align="left">E4.5</td>
+                    <td align="left">C3.1</td>
+                    <td align="left">A6.6</td>
+                    <td align="left">ES2.8</td>
+                    <td align="left">O1.2</td>
+                  </tr>
+                  <tr>
+                    <td align="left">ES4.10</td>
+                    <td align="left">C2.7</td>
+                    <td align="left">A6.4</td>
+                    <td align="left">ES3.7</td>
+                    <td align="left">O1.9</td>
+                  </tr>
+                  <tr>
+                    <td align="left">E2.6</td>
+                    <td align="left">C4.5</td>
+                    <td align="left">A6.5</td>
+                    <td align="left">ES1.4</td>
+                    <td align="left">O2.8</td>
+                  </tr>
+                  <tr>
+                    <td align="left">E3.2</td>
+                    <td align="left">C2.3</td>
+                    <td align="left">O3.1</td>
+                    <td align="left">ES2.6</td>
+                    <td align="left">O2.1</td>
+                  </tr>
+                </tbody>
+              </table>
+            </table-wrap>
+          </sec>
+          <p>With few exceptions, the item labels indicate that the implied
+    Big Five personality factors (<italic>Extraversion</italic>,
+    <italic>Conscientiousness</italic>, <italic>Agreeableness</italic>,
+    <italic>Emotional Stability</italic>, <italic>Openness</italic>)
+    were recovered as expected.</p>
+        </sec>
+        <sec id="mobile-sensing-data-nb-1">
+          <title>Mobile Sensing Data</title>
+          <sec id="nb-code-cell-9-nb-1" specific-use="notebook-code">
+            <code language="r script">phonedata_sensing = readRDS(file = "datasets/clusterdata.RDS")
+phonedata_sensing = phonedata_sensing[, c(1:1821)]
+    </code>
+          </sec>
+          <p>The smartphone sensing data contains 1821 preprocessed variables.
+    Of these variables, 772 contain missing values and not a single
+    person has complete data on all variables. Thus, imputation of
+    missing values seems a necessity when working with these data. We
+    use very simple mean imputation here which is sufficient for the
+    goal of our demonstration.</p>
+          <sec id="nb-code-cell-10-nb-1" specific-use="notebook-code">
+            <code language="r script">phonedata_sensing_imp = phonedata_sensing
+for(col in colnames(phonedata_sensing_imp)) {
+  phonedata_sensing_imp[which(is.na(phonedata_sensing_imp[[col]])), col] &lt;-
+    mean(phonedata_sensing_imp[[col]], na.rm = TRUE)
+}
+    </code>
+          </sec>
+          <p>However, our results are quite similar for more elaborate
+    imputation schemes. For the interested reader, we prepared data
+    imputed with the <monospace>miceRanger</monospace> package in the
+    <ext-link ext-link-type="uri" xlink:href="sensitivity_analysis.qmd">sensitivity
+    analysis document</ext-link>.</p>
+          <p>If you want to use that data, you have to set
+    <monospace>eval: true</monospace> or manually run the following
+    chunk in the <italic>.qmd</italic> file.</p>
+          <sec id="nb-code-cell-11-nb-1" specific-use="notebook-code">
+            <code language="r script">library(miceRanger)
+mice_obj_sensing = readRDS(file = "mice_obj_sensing.RDS")
+phonedata_sensing_imp = as.data.frame(completeData(mice_obj_sensing)[[1]])
+    </code>
+          </sec>
+          <sec id="analysis-with-standardization-nb-1">
+            <title>Analysis with Standardization</title>
+            <p>In contrast to the item response data, there is a huge
+      difference in the standard deviations of the smartphone sensing
+      variables.</p>
+            <sec id="nb-code-cell-12-nb-1" specific-use="notebook-code">
+              <code language="r script">round(quantile(sapply(phonedata_sensing_imp, sd)), 2)
+      </code>
+              <sec id="nb-code-cell-12-output-0-nb-1" specific-use="notebook-output">
+                <preformat>        0%        25%        50%        75%       100% 
+      0.02       0.21       2.13      12.81 1723949.43 </preformat>
+              </sec>
+            </sec>
+            <p>Thus, it is important to standardize the variables before
+      further analysis.</p>
+            <sec id="nb-code-cell-13-nb-1" specific-use="notebook-code">
+              <code language="r script">sensing_mat_imp_z = as.matrix(scale(phonedata_sensing_imp))
+colnames(sensing_mat_imp_z) = colnames(phonedata_sensing_imp)
+sensing_mat_imp_z = as(sensing_mat_imp_z, "dgCMatrix")
+screeplot(vsp(sensing_mat_imp_z, rank = 50, 
+  degree_normalize = FALSE, center = TRUE))
+      </code>
+              <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-13-1.png"/>
+            </sec>
+            <p>The screeplot does not show a clear gap or elbow for the
+      smartphone sensing data. To keep it simple, we extract only 5
+      components here, but higher numbers also provide meaningful
+      insights.</p>
+            <p>Again, we do not use degree normalization but we set
+      <monospace>center = TRUE</monospace> despite standardizing the
+      columns because row means also differ to some extent.</p>
+            <sec id="nb-code-cell-14-nb-1" specific-use="notebook-code">
+              <code language="r script">pca_sensing_imp_z = vsp(sensing_mat_imp_z, rank = 5, 
+  degree_normalize = FALSE, center = TRUE)
+      </code>
+            </sec>
+            <p>We search for <bold>radial streaks</bold> in the estimated
+      component and loading matrices:</p>
+            <sec id="nb-code-cell-15-nb-1" specific-use="notebook-code">
+              <code language="r script">pairs(as.matrix(pca_sensing_imp_z$Z[, 1:5]), cex = 0.3, col = alpha("red", alpha = 0.1), 
+  main = "Estimated components (with standardization)")
+      </code>
+              <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-15-1.png"/>
+            </sec>
+            <p>We do not find a clear indication of streaks in the estimated
+      component matrix <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>.</p>
+            <sec id="nb-code-cell-16-nb-1" specific-use="notebook-code">
+              <code language="r script">pairs(as.matrix(pca_sensing_imp_z$Y[, 1:5]), cex = 0.3, col = alpha("red", alpha = 0.1), 
+  main = "Estimated loadings (with standardization)")
+      </code>
+              <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-16-1.png"/>
+            </sec>
+            <p>However, we find streaks in the estimated loading matrix
+      <inline-formula><alternatives><tex-math><![CDATA[\hat{Y}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Y</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>.
+      In contrast to the items of the personality questionnaire that
+      have been constructed with simple structure in mind, no simple
+      structure was implied when constructing the smartphone sensing
+      variables. Nonetheless, the streaks would suggest that the
+      smartphone sensing variables can be meaningfully clustered in this
+      dataset.</p>
+            <p>For interpretation, we again highlight the 10 variables with
+      the highest absolute loadings on each component.</p>
+            <sec id="nb-code-cell-17-nb-1" specific-use="notebook-code">
+              <code language="r script">n = 10
+top_vars_z = data.frame(
+  Apps_Usage = names(sort(abs(pca_sensing_imp_z$Y[, 1]), decreasing = TRUE)[1:n]),
+  Calls = names(sort(abs(pca_sensing_imp_z$Y[, 2]), decreasing = TRUE)[1:n]),
+  Music_Songs = names(sort(abs(pca_sensing_imp_z$Y[, 3]), decreasing = TRUE)[1:n]),
+  Music_Audio_Features = names(sort(abs(pca_sensing_imp_z$Y[, 4]), decreasing = TRUE)[1:n]),
+  Terrain = names(sort(abs(pca_sensing_imp_z$Y[, 5]), decreasing = TRUE)[1:n])
+)
+kable(top_vars_z)
+      </code>
+              <table-wrap>
+                <table>
+                  <colgroup>
+                    <col width="21%"/>
+                    <col width="17%"/>
+                    <col width="17%"/>
+                    <col width="18%"/>
+                    <col width="26%"/>
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th align="left">Apps_Usage</th>
+                      <th align="left">Calls</th>
+                      <th align="left">Music_Songs</th>
+                      <th align="left">Music_Audio_Features</th>
+                      <th align="left">Terrain</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td align="left">daily_mean_num_unique_apps_week</td>
+                      <td align="left">daily_mean_num_cont_call</td>
+                      <td align="left">daily_mean_num_song</td>
+                      <td align="left">mean_music_loudness</td>
+                      <td align="left">daily_mean_neg_elev_change</td>
+                    </tr>
+                    <tr>
+                      <td align="left">daily_mean_num_unique_apps</td>
+                      <td align="left">daily_mean_num_cont</td>
+                      <td align="left">daily_mean_duration_music</td>
+                      <td align="left">mean_music_loudness_weekday</td>
+                      <td align="left">daily_mean_elev_change</td>
+                    </tr>
+                    <tr>
+                      <td align="left">daily_mean_num_unique_apps_weekend</td>
+                      <td align="left">daily_mean_num_cont_week</td>
+                      <td align="left">daily_max_num_uniq_song</td>
+                      <td align="left">sd_music_loudness</td>
+                      <td align="left">daily_mean_pos_elev_change</td>
+                    </tr>
+                    <tr>
+                      <td align="left">daily_mean_num_unique_Camera</td>
+                      <td align="left">daily_mean_num_cont_call_out</td>
+                      <td align="left">daily_mean_num_song_weekdays</td>
+                      <td align="left">mean_music_energy</td>
+                      <td align="left">daily_mean_elev_change_weekdays</td>
+                    </tr>
+                    <tr>
+                      <td align="left">daily_mean_num_unique_Camera_week</td>
+                      <td align="left">daily_sd_num_call_in</td>
+                      <td align="left">daily_mean_num_uniq_song</td>
+                      <td align="left">mean_music_loudness_weekend</td>
+                      <td align="left">daily_mean_elev_change_weekend</td>
+                    </tr>
+                    <tr>
+                      <td align="left">daily_mean_num_unique_Camera_weekend</td>
+                      <td align="left">IVI_calls</td>
+                      <td align="left">num_uniq_songs</td>
+                      <td align="left">mean_music_acousticness</td>
+                      <td align="left">daily_sd_elev_change</td>
+                    </tr>
+                    <tr>
+                      <td align="left">daily_mean_sum_events_daytime</td>
+                      <td align="left">daily_mean_num_cont_call_miss</td>
+                      <td align="left">daily_sd_num_song</td>
+                      <td align="left">mean_music_energy_weekday</td>
+                      <td align="left">daily_mean_num_.com.sonyericsson.home</td>
+                    </tr>
+                    <tr>
+                      <td align="left">daily_mean_sum_events_night</td>
+                      <td align="left">daily_mean_num_cont_weekend</td>
+                      <td align="left">num_songs</td>
+                      <td align="left">mean_music_acousticness_weekday</td>
+                      <td align="left">daily_mean_num_.com.sec.android.app.launcher</td>
+                    </tr>
+                    <tr>
+                      <td align="left">daily_mean_num_unique_Gallery</td>
+                      <td align="left">daily_mean_num_call_out</td>
+                      <td align="left">daily_mean_num_uniq_alb</td>
+                      <td align="left">sd_music_acousticness</td>
+                      <td align="left">daily_mean_num_.com.sec.android.gallery3d</td>
+                    </tr>
+                    <tr>
+                      <td align="left">daily_mean_num_unique_Gallery_week</td>
+                      <td align="left">daily_mean_num_cont_call_in</td>
+                      <td align="left">daily_sd_duration_music</td>
+                      <td align="left">mean_music_energy_weekend</td>
+                      <td align="left">daily_mean_num_.com.sonyericsson.album</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </table-wrap>
+            </sec>
+            <p>To summarize, with careful preprocessing and appropriate data
+      standardization, PCA+VR seems to meaningfully cluster the
+      smartphone sensing variables, as indicated by radial streaks in
+      the estimated loading matrix <inline-formula><alternatives><tex-math><![CDATA[\hat{Y}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Y</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>.
+      However, we did not find streaks in the estimated component matrix
+      <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+      so we cannot necessarily have high confidence that PCA+VR was able
+      to estimate well identified person scores on these components.</p>
+            <p>The following cautionary example showcases what can happen when
+      the smartphone sensing data is not preprocessed with enough
+      care.</p>
+          </sec>
+          <sec id="a-cautionary-example-analysis-without-standardization-nb-1">
+            <title>A Cautionary example: Analysis without
+      Standardization</title>
+            <p>To simulate mindless data analysis, we do not standardize the
+      smartphone sensing variables and use the default
+      <monospace>degree_normalize = TRUE</monospace> in the
+      <monospace>vsp</monospace> call, although this should not be a
+      meaningful setting because we do not analyze binary network data
+      here.</p>
+            <sec id="nb-code-cell-18-nb-1" specific-use="notebook-code">
+              <code language="r script">sensing_mat_imp = as.matrix(phonedata_sensing_imp)
+colnames(sensing_mat_imp) = colnames(phonedata_sensing_imp)
+sensing_mat_imp = as(sensing_mat_imp, "dgCMatrix")
+screeplot(vsp(sensing_mat_imp, rank = 50,
+  degree_normalize = TRUE, center = TRUE))
+      </code>
+              <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-18-1.png"/>
+            </sec>
+            <p>With these settings, the screeplot shows substantial gaps (in
+      contrast to the previous analysis with standardization). To keep
+      it simple, we decided to extract 5 components here, but the main
+      insights from this exercise do not seem to depend on this
+      number.</p>
+            <p>When searching for <bold>radial streaks</bold> in the estimated
+      component and loading matrices, we notice interesting changes
+      compared to the analysis with standardized variables</p>
+            <sec id="nb-code-cell-19-nb-1" specific-use="notebook-code">
+              <code language="r script">pca_sensing_imp = vsp(sensing_mat_imp, rank = 5,
+  degree_normalize = TRUE, center = TRUE)
+pairs(as.matrix(pca_sensing_imp$Z[, 1:5]), cex = 0.5, col = alpha("red", alpha = 0.2), 
+  main = "Estimated components (no standardization)")
+      </code>
+              <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-19-1.png"/>
+            </sec>
+            <p>With these settings, we <italic>do</italic> find beautiful
+      streaks in the estimated component matrix
+      <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>.</p>
+            <sec id="nb-code-cell-20-nb-1" specific-use="notebook-code">
+              <code language="r script">pairs(as.matrix(pca_sensing_imp$Y[, 1:5]), cex = 0.5, col = alpha("red", alpha = 0.4), 
+  main = "Estimated loadings (no standardization)")
+      </code>
+              <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-20-1.png"/>
+            </sec>
+            <p>In contrast, streaks in the estimated loading matrix
+      <inline-formula><alternatives><tex-math><![CDATA[\hat{Y}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Y</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+      are very extreme. To a careful analyst, this might perhaps raise
+      some alarms that something might be wrong here…</p>
+            <sec id="nb-code-cell-21-nb-1" specific-use="notebook-code">
+              <code language="r script">n = 20
+top_vars = data.frame(
+  GPS1 = names(sort(abs(pca_sensing_imp$Y[, 1]), decreasing = TRUE)[1:n]),
+  GPS2 = names(sort(abs(pca_sensing_imp$Y[, 2]), decreasing = TRUE)[1:n]),
+  GPS3 = names(sort(abs(pca_sensing_imp$Y[, 3]), decreasing = TRUE)[1:n]),
+  GPS4 = names(sort(abs(pca_sensing_imp$Y[, 4]), decreasing = TRUE)[1:n]),
+  GPS5 = names(sort(abs(pca_sensing_imp$Y[, 5]), decreasing = TRUE)[1:n])
+)
+red_vars = unique(unlist(top_vars))
+kable(top_vars)
+      </code>
+              <table-wrap>
+                <table>
+                  <colgroup>
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="20%"/>
+                    <col width="20%"/>
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th align="left">GPS1</th>
+                      <th align="left">GPS2</th>
+                      <th align="left">GPS3</th>
+                      <th align="left">GPS4</th>
+                      <th align="left">GPS5</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td align="left">maxDistance</td>
+                      <td align="left">huberM_time_spent_home</td>
+                      <td align="left">huberM_distance_covered_weekend</td>
+                      <td align="left">huberM_daily_max_dist_home</td>
+                      <td align="left">huberM_time_spent_home_weekend</td>
+                    </tr>
+                    <tr>
+                      <td align="left">max_distance_home</td>
+                      <td align="left">huberM_time_spent_home_weekday</td>
+                      <td align="left">huberM_distance_covered_daily</td>
+                      <td align="left">huberM_daily_max_dist_home_weekday</td>
+                      <td align="left">durationHome</td>
+                    </tr>
+                    <tr>
+                      <td align="left">rog</td>
+                      <td align="left">durationHome</td>
+                      <td align="left">huberM_distance_covered_weekday</td>
+                      <td align="left">huberM_daily_max_dist_home_weekend</td>
+                      <td align="left">huberM_time_spent_home_weekday</td>
+                    </tr>
+                    <tr>
+                      <td align="left">SDD</td>
+                      <td align="left">max_distance_home</td>
+                      <td align="left">huberM_max_dist_two_points_weekend</td>
+                      <td align="left">durationHome</td>
+                      <td align="left">huberM_daily_max_dist_home_weekend</td>
+                    </tr>
+                    <tr>
+                      <td align="left">SDD_daytime</td>
+                      <td align="left">maxDistance</td>
+                      <td align="left">huberM_max_dist_two_points_daily</td>
+                      <td align="left">SDD_nighttime</td>
+                      <td align="left">SDD_weekend</td>
+                    </tr>
+                    <tr>
+                      <td align="left">SDD_weekend</td>
+                      <td align="left">huberM_time_spent_home_weekend</td>
+                      <td align="left">huberM_max_dist_two_points_weekday</td>
+                      <td align="left">max_distance_home</td>
+                      <td align="left">SDD_sat</td>
+                    </tr>
+                    <tr>
+                      <td align="left">SDD_sat</td>
+                      <td align="left">huberM_daily_max_dist_home_weekend</td>
+                      <td align="left">huberM_rog_weekends</td>
+                      <td align="left">maxDistance</td>
+                      <td align="left">SDD_nighttime</td>
+                    </tr>
+                    <tr>
+                      <td align="left">SDD_weekday</td>
+                      <td align="left">huberM_daily_time_spent_home</td>
+                      <td align="left">huberM_rog_daily</td>
+                      <td align="left">SDD</td>
+                      <td align="left">SDD</td>
+                    </tr>
+                    <tr>
+                      <td align="left">SDD_nighttime</td>
+                      <td align="left">huberM_daily_max_dist_home</td>
+                      <td align="left">huberM_rog_weekdays</td>
+                      <td align="left">rog</td>
+                      <td align="left">mean_dur_wakeLeaveHome_weekend</td>
+                    </tr>
+                    <tr>
+                      <td align="left">huberM_daily_max_dist_home_weekday</td>
+                      <td align="left">rog</td>
+                      <td align="left">Qn_rog_weekends</td>
+                      <td align="left">SDD_sat</td>
+                      <td align="left">huberM_distance_covered_daily</td>
+                    </tr>
+                    <tr>
+                      <td align="left">huberM_time_spent_home_weekday</td>
+                      <td align="left">huberM_distance_covered_daily</td>
+                      <td align="left">huberM_rog_nightly</td>
+                      <td align="left">huberM_max_dist_two_points_weekend</td>
+                      <td align="left">mean_time_firstLeave</td>
+                    </tr>
+                    <tr>
+                      <td align="left">huberM_daily_max_dist_home_weekend</td>
+                      <td align="left">huberM_daily_max_dist_home_weekday</td>
+                      <td align="left">max_distance_home</td>
+                      <td align="left">SDD_daytime</td>
+                      <td align="left">mean_time_LeaveHome_weekday</td>
+                    </tr>
+                    <tr>
+                      <td align="left">huberM_time_spent_home</td>
+                      <td align="left">SDD_nighttime</td>
+                      <td align="left">huberM_daily_max_dist_home_weekend</td>
+                      <td align="left">Qn_rog_weekends</td>
+                      <td align="left">huberM_rog_weekends</td>
+                    </tr>
+                    <tr>
+                      <td align="left">huberM_daily_max_dist_home</td>
+                      <td align="left">huberM_distance_covered_weekday</td>
+                      <td align="left">SDD</td>
+                      <td align="left">huberM_time_spent_home_weekend</td>
+                      <td align="left">SDD_daytime</td>
+                    </tr>
+                    <tr>
+                      <td align="left">huberM_distance_covered_weekend</td>
+                      <td align="left">huberM_distance_covered_weekend</td>
+                      <td align="left">SDD_daytime</td>
+                      <td align="left">huberM_daily_time_spent_home</td>
+                      <td align="left">huberM_distance_covered_weekday</td>
+                    </tr>
+                    <tr>
+                      <td align="left">huberM_distance_covered_weekday</td>
+                      <td align="left">huberM_max_dist_two_points_weekend</td>
+                      <td align="left">SDD_weekday</td>
+                      <td align="left">huberM_distance_covered_weekday</td>
+                      <td align="left">mean_dur_wakeLeave</td>
+                    </tr>
+                    <tr>
+                      <td align="left">huberM_distance_covered_daily</td>
+                      <td align="left">SDD_weekend</td>
+                      <td align="left">SDD_nighttime</td>
+                      <td align="left">huberM_distance_covered_daily</td>
+                      <td align="left">mean_time_lastHome</td>
+                    </tr>
+                    <tr>
+                      <td align="left">huberM_max_dist_two_points_daily</td>
+                      <td align="left">huberM_rog_weekends</td>
+                      <td align="left">SDD_weekend</td>
+                      <td align="left">huberM_rog_weekends</td>
+                      <td align="left">huberM_rog_nightly</td>
+                    </tr>
+                    <tr>
+                      <td align="left">huberM_max_dist_two_points_weekend</td>
+                      <td align="left">mean_time_lastHome</td>
+                      <td align="left">maxDistance</td>
+                      <td align="left">huberM_max_dist_two_points_daily</td>
+                      <td align="left">mean_time_LeaveHome</td>
+                    </tr>
+                    <tr>
+                      <td align="left">huberM_max_dist_two_points_weekday</td>
+                      <td align="left">daily_sd_elev_change</td>
+                      <td align="left">SDD_sat</td>
+                      <td align="left">huberM_max_dist_two_points_weekday</td>
+                      <td align="left">mean_time_lastHome_weekend</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </table-wrap>
+            </sec>
+            <p>Indeed, when looking at the top variables with the highest
+      absolute loadings on each component, they do <bold>not</bold> seem
+      to have a simple structure and are hard to interpret.</p>
+            <p>In fact, the top 20 variables loading on all components include
+      only 36 unique variables.</p>
+            <p>Most of these variables seem to be based on GPS data in some
+      way.</p>
+            <p>All of these variables have extremely high standard
+      deviations.</p>
+            <sec id="nb-code-cell-22-nb-1" specific-use="notebook-code">
+              <code language="r script">sapply(phonedata_sensing_imp[, red_vars], sd)
+      </code>
+              <sec id="nb-code-cell-22-output-0-nb-1" specific-use="notebook-output">
+                <preformat>                       maxDistance                  max_distance_home 
+                      1723949.4317                       1658119.0296 
+                               rog                                SDD 
+                       593713.5051                        104176.6763 
+                       SDD_daytime                        SDD_weekend 
+                       110929.5007                        127175.3902 
+                           SDD_sat                        SDD_weekday 
+                       118107.2267                         96185.8329 
+                     SDD_nighttime huberM_daily_max_dist_home_weekday 
+                        89259.8191                        386481.1616 
+    huberM_time_spent_home_weekday huberM_daily_max_dist_home_weekend 
+                       396556.4282                        597855.8383 
+            huberM_time_spent_home         huberM_daily_max_dist_home 
+                       362331.9954                        395986.1722 
+   huberM_distance_covered_weekend    huberM_distance_covered_weekday 
+                       273597.0960                        236849.2267 
+     huberM_distance_covered_daily   huberM_max_dist_two_points_daily 
+                       228491.3102                         36548.9043 
+huberM_max_dist_two_points_weekend huberM_max_dist_two_points_weekday 
+                        51418.1852                         37995.9337 
+                      durationHome     huberM_time_spent_home_weekend 
+                       630997.9841                        356598.2761 
+      huberM_daily_time_spent_home                huberM_rog_weekends 
+                        23839.3676                         19736.6958 
+                mean_time_lastHome               daily_sd_elev_change 
+                        13992.7979                           652.7301 
+                  huberM_rog_daily                huberM_rog_weekdays 
+                        13893.6231                         15196.8947 
+                   Qn_rog_weekends                 huberM_rog_nightly 
+                        21541.5438                         15109.0978 
+    mean_dur_wakeLeaveHome_weekend               mean_time_firstLeave 
+                        13712.9354                         12298.1192 
+       mean_time_LeaveHome_weekday                 mean_dur_wakeLeave 
+                        12196.0186                         12383.4894 
+               mean_time_LeaveHome         mean_time_lastHome_weekend 
+                        12203.8207                         14425.9489 </preformat>
+              </sec>
+            </sec>
+            <p>In addition, all of these variables contain missing values in
+      the original dataset and the number of missings is quite high for
+      some of them.</p>
+            <sec id="nb-code-cell-23-nb-1" specific-use="notebook-code">
+              <code language="r script">sapply(phonedata_sensing[, red_vars], function(x) sum(is.na(x)))
+      </code>
+              <sec id="nb-code-cell-23-output-0-nb-1" specific-use="notebook-output">
+                <preformat>                       maxDistance                  max_distance_home 
+                                58                                 69 
+                               rog                                SDD 
+                                63                                 60 
+                       SDD_daytime                        SDD_weekend 
+                                66                                107 
+                           SDD_sat                        SDD_weekday 
+                               114                                 82 
+                     SDD_nighttime huberM_daily_max_dist_home_weekday 
+                               110                                 91 
+    huberM_time_spent_home_weekday huberM_daily_max_dist_home_weekend 
+                                97                                204 
+            huberM_time_spent_home         huberM_daily_max_dist_home 
+                                69                                 69 
+   huberM_distance_covered_weekend    huberM_distance_covered_weekday 
+                               120                                 83 
+     huberM_distance_covered_daily   huberM_max_dist_two_points_daily 
+                                67                                 60 
+huberM_max_dist_two_points_weekend huberM_max_dist_two_points_weekday 
+                               110                                 77 
+                      durationHome     huberM_time_spent_home_weekend 
+                                69                                189 
+      huberM_daily_time_spent_home                huberM_rog_weekends 
+                                69                                133 
+                mean_time_lastHome               daily_sd_elev_change 
+                                70                                  5 
+                  huberM_rog_daily                huberM_rog_weekdays 
+                                74                                 90 
+                   Qn_rog_weekends                 huberM_rog_nightly 
+                               133                                132 
+    mean_dur_wakeLeaveHome_weekend               mean_time_firstLeave 
+                                 5                                 60 
+       mean_time_LeaveHome_weekday                 mean_dur_wakeLeave 
+                               123                                  5 
+               mean_time_LeaveHome         mean_time_lastHome_weekend 
+                                93                                230 </preformat>
+              </sec>
+            </sec>
+            <p>Our suspicion is that the radial streaks in the estimated
+      component matrix <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+      might be a result of these GPS variables, which dominate the
+      solution from PCA+VR without standardization but are hidden behind
+      the remaining variables when standardization is used.</p>
+            <p>To confirm some of these suspicions, we repeat PCA+VR on only
+      these 36 variables, but now use standardization again. This
+      results in 2 strong components with pronounced but odd-looking and
+      not perfectly aligned streaks in both
+      <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+      and <inline-formula><alternatives><tex-math><![CDATA[\hat{Y}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Y</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>.</p>
+            <sec id="nb-code-cell-24-nb-1" specific-use="notebook-code">
+              <code language="r script">sensing_mat_imp_z_red = as.matrix(scale(phonedata_sensing_imp[, red_vars]))
+colnames(sensing_mat_imp_z_red) = colnames(phonedata_sensing_imp[, red_vars])
+sensing_mat_imp_z_red = as(sensing_mat_imp_z_red, "dgCMatrix")
+screeplot(vsp(sensing_mat_imp_z_red, rank = 20,
+  degree_normalize = FALSE, center = TRUE))
+      </code>
+              <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-24-1.png"/>
+            </sec>
+            <sec id="nb-code-cell-25-nb-1" specific-use="notebook-code">
+              <code language="r script">pca_sensing_imp_z_red = vsp(sensing_mat_imp_z_red, rank = 2, 
+  degree_normalize = FALSE, center = TRUE)
+pairs(as.matrix(pca_sensing_imp_z_red$Z[, 1:2]), cex = 0.5, col = alpha("red", alpha = 0.2), 
+  main = "Estimated components (reduced itemset with standardization)")
+      </code>
+              <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-25-1.png"/>
+            </sec>
+            <sec id="nb-code-cell-26-nb-1" specific-use="notebook-code">
+              <code language="r script">pairs(as.matrix(pca_sensing_imp_z_red$Y[, 1:2]), cex = 0.5, col = alpha("red", alpha = 0.6), 
+  main = "Estimated loadings (reduced itemset with standardization)")
+      </code>
+              <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-26-1.png"/>
+            </sec>
+            <sec id="nb-code-cell-27-nb-1" specific-use="notebook-code">
+              <code language="r script">n = 10
+top_vars = data.frame(
+  GPS1 = names(sort(abs(pca_sensing_imp_z_red$Y[, 1]), decreasing = TRUE)[1:n]),
+  GPS2 = names(sort(abs(pca_sensing_imp_z_red$Y[, 2]), decreasing = TRUE)[1:n])
+)
+kable(top_vars)
+      </code>
+              <table-wrap>
+                <table>
+                  <colgroup>
+                    <col width="50%"/>
+                    <col width="50%"/>
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th align="left">GPS1</th>
+                      <th align="left">GPS2</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td align="left">rog</td>
+                      <td align="left">mean_time_LeaveHome</td>
+                    </tr>
+                    <tr>
+                      <td align="left">maxDistance</td>
+                      <td align="left">mean_time_LeaveHome_weekday</td>
+                    </tr>
+                    <tr>
+                      <td align="left">max_distance_home</td>
+                      <td align="left">mean_time_firstLeave</td>
+                    </tr>
+                    <tr>
+                      <td align="left">SDD</td>
+                      <td align="left">mean_dur_wakeLeave</td>
+                    </tr>
+                    <tr>
+                      <td align="left">SDD_daytime</td>
+                      <td align="left">huberM_max_dist_two_points_daily</td>
+                    </tr>
+                    <tr>
+                      <td align="left">SDD_weekend</td>
+                      <td align="left">huberM_rog_daily</td>
+                    </tr>
+                    <tr>
+                      <td align="left">SDD_sat</td>
+                      <td align="left">huberM_max_dist_two_points_weekday</td>
+                    </tr>
+                    <tr>
+                      <td align="left">SDD_weekday</td>
+                      <td align="left">huberM_distance_covered_daily</td>
+                    </tr>
+                    <tr>
+                      <td align="left">huberM_rog_daily</td>
+                      <td align="left">huberM_time_spent_home_weekday</td>
+                    </tr>
+                    <tr>
+                      <td align="left">huberM_max_dist_two_points_weekday</td>
+                      <td align="left">huberM_time_spent_home</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </table-wrap>
+            </sec>
+          </sec>
+        </sec>
+      </sec>
+      <sec id="simulation-correlated-factors-nb-1">
+        <title>Simulation: Correlated Factors</title>
+        <p>Another important aspect of psychological applications of PCA+VR
+  are correlated factors (e.g., the personality dimensions
+  conscientiousness and neuroticism are thought to correlate around
+  <inline-formula><alternatives><tex-math><![CDATA[-0.4]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mo>−</mml:mo><mml:mn>0.4</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>;
+  Linden et al.
+  (<xref alt="2010" rid="ref-vanderlinden2010general-nb-1" ref-type="bibr">2010</xref>)),
+  thus oblique rotations are often argued for. Interestingly, R&amp;Z
+  show as a side result that the results of PCA+VR can be used to also
+  estimate correlated factors in situations which are relevant for
+  psychological measurement models.</p>
+        <sec id="nb-code-cell-28-nb-1" specific-use="notebook-code">
+          <code language="r script">library(vsp)
+library(Matrix)
+library(scales)
+library(mvtnorm)
+  </code>
+        </sec>
+        <p>Here we demonstrate that <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}\hat{B}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover><mml:mover><mml:mi>B</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:mrow></mml:math></alternatives></inline-formula>
+  (up to a change of units) estimates correlated factors simulated from
+  a leptokurtic distribution:</p>
+        <list list-type="order">
+          <list-item>
+            <p>Simulate correlated factor scores from a multivariate
+      leptokurtic distribution.</p>
+          </list-item>
+        </list>
+        <sec id="nb-code-cell-29-nb-1" specific-use="notebook-code">
+          <code language="r script">set.seed(3)
+
+n = 10000
+rho = 0.7
+# adapted from https://github.com/RoheLab/vsp-paper/blob/master/scripts/makeFigure1.R
+Z_star = scale(matrix(sample(c(-1,1), 2 * n, T) * 
+    rexp(n * 2, rate = 2) ^ 1.3, ncol = 2))
+cor_mat = matrix(c(1, rho, rho, 1), ncol = 2)
+Z = Z_star %*% chol(cor_mat)
+  </code>
+        </sec>
+        <p>We first simulate two-dimensional uncorrelated standardized scores
+  from a leptokurtic distribution (<inline-formula><alternatives><tex-math><![CDATA[Z^*]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msup><mml:mi>Z</mml:mi><mml:mo>*</mml:mo></mml:msup></mml:math></alternatives></inline-formula>).
+  Correlated scores (<inline-formula><alternatives><tex-math><![CDATA[Z]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>Z</mml:mi></mml:math></alternatives></inline-formula>)
+  are then constructed by multiplying the uncorrelated scores with the
+  Cholesky factor of a correlation matrix with the desired correlation
+  (<inline-formula><alternatives><tex-math><![CDATA[\rho = 0.7]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>ρ</mml:mi><mml:mo>=</mml:mo><mml:mn>0.7</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>).</p>
+        <sec id="nb-code-cell-30-nb-1" specific-use="notebook-code">
+          <code language="r script">pairs(Z, cex = 0.5, col = alpha("red", alpha = 0.2), 
+  main = "True correlated factors")
+  </code>
+          <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-30-1.png"/>
+        </sec>
+        <p>When plotting the simulated component scores in the
+  <inline-formula><alternatives><tex-math><![CDATA[Z]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>Z</mml:mi></mml:math></alternatives></inline-formula>
+  matrix, we see non-orthogonal streaks (i.e. oblique components).</p>
+        <list list-type="order">
+          <list-item>
+            <label>2.</label>
+            <p>Simulate item response data.</p>
+          </list-item>
+        </list>
+        <sec id="nb-code-cell-31-nb-1" specific-use="notebook-code">
+          <code language="r script">k = 2
+vpf = 20
+d = vpf*k
+
+pf_low = 0.8
+pf_upper = 0.95
+sf_low = 0
+sf_upper = 0
+
+loadings = function(k, d, vpf, pf_low, pf_upper, sf_low, sf_upper){
+  x = runif(d, pf_low, pf_upper)
+  y = runif(d*(k-1) , sf_low, sf_upper)
+  i = 1:(d)
+  j = rep(1:k, each = vpf)
+  L = matrix(NA, d, k)
+  L[cbind(i, j)] = x
+  L[is.na(L)] = y
+  L
+}
+
+Y = loadings(k, d, vpf, pf_low, pf_upper, sf_low, sf_upper)
+A =  Z %*% t(Y) + rnorm(n * d, sd = 0.1)
+  </code>
+        </sec>
+        <p>We create a loading matrix <inline-formula><alternatives><tex-math><![CDATA[Y]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>Y</mml:mi></mml:math></alternatives></inline-formula>
+  with simple structure and simulate the data matrix
+  <inline-formula><alternatives><tex-math><![CDATA[A]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>A</mml:mi></mml:math></alternatives></inline-formula>
+  with <inline-formula><alternatives><tex-math><![CDATA[ZY^T]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>Z</mml:mi><mml:msup><mml:mi>Y</mml:mi><mml:mi>T</mml:mi></mml:msup></mml:mrow></mml:math></alternatives></inline-formula>
+  and add some normally distributed noise.</p>
+        <list list-type="order">
+          <list-item>
+            <label>3.</label>
+            <p>Perform PCA + Varimax</p>
+          </list-item>
+        </list>
+        <sec id="nb-code-cell-32-nb-1" specific-use="notebook-code">
+          <code language="r script">pca_sim = vsp(A, rank = 2, degree_normalize = FALSE)
+  </code>
+        </sec>
+        <list list-type="order">
+          <list-item>
+            <label>4.</label>
+            <p>Estimate uncorrelated component scores
+      <inline-formula><alternatives><tex-math><![CDATA[Z]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>Z</mml:mi></mml:math></alternatives></inline-formula></p>
+          </list-item>
+        </list>
+        <sec id="nb-code-cell-33-nb-1" specific-use="notebook-code">
+          <code language="r script">pairs(as.matrix(pca_sim$Z[, 1:2]), cex = 0.5, col = alpha("red", alpha = 0.2), 
+  main = "Estimated uncorrelated factors")
+  </code>
+          <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-33-1.png"/>
+        </sec>
+        <p>When plotting the <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+  matrix returned from PCA+VR, we see orthogonal streaks similar to
+  <inline-formula><alternatives><tex-math><![CDATA[Z^*]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:msup><mml:mi>Z</mml:mi><mml:mo>*</mml:mo></mml:msup></mml:math></alternatives></inline-formula>.</p>
+        <list list-type="order">
+          <list-item>
+            <label>5.</label>
+            <p>Estimate correlated component scores
+      <inline-formula><alternatives><tex-math><![CDATA[Z]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>Z</mml:mi></mml:math></alternatives></inline-formula></p>
+          </list-item>
+        </list>
+        <sec id="nb-code-cell-34-nb-1" specific-use="notebook-code">
+          <code language="r script">ZB_hat = as.matrix(pca_sim$Z) %*% as.matrix(pca_sim$B)
+pairs(ZB_hat, cex = 0.5, col = alpha("red", alpha = 0.2), 
+  main = "Estimated correlated factors")
+  </code>
+          <graphic mimetype="image" mime-subtype="png" xlink:href="electronic_supplemental_material_files/figure-jats/unnamed-chunk-34-1.png"/>
+        </sec>
+        <p>However, the matrix <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}\hat{B}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover><mml:mover><mml:mi>B</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:mrow></mml:math></alternatives></inline-formula>
+  contains correlated components similar to
+  <inline-formula><alternatives><tex-math><![CDATA[Z]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>Z</mml:mi></mml:math></alternatives></inline-formula>.</p>
+        <list list-type="order">
+          <list-item>
+            <label>6.</label>
+            <p>Estimate correlation between components</p>
+          </list-item>
+        </list>
+        <sec id="nb-code-cell-35-nb-1" specific-use="notebook-code">
+          <code language="r script">cor(ZB_hat)
+  </code>
+          <sec id="nb-code-cell-35-output-0-nb-1" specific-use="notebook-output">
+            <preformat>          [,1]      [,2]
+[1,] 1.0000000 0.7033317
+[2,] 0.7033317 1.0000000</preformat>
+          </sec>
+        </sec>
+        <p>We can verify that the correlation of the scores in
+  <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}\hat{B}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover><mml:mover><mml:mi>B</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:mrow></mml:math></alternatives></inline-formula>
+  are close to the true correlation in <inline-formula><alternatives><tex-math><![CDATA[Z]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>Z</mml:mi></mml:math></alternatives></inline-formula>
+  (<inline-formula><alternatives><tex-math><![CDATA[\rho = 0.7]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mi>ρ</mml:mi><mml:mo>=</mml:mo><mml:mn>0.7</mml:mn></mml:mrow></mml:math></alternatives></inline-formula>).</p>
+        <p>Our simulation seems to demonstrate the results from sections
+  <bold>7.1</bold> and <bold>7.2</bold> in R&amp;Z, which state that if
+  scores in <inline-formula><alternatives><tex-math><![CDATA[Z]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>Z</mml:mi></mml:math></alternatives></inline-formula>
+  are correlated; scores in <inline-formula><alternatives><tex-math><![CDATA[Y]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>Y</mml:mi></mml:math></alternatives></inline-formula>
+  are centered, independent, and leptokurtic; and the true
+  <inline-formula><alternatives><tex-math><![CDATA[B]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>B</mml:mi></mml:math></alternatives></inline-formula>
+  is proportional to the identity matrix, then the
+  <inline-formula><alternatives><tex-math><![CDATA[\hat{B}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mover><mml:mi>B</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover></mml:math></alternatives></inline-formula>
+  matrix returned from PCA+VR estimates the Cholesky factor of the
+  covariance matrix <inline-formula><alternatives><tex-math><![CDATA[Z^TZ]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:msup><mml:mi>Z</mml:mi><mml:mi>T</mml:mi></mml:msup><mml:mi>Z</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>
+  (up to a change of unit). Note that because our scores in
+  <inline-formula><alternatives><tex-math><![CDATA[Z]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>Z</mml:mi></mml:math></alternatives></inline-formula>
+  were scaled, <inline-formula><alternatives><tex-math><![CDATA[Z^TZ]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:msup><mml:mi>Z</mml:mi><mml:mi>T</mml:mi></mml:msup><mml:mi>Z</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>
+  is equal to the correlation matrix in our demonstration.</p>
+        <sec id="open-questions-nb-1">
+          <title>Open Questions</title>
+          <p>Surprisingly, the exact scores in <inline-formula><alternatives><tex-math><![CDATA[Z]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mi>Z</mml:mi></mml:math></alternatives></inline-formula>
+    (in the same unit) seem to be estimated by
+    <inline-formula><alternatives><tex-math><![CDATA[\hat{Z}\hat{B}\cdot d^{1/8}]]></tex-math><mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML" display="inline"><mml:mrow><mml:mover><mml:mi>Z</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover><mml:mover><mml:mi>B</mml:mi><mml:mo accent="true">̂</mml:mo></mml:mover><mml:mo>⋅</mml:mo><mml:msup><mml:mi>d</mml:mi><mml:mrow><mml:mn>1</mml:mn><mml:mi>/</mml:mi><mml:mn>8</mml:mn></mml:mrow></mml:msup></mml:mrow></mml:math></alternatives></inline-formula>.</p>
+          <sec id="nb-code-cell-36-nb-1" specific-use="notebook-code">
+            <code language="r script">nrows = 10
+compare_scores = data.frame(
+  z1 = Z[1:nrows, 1],
+  z1_hat = ZB_hat[1:nrows, 1] * d^(1/8),
+  z2 = Z[1:nrows, 2],
+  z2_hat = ZB_hat[1:nrows, 2] * d^(1/8),
+row.names = NULL)
+kable(compare_scores)
+    </code>
+            <table-wrap>
+              <table>
+                <thead>
+                  <tr>
+                    <th align="right">z1</th>
+                    <th align="right">z1_hat</th>
+                    <th align="right">z2</th>
+                    <th align="right">z2_hat</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td align="right">-0.8175379</td>
+                    <td align="right">-0.8258829</td>
+                    <td align="right">0.3337107</td>
+                    <td align="right">0.3052195</td>
+                  </tr>
+                  <tr>
+                    <td align="right">0.1451648</td>
+                    <td align="right">0.1404835</td>
+                    <td align="right">0.9071543</td>
+                    <td align="right">0.9425134</td>
+                  </tr>
+                  <tr>
+                    <td align="right">0.3726275</td>
+                    <td align="right">0.3342478</td>
+                    <td align="right">-0.0673917</td>
+                    <td align="right">-0.0741674</td>
+                  </tr>
+                  <tr>
+                    <td align="right">-0.0312845</td>
+                    <td align="right">-0.0496686</td>
+                    <td align="right">1.0465835</td>
+                    <td align="right">1.0630476</td>
+                  </tr>
+                  <tr>
+                    <td align="right">0.0533857</td>
+                    <td align="right">0.0278354</td>
+                    <td align="right">-0.0289375</td>
+                    <td align="right">-0.0004230</td>
+                  </tr>
+                  <tr>
+                    <td align="right">2.7693088</td>
+                    <td align="right">2.7368688</td>
+                    <td align="right">2.0474298</td>
+                    <td align="right">2.0732120</td>
+                  </tr>
+                  <tr>
+                    <td align="right">0.6403584</td>
+                    <td align="right">0.6849868</td>
+                    <td align="right">0.3958977</td>
+                    <td align="right">0.3967702</td>
+                  </tr>
+                  <tr>
+                    <td align="right">-0.5940332</td>
+                    <td align="right">-0.5576306</td>
+                    <td align="right">-0.1732053</td>
+                    <td align="right">-0.1453989</td>
+                  </tr>
+                  <tr>
+                    <td align="right">-0.2614659</td>
+                    <td align="right">-0.2740095</td>
+                    <td align="right">-0.7323451</td>
+                    <td align="right">-0.7558590</td>
+                  </tr>
+                  <tr>
+                    <td align="right">0.6697399</td>
+                    <td align="right">0.6585350</td>
+                    <td align="right">0.4020305</td>
+                    <td align="right">0.4119104</td>
+                  </tr>
+                </tbody>
+              </table>
+            </table-wrap>
+          </sec>
+          <p>Unfortunately, we were not able not determine why or whether this
+    might be just a coincidence here. To conclude, we agree with the
+    following comment in R&amp;Z
+    (<xref alt="Rohe &amp; Zeng, 2023" rid="ref-rohe2023vintage-nb-1" ref-type="bibr">Rohe
+    &amp; Zeng, 2023</xref>) and are looking forward to further research
+    in this direction:</p>
+          <disp-quote>
+            <p>Taken together, this all suggests that the B matrix provides a
+      path to understanding “correlation among the factors.”
+      Understanding this phenomenon is an active area of research in our
+      lab.</p>
+          </disp-quote>
+        </sec>
+      </sec>
+    </body>
+    <back>
+      <ref-list>
+        <title>References</title>
+        <ref id="ref-rohe2023vintage-nb-1">
+          <element-citation publication-type="article-journal">
+            <person-group person-group-type="author">
+              <name>
+                <surname>Rohe</surname>
+                <given-names>Karl</given-names>
+              </name>
+              <name>
+                <surname>Zeng</surname>
+                <given-names>Muzhe</given-names>
+              </name>
+            </person-group>
+            <article-title>Vintage factor analysis with Varimax performs statistical inference</article-title>
+            <source>Journal of the Royal Statistical Society Series B: Statistical Methodology</source>
+            <year iso-8601-date="2023-07">2023</year>
+            <month>07</month>
+            <volume>85</volume>
+            <issue>4</issue>
+            <issn>1369-7412</issn>
+            <uri>https://doi.org/10.1093/jrsssb/qkad029</uri>
+            <pub-id pub-id-type="doi">10.1093/jrsssb/qkad029</pub-id>
+            <fpage>1037</fpage>
+            <lpage>1060</lpage>
+          </element-citation>
+        </ref>
+        <ref id="ref-pargent2023discussion-nb-1">
+          <element-citation publication-type="article-journal">
+            <person-group person-group-type="author">
+              <name>
+                <surname>Pargent</surname>
+                <given-names>Florian</given-names>
+              </name>
+              <name>
+                <surname>Goretzko</surname>
+                <given-names>David</given-names>
+              </name>
+              <name>
+                <surname>Oertzen</surname>
+                <given-names>Timo von</given-names>
+              </name>
+            </person-group>
+            <article-title>Florian Pargent, David Goretzko and Timo von Oertzen’s contribution to the Discussion of ‘Vintage Factor Analysis with Varimax Performs Statistical Inference’ by Rohe &amp;amp; Zeng</article-title>
+            <source>Journal of the Royal Statistical Society Series B: Statistical Methodology</source>
+            <year iso-8601-date="2023-05">2023</year>
+            <month>05</month>
+            <volume>85</volume>
+            <issue>4</issue>
+            <issn>1369-7412</issn>
+            <uri>https://doi.org/10.1093/jrsssb/qkad054</uri>
+            <pub-id pub-id-type="doi">10.1093/jrsssb/qkad054</pub-id>
+            <fpage>1087</fpage>
+            <lpage>1088</lpage>
+          </element-citation>
+        </ref>
+        <ref id="ref-arendasy_manual_2011-nb-1">
+          <element-citation publication-type="article-journal">
+            <person-group person-group-type="author">
+              <name>
+                <surname>Arendasy</surname>
+                <given-names>M.</given-names>
+              </name>
+              <name>
+                <surname>Sommer</surname>
+                <given-names>M.</given-names>
+              </name>
+              <name>
+                <surname>Feldhammer</surname>
+                <given-names>M.</given-names>
+              </name>
+            </person-group>
+            <article-title>Manual Big-Five Structure Inventory BFSI</article-title>
+            <source>Schuhfried Gmbh, Mödling</source>
+            <year iso-8601-date="2011">2011</year>
+          </element-citation>
+        </ref>
+        <ref id="ref-vanderlinden2010general-nb-1">
+          <element-citation publication-type="article-journal">
+            <person-group person-group-type="author">
+              <name>
+                <surname>Linden</surname>
+                <given-names>Dimitri van der</given-names>
+              </name>
+              <name>
+                <surname>Nijenhuis</surname>
+                <given-names>Jan te</given-names>
+              </name>
+              <name>
+                <surname>Bakker</surname>
+                <given-names>Arnold B.</given-names>
+              </name>
+            </person-group>
+            <article-title>The General Factor of Personality: A meta-analysis of Big Five intercorrelations and a criterion-related validity study</article-title>
+            <source>Journal of Research in Personality</source>
+            <year iso-8601-date="2010-06">2010</year>
+            <month>06</month>
+            <date-in-citation content-type="access-date">
+              <year iso-8601-date="2022-05-06">2022</year>
+              <month>05</month>
+              <day>06</day>
+            </date-in-citation>
+            <volume>44</volume>
+            <issue>3</issue>
+            <issn>00926566</issn>
+            <uri>https://linkinghub.elsevier.com/retrieve/pii/S0092656610000346</uri>
+            <pub-id pub-id-type="doi">10.1016/j.jrp.2010.03.003</pub-id>
+            <fpage>315</fpage>
+            <lpage>327</lpage>
+          </element-citation>
+        </ref>
+        <ref id="ref-stachl2020predicting-nb-1">
+          <element-citation publication-type="article-journal">
+            <person-group person-group-type="author">
+              <name>
+                <surname>Stachl</surname>
+                <given-names>Clemens</given-names>
+              </name>
+              <name>
+                <surname>Au</surname>
+                <given-names>Quay</given-names>
+              </name>
+              <name>
+                <surname>Schoedel</surname>
+                <given-names>Ramona</given-names>
+              </name>
+              <name>
+                <surname>Gosling</surname>
+                <given-names>Samuel D</given-names>
+              </name>
+              <name>
+                <surname>Harari</surname>
+                <given-names>Gabriella M</given-names>
+              </name>
+              <name>
+                <surname>Buschek</surname>
+                <given-names>Daniel</given-names>
+              </name>
+              <name>
+                <surname>Völkel</surname>
+                <given-names>Sarah Theres</given-names>
+              </name>
+              <name>
+                <surname>Schuwerk</surname>
+                <given-names>Tobias</given-names>
+              </name>
+              <name>
+                <surname>Oldemeier</surname>
+                <given-names>Michelle</given-names>
+              </name>
+              <name>
+                <surname>Ullmann</surname>
+                <given-names>Theresa</given-names>
+              </name>
+              <name>
+                <surname>Hussmann</surname>
+                <given-names>Heinrich</given-names>
+              </name>
+              <name>
+                <surname>Bischl</surname>
+                <given-names>Bernd</given-names>
+              </name>
+              <name>
+                <surname>Bühner</surname>
+                <given-names>Markus</given-names>
+              </name>
+            </person-group>
+            <article-title>Predicting personality from patterns of behavior collected with smartphones</article-title>
+            <source>Proceedings of the National Academy of Sciences of the United States of America</source>
+            <year iso-8601-date="2020-07">2020</year>
+            <month>07</month>
+            <volume>117</volume>
+            <issue>30</issue>
+            <issn>10916490</issn>
+            <uri>www.pnas.org/cgi/doi/10.1073/pnas.1920484117</uri>
+            <pub-id pub-id-type="doi">10.1073/pnas.1920484117</pub-id>
+            <pub-id pub-id-type="pmid">32665436</pub-id>
+            <fpage>17680</fpage>
+            <lpage>17687</lpage>
+          </element-citation>
+        </ref>
+      </ref-list>
+    </back>
+  </sub-article>
+  <sub-article article-type="notebook" id="nb-8-nb-2">
+    <front-stub>
+      <title-group>
+        <article-title>Sensitivity Analysis: Impute Sensing Data with
+MiceRanger</article-title>
+        <subtitle>Sensitivity Analysis</subtitle>
+      </title-group>
+      <contrib-group>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Pargent</surname>
+            <given-names>Florian</given-names>
+          </name>
+          <string-name>Florian Pargent</string-name>
+          <xref ref-type="aff" rid="aff-1-nb-2">a</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Goretzko</surname>
+            <given-names>David</given-names>
+          </name>
+          <string-name>David Goretzko</string-name>
+          <xref ref-type="aff" rid="aff-2-nb-2">b</xref>
+        </contrib>
+        <contrib contrib-type="author">
+          <name>
+            <surname>Oertzen</surname>
+            <given-names>Timo</given-names>
+          </name>
+          <string-name>Timo von Oertzen</string-name>
+          <xref ref-type="aff" rid="aff-3-nb-2">c</xref>
+        </contrib>
+      </contrib-group>
+      <aff id="aff-1-nb-2">
+        <institution-wrap>
+          <institution>LMU Munich</institution>
+        </institution-wrap>
+      </aff>
+      <aff id="aff-2-nb-2">
+        <institution-wrap>
+          <institution>Utrecht University</institution>
+        </institution-wrap>
+      </aff>
+      <aff id="aff-3-nb-2">
+        <institution-wrap>
+          <institution>Bundeswehr University Munich and Max Planck Institute for
+Human Development</institution>
+        </institution-wrap>
+      </aff>
+    </front-stub>
+    <body>
+      <boxed-text>
+        <disp-quote>
+          <p>
+            <bold>Important</bold>
+          </p>
+          <p>This document is <bold>an updated copy</bold> of a
+    <ext-link ext-link-type="uri" xlink:href="https://doi.org/10.1093/jrsssb/qkad054">published
+    commentary</ext-link>, to showcase
+    <ext-link ext-link-type="uri" xlink:href="https://quarto.org/docs/manuscripts/">Quarto
+    manuscripts</ext-link> in our
+    <ext-link ext-link-type="uri" xlink:href="https://florianpargent.github.io/Quarto_LMU_OSC/">Quarto
+    workshop</ext-link>. The official online repository of our published
+    commentary can be found
+    <ext-link ext-link-type="uri" xlink:href="https://osf.io/5symf/">here</ext-link>.</p>
+        </disp-quote>
+      </boxed-text>
+      <p>The analysis presented in the
+<ext-link ext-link-type="uri" xlink:href="electronic_supplemental_material.qmd">electronic
+supplemental material document</ext-link> are quite similar for more
+elaborate imputation schemes. For the interested reader, we prepared
+data imputed with the <monospace>miceRanger</monospace> package.</p>
+      <sec id="nb-code-cell-1-nb-2" specific-use="notebook-code">
+        <code language="r script">library(miceRanger)
+phonedata_sensing = readRDS(file = "datasets/clusterdata.RDS")
+phonedata_sensing = phonedata_sensing[, c(1:1821)]
+set.seed(42)
+mice_obj_sensing = miceRanger(phonedata_sensing, m = 1, maxiter = 1, 
+  valueSelector = "meanMatch", verbose = FALSE)
+saveRDS(mice_obj_sensing, file = "mice_obj_sensing.RDS")
+</code>
+      </sec>
+      <p>See the instructions on how to use this imputed dataset in the
+<ext-link ext-link-type="uri" xlink:href="electronic_supplemental_material.qmd#mobile-sensing-data">electronic
+supplemental materials</ext-link>.</p>
+    </body>
+    <back>
+</back>
+  </sub-article>
+</article>

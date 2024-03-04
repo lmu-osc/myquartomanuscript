@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="generator" content="quarto-1.4.550">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+    <meta name="author" content="Florian Pargent">
+    <meta name="author" content="David Goretzko">
+    <meta name="author" content="Timo von Oertzen">
+    <meta name="dcterms.date" content="2024-03-04">
+
+    <title>New Insights into PCA + Varimax for Psychological Researchers</title>
+    <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      div.columns{display: flex; gap: min(4vw, 1.5em);}
+      div.column{flex: auto; overflow-x: auto;}
+      div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+      ul.task-list{list-style: none;}
+      ul.task-list li input[type="checkbox"] {
+        width: 0.8em;
+        margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+        vertical-align: middle;
+      }
+      /* CSS for syntax highlighting */
+      pre > code.sourceCode { white-space: pre; position: relative; }
+      pre > code.sourceCode > span { line-height: 1.25; }
+      pre > code.sourceCode > span:empty { height: 1.2em; }
+      .sourceCode { overflow: visible; }
+      code.sourceCode > span { color: inherit; text-decoration: inherit; }
+      div.sourceCode { margin: 1em 0; }
+      pre.sourceCode { margin: 0; }
+      @media screen {
+      div.sourceCode { overflow: auto; }
+      }
+      @media print {
+      pre > code.sourceCode { white-space: pre-wrap; }
+      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+      }
+      pre.numberSource code
+        { counter-reset: source-line 0; }
+      pre.numberSource code > span
+        { position: relative; left: -4em; counter-increment: source-line; }
+      pre.numberSource code > span > a:first-child::before
+        { content: counter(source-line);
+          position: relative; left: -1em; text-align: right; vertical-align: baseline;
+          border: none; display: inline-block;
+          -webkit-touch-callout: none; -webkit-user-select: none;
+          -khtml-user-select: none; -moz-user-select: none;
+          -ms-user-select: none; user-select: none;
+          padding: 0 4px; width: 4em;
+        }
+      pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+      div.sourceCode
+        {   }
+      @media screen {
+      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+      }
+      /* CSS for citations */
+      div.csl-bib-body { }
+      div.csl-entry {
+        clear: both;
+        margin-bottom: 0em;
+      }
+      .hanging-indent div.csl-entry {
+        margin-left:2em;
+        text-indent:-2em;
+      }
+      div.csl-left-margin {
+        min-width:2em;
+        float:left;
+      }
+      div.csl-right-inline {
+        margin-left:2em;
+        padding-left:1em;
+      }
+      div.csl-indent {
+        margin-left: 2em;
+      }    </style>
+
+    <style>
+      body.hypothesis-enabled #quarto-embed-header {
+        padding-right: 36px;
+      }
+
+      #quarto-embed-header {
+        height: 3em;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: solid 1px;
+      }
+
+      #quarto-embed-header h6 {
+        font-size: 1.1em;
+        padding-top: 0.6em;
+        margin-left: 1em;
+        margin-right: 1em;
+        font-weight: 400;
+      }
+
+      #quarto-embed-header a.quarto-back-link,
+      #quarto-embed-header a.quarto-download-embed {
+        font-size: 0.8em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-left: 1em;
+        margin-right: 1em;
+      }
+
+      .quarto-back-container {
+        padding-left: 0.5em;
+        display: flex;
+      }
+
+      .headroom {
+          will-change: transform;
+          transition: transform 200ms linear;
+      }
+
+      .headroom--pinned {
+          transform: translateY(0%);
+      }
+
+      .headroom--unpinned {
+          transform: translateY(-100%);
+      }      
+    </style>
+
+    <script>
+    window.document.addEventListener("DOMContentLoaded", function () {
+
+      var header = window.document.querySelector("#quarto-embed-header");
+      const titleBannerEl = window.document.querySelector("body > #title-block-header");
+      if (titleBannerEl) {
+        titleBannerEl.style.paddingTop = header.clientHeight + "px";
+      }
+      const contentEl = window.document.getElementById('quarto-content');
+      for (const child of contentEl.children) {
+        child.style.paddingTop = header.clientHeight + "px";
+        child.style.marginTop = "1em";
+      }
+
+      // Use the article root if the `back` call doesn't work. This isn't perfect
+      // but should typically work
+      window.quartoBackToArticle = () => {
+        var currentUrl = window.location.href;
+        window.history.back();
+        setTimeout(() => {
+            // if location was not changed in 100 ms, then there is no history back
+            if(currentUrl === window.location.href){              
+                // redirect to site root
+                window.location.href = "index.html";
+            }
+        }, 100);
+      }
+
+      const headroom = new window.Headroom(header, {
+        tolerance: 5,
+        onPin: function () {
+        },
+        onUnpin: function () {
+        },
+      });
+      headroom.init();
+    });
+    </script>
+
+    
+<script src="site_libs/manuscript-notebook/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script> 
+      <meta name="citation_title" content="New Insights into PCA + Varimax for Psychological Researchers">
+<meta name="citation_author" content="Florian Pargent">
+<meta name="citation_author" content="David Goretzko">
+<meta name="citation_author" content="Timo von Oertzen">
+<meta name="citation_publication_date" content="2024-03-04">
+<meta name="citation_cover_date" content="2024-03-04">
+<meta name="citation_year" content="2024">
+<meta name="citation_online_date" content="2024-03-04">
+<meta name="citation_language" content="en">
+<meta name="citation_reference" content="citation_title=New insights into PCA + varimax for psychological researchers: A short commentary on rohe &amp;amp;amp; zeng (2022);,citation_author=Florian Pargent;,citation_author=David Goretzko;,citation_author=Timo Oertzen;,citation_publication_date=2022-06;,citation_cover_date=2022-06;,citation_year=2022;,citation_fulltext_html_url=psyarxiv.com/pfkav;,citation_doi=10.31234/osf.io/pfkav;,citation_publisher=PsyArXiv;">
+<meta name="citation_reference" content="citation_title=Vintage factor analysis with Varimax performs statistical inference;,citation_abstract=In the 1930s, Psychologists began developing Multiple-Factor Analysis to decompose multivariate data into a small number of interpretable factors without any a priori knowledge about those factors. In this form of factor analysis, the Varimax factor rotation redraws the axes through the multi-dimensional factors to make them sparse and thus make them more interpretable. Charles Spearman and many others objected to factor rotations because the factors seem to be rotationally invariant. Despite the controversy, factor rotations have remained widely popular among people analyzing data. Reversing nearly a century of statistical thinking on the topic, we show that the rotation makes the factors easier to interpret because the Varimax performs statistical inference; in particular, principal components analysis (PCA) with a Varimax rotation provides a unified spectral estimation strategy for a broad class of semi-parametric factor models, including the Stochastic Blockmodel and a natural variation of Latent Dirichlet Allocation. In addition, we show that Thurstone’s widely employed sparsity diagnostics implicitly assess a key leptokurtic condition that makes the axes statistically identifiable in these models. PCA with Varimax is fast, stable, and practical. Combined with Thurstone’s straightforward diagnostics, this vintage approach is suitable for a wide array of modern applications.;,citation_author=Karl Rohe;,citation_author=Muzhe Zeng;,citation_publication_date=2023-07;,citation_cover_date=2023-07;,citation_year=2023;,citation_fulltext_html_url=https://doi.org/10.1093/jrsssb/qkad029;,citation_issue=4;,citation_doi=10.1093/jrsssb/qkad029;,citation_issn=1369-7412;,citation_volume=85;,citation_journal_title=Journal of the Royal Statistical Society Series B: Statistical Methodology;">
+<meta name="citation_reference" content="citation_title=Florian Pargent, David Goretzko and Timo von Oertzen’s contribution to the Discussion of “Vintage Factor Analysis with Varimax Performs Statistical Inference” by Rohe
+&amp;amp;amp;amp; Zeng;,citation_abstract=As psychologists, we appreciate Rohe
+&amp;amp;amp; Zeng’s (R
+&amp;amp;Z; Rohe
+&amp;amp; Zeng, 2022) new insights into “vintage” principal component analysis with varimax rotation (PCA+VR). Theories of intelligence and personality, perhaps psychology’s contributions best known outside of our field, have been a direct product of PCA. PCA+VR is still widely used for developing and evaluating psychological tests and questionnaires, although the literature has fought against it in favour of more complex factor analytic techniques (Fokkema
+&amp;amp; Greiff, 2017).In our opinion, abandoning the simpler PCA(+VR) is a mistake and R
+&amp;amp;Z refute a common argument by proving that PCA+VR can perform statistical inference in latent variable models: The factor indeterminacy problem which plagued VR since its invention only applies for the special case of normally distributed factors. For any other distribution, perfect factor indeterminacy does not apply, although identifiability might be weak. However, distributions producing sparse components fulfil a sufficient leptokurtic condition, which can be confirmed by simple diagnostics.;,citation_author=Florian Pargent;,citation_author=David Goretzko;,citation_author=Timo Oertzen;,citation_publication_date=2023-05;,citation_cover_date=2023-05;,citation_year=2023;,citation_fulltext_html_url=https://doi.org/10.1093/jrsssb/qkad054;,citation_issue=4;,citation_doi=10.1093/jrsssb/qkad054;,citation_issn=1369-7412;,citation_volume=85;,citation_journal_title=Journal of the Royal Statistical Society Series B: Statistical Methodology;">
+<meta name="citation_reference" content="citation_title=Implicit Realism Impedes Progress in Psychology: Comment on Fried (2020);,citation_author=Tal Yarkoni;,citation_publication_date=2020-10;,citation_cover_date=2020-10;,citation_year=2020;,citation_fulltext_html_url=https://www.tandfonline.com/doi/full/10.1080/1047840X.2020.1853478;,citation_issue=4;,citation_doi=10.1080/1047840X.2020.1853478;,citation_issn=1047-840X, 1532-7965;,citation_volume=31;,citation_journal_title=Psychological Inquiry;">
+<meta name="citation_reference" content="citation_title=Manual Big-Five Structure Inventory BFSI;,citation_author=M. Arendasy;,citation_author=M. Sommer;,citation_author=M. Feldhammer;,citation_publication_date=2011;,citation_cover_date=2011;,citation_year=2011;,citation_journal_title=Schuhfried Gmbh, Mödling;">
+<meta name="citation_reference" content="citation_title=The General Factor of Personality: A meta-analysis of Big Five intercorrelations and a criterion-related validity study;,citation_abstract=Recently, it has been proposed that a General Factor of Personality (GFP) occupies the top of the hierarchical personality structure. We present a meta-analysis (K = 212, total N = 144,117) on the intercorrelations among the Big Five personality factors (Openness, Conscientiousness, Extraversion, Agreeableness, and Neuroticism) to test for the existence of a GFP. In addition, we report a multi-method validity study testing the relationship between the GFP and supervisor-rated job performance. The meta-analysis provided supporting evidence for the two meta-factors Stability and Plasticity (or a and b, respectively) and a GFP at the highest hierarchal level. The validity study indicated that the GFP has a substantive component as it is related to supervisor-rated job performance.;,citation_author=Dimitri Linden;,citation_author=Jan Nijenhuis;,citation_author=Arnold B. Bakker;,citation_publication_date=2010-06;,citation_cover_date=2010-06;,citation_year=2010;,citation_fulltext_html_url=https://linkinghub.elsevier.com/retrieve/pii/S0092656610000346;,citation_issue=3;,citation_doi=10.1016/j.jrp.2010.03.003;,citation_issn=00926566;,citation_volume=44;,citation_journal_title=Journal of Research in Personality;">
+<meta name="citation_reference" content="citation_title=Predicting personality from patterns of behavior collected with smartphones;,citation_author=Clemens Stachl;,citation_author=Quay Au;,citation_author=Ramona Schoedel;,citation_author=Samuel D Gosling;,citation_author=Gabriella M Harari;,citation_author=Daniel Buschek;,citation_author=Sarah Theres Völkel;,citation_author=Tobias Schuwerk;,citation_author=Michelle Oldemeier;,citation_author=Theresa Ullmann;,citation_author=Heinrich Hussmann;,citation_author=Bernd Bischl;,citation_author=Markus Bühner;,citation_publication_date=2020-07;,citation_cover_date=2020-07;,citation_year=2020;,citation_fulltext_html_url=www.pnas.org/cgi/doi/10.1073/pnas.1920484117;,citation_issue=30;,citation_doi=10.1073/pnas.1920484117;,citation_issn=10916490;,citation_pmid=32665436;,citation_volume=117;,citation_journal_title=Proceedings of the National Academy of Sciences of the United States of America;">
+<meta name="citation_reference" content="citation_title=How Performing PCA and CFA on the Same Data Equals Trouble: Overfitting in the Assessment of Internal Structure and Some Editorial Thoughts on It;,citation_author=Marjolein Fokkema;,citation_author=Samuel Greiff;,citation_publication_date=2017-11;,citation_cover_date=2017-11;,citation_year=2017;,citation_fulltext_html_url=https://econtent.hogrefe.com/doi/10.1027/1015-5759/a000460;,citation_issue=6;,citation_doi=10.1027/1015-5759/a000460;,citation_issn=1015-5759, 2151-2426;,citation_volume=33;,citation_journal_title=European Journal of Psychological Assessment;">
+<meta name="citation_reference" content="citation_title=The varimax criterion for analytic rotation in factor analysis;,citation_author=Henry F. Kaiser;,citation_publication_date=1958-09;,citation_cover_date=1958-09;,citation_year=1958;,citation_fulltext_html_url=http://link.springer.com/10.1007/BF02289233;,citation_issue=3;,citation_doi=10.1007/BF02289233;,citation_issn=0033-3123, 1860-0980;,citation_volume=23;,citation_journal_title=Psychometrika;">
+<meta name="citation_reference" content="citation_title=Multiple-factor analysis; a development and expansion of The Vectors of Mind.;,citation_abstract=This book presents a review of the work on multiple-factor analysis done in the past decade by Thurstone and his associates, and it presents in coherent fashion the mathematical development of multiple-factor analysis. The present book includes most of the material that was present in &amp;amp;amp;quot;The Vectors of Mind&amp;quot; (see 9: 5998). Much of the book is spent on methods of factorial analysis using examples which tend to point out clearly the problems involved. There is detailed discussion of various controversial areas. (PsycINFO Database Record (c) 2016 APA, all rights reserved);,citation_author=L. L. Thurstone;,citation_publication_date=1947;,citation_cover_date=1947;,citation_year=1947;,citation_series_title=Multiple-factor analysis; a development and expansion of The Vectors of Mind.;">
+<meta name="citation_reference" content="citation_title=Vintage factor analysis with varimax performs statistical inference;,citation_author=Karl Rohe;,citation_author=Muzhe Zeng;,citation_publication_date=2022;,citation_cover_date=2022;,citation_year=2022;,citation_journal_title=Preprint read before the Royal Statistical Society on 11 May;">
+</head>
+
+  <body class="quarto-notebook">
+    <div id="quarto-embed-header" class="headroom fixed-top bg-primary">
+      
+      <a onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link" href=""><i class="bi bi-caret-left"></i> Back to Article</a>
+      <h6><i class="bi bi-journal-code"></i> Article Notebook</h6>
+
+            <a href="./index.qmd" class="btn btn-primary quarto-download-embed" download="index.qmd">Download Source</a>
+          </div>
+
+     <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">New Insights into PCA + Varimax for Psychological Researchers</h1>
+            <p class="subtitle lead">A short commentary on Rohe &amp; Zeng (2023)</p>
+          </div>
+
+    
+    <div class="quarto-title-meta-container">
+      <div class="quarto-title-meta-column-start">
+            <div class="quarto-title-meta-author">
+          <div class="quarto-title-meta-heading">Authors</div>
+          <div class="quarto-title-meta-heading">Affiliations</div>
+          
+                <div class="quarto-title-meta-contents">
+            <p class="author">Florian Pargent <a href="mailto:florian.pargent@psy.lmu.de" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0002-2388-553X" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
+          </div>
+                <div class="quarto-title-meta-contents">
+                    <p class="affiliation">
+                        Department of Psychology, LMU Munich
+                      </p>
+                  </div>
+                      <div class="quarto-title-meta-contents">
+            <p class="author">David Goretzko </p>
+          </div>
+                <div class="quarto-title-meta-contents">
+                    <p class="affiliation">
+                        Utrecht University
+                      </p>
+                  </div>
+                      <div class="quarto-title-meta-contents">
+            <p class="author">Timo von Oertzen </p>
+          </div>
+                <div class="quarto-title-meta-contents">
+                    <p class="affiliation">
+                        Bundeswehr University Munich and Max Planck Institute for Human Development
+                      </p>
+                  </div>
+                    </div>
+        
+        <div class="quarto-title-meta">
+
+                      
+                <div>
+            <div class="quarto-title-meta-heading">Published</div>
+            <div class="quarto-title-meta-contents">
+              <p class="date">March 4, 2024</p>
+            </div>
+          </div>
+          
+                
+              </div>
+      </div>
+      <div class="quarto-title-meta-column-end quarto-other-formats-target">
+      </div>
+    </div>
+
+
+
+    <div class="quarto-other-links-text-target">
+    </div>  </div>
+</header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#commentary" id="toc-commentary" class="nav-link active" data-scroll-target="#commentary">Commentary</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">      
+
+       <div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>phonedata_items <span class="ot">=</span> <span class="fu">read.csv2</span>(<span class="st">"datasets/Items.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>phonedata_items <span class="ot">=</span> <span class="fu">na.omit</span>(phonedata_items[, <span class="dv">3</span><span class="sc">:</span><span class="dv">302</span>])</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>phonedata_sensing <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">"datasets/clusterdata.RDS"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>phonedata_sensing <span class="ot">=</span> phonedata_sensing[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1821</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This document is <strong>an updated copy</strong> of a <a href="https://doi.org/10.1093/jrsssb/qkad054">published commentary</a>, to showcase <a href="https://quarto.org/docs/manuscripts/">Quarto manuscripts</a> in our <a href="https://florianpargent.github.io/Quarto_LMU_OSC/">Quarto workshop</a>. The official online repository of our published commentary can be found <a href="https://osf.io/5symf/">here</a>.</p>
+</div>
+</div>
+<section id="commentary" class="level3">
+<h3 class="anchored" data-anchor-id="commentary">Commentary</h3>
+<p>As psychologists, we appreciate Rohe &amp; Zeng’s (R&amp;Z; <span class="citation" data-cites="rohe2023vintage">Rohe &amp; Zeng (<a href="#ref-rohe2023vintage" role="doc-biblioref">2023</a>)</span>) new insights into “vintage” principal component analysis with varimax rotation (PCA+VR). Theories of intelligence and personality, perhaps psychology’s contributions best known outside of our field, have been a direct product of PCA. PCA+VR is still widely used for developing and evaluating psychological tests and questionnaires, although the literature has fought against it in favor of more complex factor analytic techniques <span class="citation" data-cites="fokkema2017how">(<a href="#ref-fokkema2017how" role="doc-biblioref">Fokkema &amp; Greiff, 2017</a>)</span>.</p>
+<p>In our opinion, abandoning the simpler PCA(+VR) is a mistake and R&amp;Z refute a common argument by proving that PCA+VR <em>can</em> perform statistical inference in latent variable models: The factor indeterminacy problem which plagued VR since its invention only applies for the special case of normally distributed factors. For any other distribution, perfect factor indeterminacy does not apply, although identifiability might be weak. However, distributions producing sparse components fulfill a <em>sufficient</em> leptokurtic condition, which can be confirmed by simple diagnostics.</p>
+<p>Because the results are complicated, we relate them to psychological applications. The examples in R&amp;Z only deal with sparse binary network data, but in typical psychological applications, the <span class="math inline">\(A\)</span> matrix consists of responses of <span class="math inline">\(n\)</span> persons to <span class="math inline">\(d\)</span> items which are either binary (e.g., intelligence tests), integer-valued (e.g., personality questionnaires) or continuous (e.g., digital sensors). Psychologists are often interested in whether i) items can be structured in a simple way to represent a small number of meaningful components, and ii) those components can be interpreted as psychological constructs that describe interindividual differences. R&amp;Z show that “radial streaks” in the rotated loading matrix <span class="math inline">\(\hat{Y}\)</span> suggest that item loadings are identified and can be estimated with PCA+VR from the data. Similarly, streaks in the component matrix <span class="math inline">\(\hat{Z}\)</span> suggest that person scores can be estimated.</p>
+<p>However, we question whether streaks are common in psychology with regard to both aspects. Test and questionnaire items are traditionally designed to measure only a single construct, so “simple structure” reflected by streaks in <span class="math inline">\(\hat{Y}\)</span> might be expected. Psychological constructs are often conceptualized as roughly normally distributed, so streaks in <span class="math inline">\(\hat{Z}\)</span> seem more questionable. In our online materials (<a href="https://osf.io/5symf/" class="uri">https://osf.io/5symf/</a>), we analyze a dataset <span class="citation" data-cites="stachl2020predicting">(<a href="#ref-stachl2020predicting" role="doc-biblioref">Stachl et al., 2020</a>)</span> containing both personality items (<span class="math inline">\(n =687\)</span>, <span class="math inline">\(d =300\)</span>) and smartphone sensing variables (<span class="math inline">\(n =624\)</span>, <span class="math inline">\(d =1821\)</span>). Streaks were found only in <span class="math inline">\(\hat{Y}\)</span> but not in <span class="math inline">\(\hat{Z}\)</span>. It is also a cautionary example of how imputation of missing values in combination with inappropriate data processing seemingly produce streaks in <span class="math inline">\(\hat{Z}\)</span> that belong to uninterpretable components. Degree normalization as discussed in R&amp;Z is not suitable for many psychological datasets and other procedures like z-standardization are often required to detect meaningful factors. Finally, we demonstrate R&amp;Z’s side result that the matrix <span class="math inline">\(\hat{Z}\hat{B}\)</span> from PCA+VR can estimate person scores simulated from oblique leptokurtic components.</p>
+<p>In our opinion, the main usefulness of PCA+VR not necessarily stems from its ability to estimate latent variable models. PCA excels at providing meaningful descriptions in practical applications but R&amp;Z’s and our examples also show that there is rarely a single definite structure. Components are most useful when they predict other meaningful quantities, regardless of the assumed epistemological nature of psychological constructs <span class="citation" data-cites="yarkoni2020implicit">(<a href="#ref-yarkoni2020implicit" role="doc-biblioref">Yarkoni, 2020</a>)</span>.</p>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-fokkema2017how" class="csl-entry" role="listitem">
+Fokkema, M., &amp; Greiff, S. (2017). How <span>Performing</span> <span>PCA</span> and <span>CFA</span> on the <span>Same</span> <span>Data</span> <span>Equals</span> <span>Trouble</span>: <span>Overfitting</span> in the <span>Assessment</span> of <span>Internal</span> <span>Structure</span> and <span>Some</span> <span>Editorial</span> <span>Thoughts</span> on <span>It</span>. <em>European Journal of Psychological Assessment</em>, <em>33</em>(6), 399–402. <a href="https://doi.org/10.1027/1015-5759/a000460">https://doi.org/10.1027/1015-5759/a000460</a>
+</div>
+<div id="ref-rohe2023vintage" class="csl-entry" role="listitem">
+Rohe, K., &amp; Zeng, M. (2023). <span class="nocase">Vintage factor analysis with Varimax performs statistical inference</span>. <em>Journal of the Royal Statistical Society Series B: Statistical Methodology</em>, <em>85</em>(4), 1037–1060. <a href="https://doi.org/10.1093/jrsssb/qkad029">https://doi.org/10.1093/jrsssb/qkad029</a>
+</div>
+<div id="ref-stachl2020predicting" class="csl-entry" role="listitem">
+Stachl, C., Au, Q., Schoedel, R., Gosling, S. D., Harari, G. M., Buschek, D., Völkel, S. T., Schuwerk, T., Oldemeier, M., Ullmann, T., Hussmann, H., Bischl, B., &amp; Bühner, M. (2020). Predicting personality from patterns of behavior collected with smartphones. <em>Proceedings of the National Academy of Sciences of the United States of America</em>, <em>117</em>(30), 17680–17687. <a href="https://doi.org/10.1073/pnas.1920484117">https://doi.org/10.1073/pnas.1920484117</a>
+</div>
+<div id="ref-yarkoni2020implicit" class="csl-entry" role="listitem">
+Yarkoni, T. (2020). Implicit <span>Realism</span> <span>Impedes</span> <span>Progress</span> in <span>Psychology</span>: <span>Comment</span> on <span>Fried</span> (2020). <em>Psychological Inquiry</em>, <em>31</em>(4), 326–333. <a href="https://doi.org/10.1080/1047840X.2020.1853478">https://doi.org/10.1080/1047840X.2020.1853478</a>
+</div>
+</div>
+</section>
+     </main>
+<!-- /main column -->  <script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>  </div> <!-- /content --> 
+  
+</body></html>

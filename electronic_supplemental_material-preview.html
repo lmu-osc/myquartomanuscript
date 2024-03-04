@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="generator" content="quarto-1.4.550">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+    <meta name="author" content="Florian Pargent">
+    <meta name="author" content="David Goretzko">
+    <meta name="author" content="Timo von Oertzen">
+    <meta name="dcterms.date" content="2024-03-04">
+
+    <title>Electronic Supplemental Material: New Insights into PCA + Varimax for Psychological Researchers</title>
+    <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      div.columns{display: flex; gap: min(4vw, 1.5em);}
+      div.column{flex: auto; overflow-x: auto;}
+      div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+      ul.task-list{list-style: none;}
+      ul.task-list li input[type="checkbox"] {
+        width: 0.8em;
+        margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+        vertical-align: middle;
+      }
+      /* CSS for syntax highlighting */
+      pre > code.sourceCode { white-space: pre; position: relative; }
+      pre > code.sourceCode > span { line-height: 1.25; }
+      pre > code.sourceCode > span:empty { height: 1.2em; }
+      .sourceCode { overflow: visible; }
+      code.sourceCode > span { color: inherit; text-decoration: inherit; }
+      div.sourceCode { margin: 1em 0; }
+      pre.sourceCode { margin: 0; }
+      @media screen {
+      div.sourceCode { overflow: auto; }
+      }
+      @media print {
+      pre > code.sourceCode { white-space: pre-wrap; }
+      pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+      }
+      pre.numberSource code
+        { counter-reset: source-line 0; }
+      pre.numberSource code > span
+        { position: relative; left: -4em; counter-increment: source-line; }
+      pre.numberSource code > span > a:first-child::before
+        { content: counter(source-line);
+          position: relative; left: -1em; text-align: right; vertical-align: baseline;
+          border: none; display: inline-block;
+          -webkit-touch-callout: none; -webkit-user-select: none;
+          -khtml-user-select: none; -moz-user-select: none;
+          -ms-user-select: none; user-select: none;
+          padding: 0 4px; width: 4em;
+        }
+      pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+      div.sourceCode
+        {   }
+      @media screen {
+      pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+      }
+      /* CSS for citations */
+      div.csl-bib-body { }
+      div.csl-entry {
+        clear: both;
+        margin-bottom: 0em;
+      }
+      .hanging-indent div.csl-entry {
+        margin-left:2em;
+        text-indent:-2em;
+      }
+      div.csl-left-margin {
+        min-width:2em;
+        float:left;
+      }
+      div.csl-right-inline {
+        margin-left:2em;
+        padding-left:1em;
+      }
+      div.csl-indent {
+        margin-left: 2em;
+      }    </style>
+
+    <style>
+      body.hypothesis-enabled #quarto-embed-header {
+        padding-right: 36px;
+      }
+
+      #quarto-embed-header {
+        height: 3em;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: solid 1px;
+      }
+
+      #quarto-embed-header h6 {
+        font-size: 1.1em;
+        padding-top: 0.6em;
+        margin-left: 1em;
+        margin-right: 1em;
+        font-weight: 400;
+      }
+
+      #quarto-embed-header a.quarto-back-link,
+      #quarto-embed-header a.quarto-download-embed {
+        font-size: 0.8em;
+        margin-top: 1em;
+        margin-bottom: 1em;
+        margin-left: 1em;
+        margin-right: 1em;
+      }
+
+      .quarto-back-container {
+        padding-left: 0.5em;
+        display: flex;
+      }
+
+      .headroom {
+          will-change: transform;
+          transition: transform 200ms linear;
+      }
+
+      .headroom--pinned {
+          transform: translateY(0%);
+      }
+
+      .headroom--unpinned {
+          transform: translateY(-100%);
+      }      
+    </style>
+
+    <script>
+    window.document.addEventListener("DOMContentLoaded", function () {
+
+      var header = window.document.querySelector("#quarto-embed-header");
+      const titleBannerEl = window.document.querySelector("body > #title-block-header");
+      if (titleBannerEl) {
+        titleBannerEl.style.paddingTop = header.clientHeight + "px";
+      }
+      const contentEl = window.document.getElementById('quarto-content');
+      for (const child of contentEl.children) {
+        child.style.paddingTop = header.clientHeight + "px";
+        child.style.marginTop = "1em";
+      }
+
+      // Use the article root if the `back` call doesn't work. This isn't perfect
+      // but should typically work
+      window.quartoBackToArticle = () => {
+        var currentUrl = window.location.href;
+        window.history.back();
+        setTimeout(() => {
+            // if location was not changed in 100 ms, then there is no history back
+            if(currentUrl === window.location.href){              
+                // redirect to site root
+                window.location.href = "index.html";
+            }
+        }, 100);
+      }
+
+      const headroom = new window.Headroom(header, {
+        tolerance: 5,
+        onPin: function () {
+        },
+        onUnpin: function () {
+        },
+      });
+      headroom.init();
+    });
+    </script>
+
+    
+<script src="site_libs/manuscript-notebook/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script> 
+      </head>
+
+  <body class="quarto-notebook">
+    <div id="quarto-embed-header" class="headroom fixed-top bg-primary">
+      
+      <a onclick="window.quartoBackToArticle(); return false;" class="btn btn-primary quarto-back-link" href=""><i class="bi bi-caret-left"></i> Back to Article</a>
+      <h6><i class="bi bi-journal-code"></i> Electronic Supplemental Material</h6>
+
+            <a href="./electronic_supplemental_material.qmd" class="btn btn-primary quarto-download-embed" download="electronic_supplemental_material.qmd">Download Source</a>
+          </div>
+
+     <header id="title-block-header" class="quarto-title-block default toc-left page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Electronic Supplemental Material: New Insights into PCA + Varimax for Psychological Researchers</h1>
+            <p class="subtitle lead">A short commentary on Rohe &amp; Zeng (2023)</p>
+          </div>
+
+    
+    <div class="quarto-title-meta-container">
+      <div class="quarto-title-meta-column-start">
+            <div class="quarto-title-meta-author">
+          <div class="quarto-title-meta-heading">Authors</div>
+          <div class="quarto-title-meta-heading">Affiliations</div>
+          
+                <div class="quarto-title-meta-contents">
+            <p class="author">Florian Pargent </p>
+          </div>
+                <div class="quarto-title-meta-contents">
+                    <p class="affiliation">
+                        LMU Munich
+                      </p>
+                  </div>
+                      <div class="quarto-title-meta-contents">
+            <p class="author">David Goretzko </p>
+          </div>
+                <div class="quarto-title-meta-contents">
+                    <p class="affiliation">
+                        Utrecht University
+                      </p>
+                  </div>
+                      <div class="quarto-title-meta-contents">
+            <p class="author">Timo von Oertzen </p>
+          </div>
+                <div class="quarto-title-meta-contents">
+                    <p class="affiliation">
+                        Bundeswehr University Munich and Max Planck Institute for Human Development
+                      </p>
+                  </div>
+                    </div>
+        
+        <div class="quarto-title-meta">
+
+                      
+                <div>
+            <div class="quarto-title-meta-heading">Published</div>
+            <div class="quarto-title-meta-contents">
+              <p class="date">March 4, 2024</p>
+            </div>
+          </div>
+          
+                
+              </div>
+      </div>
+      <div class="quarto-title-meta-column-end quarto-other-formats-target">
+      </div>
+    </div>
+
+
+
+    <div class="quarto-other-links-text-target">
+    </div>  </div>
+</header><div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
+<div id="quarto-sidebar-toc-left" class="sidebar toc-left">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#a-short-commentary-on-rohe-zeng-2023" id="toc-a-short-commentary-on-rohe-zeng-2023" class="nav-link active" data-scroll-target="#a-short-commentary-on-rohe-zeng-2023">A Short Commentary on Rohe &amp; Zeng (2023)</a></li>
+  <li><a href="#data-example-the-phonestudy" id="toc-data-example-the-phonestudy" class="nav-link" data-scroll-target="#data-example-the-phonestudy">Data Example: The PhoneStudy</a>
+  <ul class="collapse">
+  <li><a href="#item-response-data" id="toc-item-response-data" class="nav-link" data-scroll-target="#item-response-data">Item Response Data</a></li>
+  <li><a href="#mobile-sensing-data" id="toc-mobile-sensing-data" class="nav-link" data-scroll-target="#mobile-sensing-data">Mobile Sensing Data</a>
+  <ul class="collapse">
+  <li><a href="#analysis-with-standardization" id="toc-analysis-with-standardization" class="nav-link" data-scroll-target="#analysis-with-standardization">Analysis with Standardization</a></li>
+  <li><a href="#a-cautionary-example-analysis-without-standardization" id="toc-a-cautionary-example-analysis-without-standardization" class="nav-link" data-scroll-target="#a-cautionary-example-analysis-without-standardization">A Cautionary example: Analysis without Standardization</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#simulation-correlated-factors" id="toc-simulation-correlated-factors" class="nav-link" data-scroll-target="#simulation-correlated-factors">Simulation: Correlated Factors</a>
+  <ul class="collapse">
+  <li><a href="#open-questions" id="toc-open-questions" class="nav-link" data-scroll-target="#open-questions">Open Questions</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+</div>
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">      
+
+       <div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This document is <strong>an updated copy</strong> of a <a href="https://doi.org/10.1093/jrsssb/qkad054">published commentary</a>, to showcase <a href="https://quarto.org/docs/manuscripts/">Quarto manuscripts</a> in our <a href="https://florianpargent.github.io/Quarto_LMU_OSC/">Quarto workshop</a>. The official online repository of our published commentary can be found <a href="https://osf.io/5symf/">here</a>.</p>
+</div>
+</div>
+<section id="a-short-commentary-on-rohe-zeng-2023" class="level1">
+<h1>A Short Commentary on Rohe &amp; Zeng (2023)</h1>
+<p>In their paper <em>“Vintage factor analysis with varimax performs statistical inference”</em>, Rohe and Zeng [R&amp;Z; <span class="citation" data-cites="rohe2023vintage">Rohe &amp; Zeng (<a href="#ref-rohe2023vintage" role="doc-biblioref">2023</a>)</span>] demonstrate the usefulness of principal component analysis with varimax rotation (PCA+VR), a combination they call <em>vintage factor analysis</em>. The authors show that PCA+VR can be used to estimate factor scores and factor loadings, if a certain leptokurtic condition is fulfilled that can be assessed by simple visual diagnostics. In a side result, they also imply that PCA+VR is able to estimate factor scores even if the latent factors are correlated. In our commentary <em>“New Insights into PCA + Varimax for Psychological Researchers”</em> <span class="citation" data-cites="pargent2023discussion">(<a href="#ref-pargent2023discussion" role="doc-biblioref">Pargent et al., 2023</a>)</span>, we briefly discuss some implications of these results for psychological research and note that the suggested diagnostics of “radial streaks” might give less clear results in typical psychological applications. The commentary includes extensive <em>electronic supplemental materials</em>, containing a data example and a small simulation on estimating correlated factors, that can be found at <a href="https://osf.io/5symf/" class="uri">https://osf.io/5symf/</a>.</p>
+<p>In the current electronic supplementary materials, we present i) an exemplary data analysis that is discussed in our comment, and ii) a small simulation demonstrating the ability of PCA+VR to estimate correlated factors.</p>
+</section>
+<section id="data-example-the-phonestudy" class="level1">
+<h1>Data Example: The PhoneStudy</h1>
+<div class="cell-container"><div class="cell-decorator"><pre>In [1]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vsp)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<p>In contrast to the examples in R&amp;Z which only deal with sparse binary network data, psychological applications (traditionally) deal with i) questionnaire items or (increasingly) ii) digital data, e.g., mobile sensing. The <span class="math inline">\(A\)</span> matrix consists of i) integer-valued responses on <span class="math inline">\(d\)</span> Likert items or ii) continuous values on <span class="math inline">\(d\)</span> sensing variables, by <span class="math inline">\(n\)</span> persons. Degree normalization discussed by R&amp;Z does not seem suitable here and z-standardization is often required to detect meaningful factors in practice. We also do not share R&amp;Z’s enthusiasm that “radial streaks” are common.</p>
+<p>For the following demonstration, we use the publicly available <em>PhoneStudy</em> behavioral patterns dataset, which has been used to predict human personality from smartphone usage data <span class="citation" data-cites="stachl2020predicting">(<a href="#ref-stachl2020predicting" role="doc-biblioref">Stachl et al., 2020</a>)</span>. The <em>PhoneStudy</em> collected i) self-reported questionnaire data of personality traits measured with the German Big Five Structure Inventory [BFSI; 5 factors and 30 facets, <span class="citation" data-cites="arendasy_manual_2011">Arendasy et al. (<a href="#ref-arendasy_manual_2011" role="doc-biblioref">2011</a>)</span>], ii) demographic variables (age, gender, education), and iii) behavioral data from smartphone sensing (e.g., communication &amp; social behavior, app-usage, music consumption, overall phone usage, day-nighttime activity), bundled from several smaller studies. The mobile sensing data was recorded for up to 30 days on the personal smartphone of study volunteers.</p>
+<p>Item responses to the personality questionnaire are contained in the file <em>datasets/Items.csv</em> while aggregated smartphone sensing variables are contained in the file <em>datasets/clusterdata.RDS</em>. Both can be downloaded from <a href="https://osf.io/fxv3k/download" class="uri">https://osf.io/fxv3k/download</a>. We include copies of the aggregated datasets in our project repository for convenience. More details on the <em>PhoneStudy</em> data can be found in <span class="citation" data-cites="stachl2020predicting">Stachl et al. (<a href="#ref-stachl2020predicting" role="doc-biblioref">2020</a>)</span>. Mobile sensing variables are described in more detail at <a href="https://compstat-lmu.shinyapps.io/Personality_Prediction/#section-datadict" class="uri">https://compstat-lmu.shinyapps.io/Personality_Prediction/#section-datadict</a>.</p>
+<section id="item-response-data" class="level2">
+<h2 class="anchored" data-anchor-id="item-response-data">Item Response Data</h2>
+<p>Item responses to the 300 personality items of the Big Five questionnaire are almost complete and we decided to use complete case analysis here, although imputation would be possible as well.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [2]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>phonedata_items <span class="ot">=</span> <span class="fu">read.csv2</span>(<span class="st">"datasets/Items.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>phonedata_items <span class="ot">=</span> <span class="fu">na.omit</span>(phonedata_items[, <span class="dv">3</span><span class="sc">:</span><span class="dv">302</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<p>As is common for psychometric analyses, we standardize the item response data with <code>scale</code> and convert the data.frame to a <em>dgCMatrix</em> that can be analyzed with <code>vsp</code> R package. However, not standardizing the items does not change the following results much here because there cannot be large outliers in item responses and item variances due to the fixed response format (all items are measured on a Likert scale with 4 labeled categories).</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [3]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>items_mat_z <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">scale</span>(phonedata_items))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(items_mat_z) <span class="ot">=</span> <span class="fu">colnames</span>(phonedata_items)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>items_mat_z <span class="ot">=</span> <span class="fu">as</span>(items_mat_z, <span class="st">"dgCMatrix"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<p>The screeplot suggests a decrease in singular values after the 5th component. This is in line with the theory behind the questionnaire that was constructed to measure the Big Five personality factors.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [4]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot</span>(<span class="fu">vsp</span>(items_mat_z, <span class="at">rank =</span> <span class="dv">50</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">degree_normalize =</span> <span class="cn">FALSE</span>, <span class="at">center =</span> <span class="cn">FALSE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-4-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>Note that each Big Five factor is represented in the questionnaire by 6 lower order personality facets measured by 10 items each. Thus, theory would suggest that extracting 30 components should also be meaningful.</p>
+<p>To keep it simple, we extract only 5 components here.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [5]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>pca_items_z <span class="ot">=</span> <span class="fu">vsp</span>(items_mat_z, <span class="at">rank =</span> <span class="dv">5</span>,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">degree_normalize =</span> <span class="cn">FALSE</span>, <span class="at">center =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<p>Note that we do set <code>degree_normalize = FALSE</code> and <code>center = FALSE</code> because we do not analyze binary network data and we have already standardized our item responses.</p>
+<p>We search for <strong>radial streaks</strong> in the estimated component and loading matrices:</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [6]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="fu">as.matrix</span>(pca_items_z<span class="sc">$</span>Z[, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]), <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="fu">alpha</span>(<span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>), </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Estimated components (with standardization)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>We do not find streaks in the estimated component matrix <span class="math inline">\(\hat{Z}\)</span>.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [7]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="fu">as.matrix</span>(pca_items_z<span class="sc">$</span>Y[, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]), <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="fu">alpha</span>(<span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>), </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Estimated loadings (with standardization)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>However, we find noisy streaks in the estimated loading matrix <span class="math inline">\(\hat{Y}\)</span>. This <strong>simple structure</strong> is in line with the construction process of the personality questionnaire, which has the goal that each item measures only a single Big Five factor. Streaks are even more pronounced when extracting 30 components.</p>
+<p>Finally, we interpret the components by highlighting the 10 items with the highest absolute loadings on each component.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [8]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>top_vars_items_z <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Extraversion =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_items_z<span class="sc">$</span>Y[, <span class="dv">1</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n]),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Conscientiousness =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_items_z<span class="sc">$</span>Y[, <span class="dv">2</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n]),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Agreeableness =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_items_z<span class="sc">$</span>Y[, <span class="dv">3</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n]),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">EmotionalStability =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_items_z<span class="sc">$</span>Y[, <span class="dv">4</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n]),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Openness =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_items_z<span class="sc">$</span>Y[, <span class="dv">5</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n])</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(top_vars_items_z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 24%">
+<col style="width: 19%">
+<col style="width: 26%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Extraversion</th>
+<th style="text-align: left;">Conscientiousness</th>
+<th style="text-align: left;">Agreeableness</th>
+<th style="text-align: left;">EmotionalStability</th>
+<th style="text-align: left;">Openness</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">E1.1</td>
+<td style="text-align: left;">C6.8</td>
+<td style="text-align: left;">A6.8</td>
+<td style="text-align: left;">ES6.10</td>
+<td style="text-align: left;">O2.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E4.3</td>
+<td style="text-align: left;">C2.5</td>
+<td style="text-align: left;">O3.3</td>
+<td style="text-align: left;">ES1.3</td>
+<td style="text-align: left;">O2.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E2.7</td>
+<td style="text-align: left;">C4.9</td>
+<td style="text-align: left;">A6.10</td>
+<td style="text-align: left;">ES2.3</td>
+<td style="text-align: left;">O6.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E2.2</td>
+<td style="text-align: left;">ES5.6</td>
+<td style="text-align: left;">A6.2</td>
+<td style="text-align: left;">ES2.9</td>
+<td style="text-align: left;">O2.10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E2.4</td>
+<td style="text-align: left;">C3.6</td>
+<td style="text-align: left;">O3.7</td>
+<td style="text-align: left;">ES2.7</td>
+<td style="text-align: left;">O5.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E2.8</td>
+<td style="text-align: left;">C5.6</td>
+<td style="text-align: left;">E1.7</td>
+<td style="text-align: left;">ES2.1</td>
+<td style="text-align: left;">O1.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E4.5</td>
+<td style="text-align: left;">C3.1</td>
+<td style="text-align: left;">A6.6</td>
+<td style="text-align: left;">ES2.8</td>
+<td style="text-align: left;">O1.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ES4.10</td>
+<td style="text-align: left;">C2.7</td>
+<td style="text-align: left;">A6.4</td>
+<td style="text-align: left;">ES3.7</td>
+<td style="text-align: left;">O1.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">E2.6</td>
+<td style="text-align: left;">C4.5</td>
+<td style="text-align: left;">A6.5</td>
+<td style="text-align: left;">ES1.4</td>
+<td style="text-align: left;">O2.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">E3.2</td>
+<td style="text-align: left;">C2.3</td>
+<td style="text-align: left;">O3.1</td>
+<td style="text-align: left;">ES2.6</td>
+<td style="text-align: left;">O2.1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+<p>With few exceptions, the item labels indicate that the implied Big Five personality factors (<em>Extraversion</em>, <em>Conscientiousness</em>, <em>Agreeableness</em>, <em>Emotional Stability</em>, <em>Openness</em>) were recovered as expected.</p>
+</section>
+<section id="mobile-sensing-data" class="level2">
+<h2 class="anchored" data-anchor-id="mobile-sensing-data">Mobile Sensing Data</h2>
+<div class="cell-container"><div class="cell-decorator"><pre>In [9]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>phonedata_sensing <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">"datasets/clusterdata.RDS"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>phonedata_sensing <span class="ot">=</span> phonedata_sensing[, <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1821</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<p>The smartphone sensing data contains 1821 preprocessed variables. Of these variables, 772 contain missing values and not a single person has complete data on all variables. Thus, imputation of missing values seems a necessity when working with these data. We use very simple mean imputation here which is sufficient for the goal of our demonstration.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [10]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>phonedata_sensing_imp <span class="ot">=</span> phonedata_sensing</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(col <span class="cf">in</span> <span class="fu">colnames</span>(phonedata_sensing_imp)) {</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  phonedata_sensing_imp[<span class="fu">which</span>(<span class="fu">is.na</span>(phonedata_sensing_imp[[col]])), col] <span class="ot">&lt;-</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mean</span>(phonedata_sensing_imp[[col]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<p>However, our results are quite similar for more elaborate imputation schemes. For the interested reader, we prepared data imputed with the <code>miceRanger</code> package in the <a href="./sensitivity_analysis-preview.html">sensitivity analysis document</a>.</p>
+<p>If you want to use that data, you have to set <code>eval: true</code> or manually run the following chunk in the <em>.qmd</em> file.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [11]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(miceRanger)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mice_obj_sensing <span class="ot">=</span> <span class="fu">readRDS</span>(<span class="at">file =</span> <span class="st">"mice_obj_sensing.RDS"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>phonedata_sensing_imp <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">completeData</span>(mice_obj_sensing)[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<section id="analysis-with-standardization" class="level3">
+<h3 class="anchored" data-anchor-id="analysis-with-standardization">Analysis with Standardization</h3>
+<p>In contrast to the item response data, there is a huge difference in the standard deviations of the smartphone sensing variables.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [12]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">quantile</span>(<span class="fu">sapply</span>(phonedata_sensing_imp, sd)), <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        0%        25%        50%        75%       100% 
+      0.02       0.21       2.13      12.81 1723949.43 </code></pre>
+</div>
+</div></div>
+<p>Thus, it is important to standardize the variables before further analysis.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [13]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sensing_mat_imp_z <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">scale</span>(phonedata_sensing_imp))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sensing_mat_imp_z) <span class="ot">=</span> <span class="fu">colnames</span>(phonedata_sensing_imp)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>sensing_mat_imp_z <span class="ot">=</span> <span class="fu">as</span>(sensing_mat_imp_z, <span class="st">"dgCMatrix"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot</span>(<span class="fu">vsp</span>(sensing_mat_imp_z, <span class="at">rank =</span> <span class="dv">50</span>, </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">degree_normalize =</span> <span class="cn">FALSE</span>, <span class="at">center =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-13-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>The screeplot does not show a clear gap or elbow for the smartphone sensing data. To keep it simple, we extract only 5 components here, but higher numbers also provide meaningful insights.</p>
+<p>Again, we do not use degree normalization but we set <code>center = TRUE</code> despite standardizing the columns because row means also differ to some extent.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [14]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pca_sensing_imp_z <span class="ot">=</span> <span class="fu">vsp</span>(sensing_mat_imp_z, <span class="at">rank =</span> <span class="dv">5</span>, </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">degree_normalize =</span> <span class="cn">FALSE</span>, <span class="at">center =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<p>We search for <strong>radial streaks</strong> in the estimated component and loading matrices:</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [15]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="fu">as.matrix</span>(pca_sensing_imp_z<span class="sc">$</span>Z[, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]), <span class="at">cex =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="fu">alpha</span>(<span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>), </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Estimated components (with standardization)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-15-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>We do not find a clear indication of streaks in the estimated component matrix <span class="math inline">\(\hat{Z}\)</span>.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [16]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="fu">as.matrix</span>(pca_sensing_imp_z<span class="sc">$</span>Y[, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]), <span class="at">cex =</span> <span class="fl">0.3</span>, <span class="at">col =</span> <span class="fu">alpha</span>(<span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>), </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Estimated loadings (with standardization)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-16-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>However, we find streaks in the estimated loading matrix <span class="math inline">\(\hat{Y}\)</span>. In contrast to the items of the personality questionnaire that have been constructed with simple structure in mind, no simple structure was implied when constructing the smartphone sensing variables. Nonetheless, the streaks would suggest that the smartphone sensing variables can be meaningfully clustered in this dataset.</p>
+<p>For interpretation, we again highlight the 10 variables with the highest absolute loadings on each component.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [17]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>top_vars_z <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">Apps_Usage =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_sensing_imp_z<span class="sc">$</span>Y[, <span class="dv">1</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n]),</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">Calls =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_sensing_imp_z<span class="sc">$</span>Y[, <span class="dv">2</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n]),</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">Music_Songs =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_sensing_imp_z<span class="sc">$</span>Y[, <span class="dv">3</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n]),</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Music_Audio_Features =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_sensing_imp_z<span class="sc">$</span>Y[, <span class="dv">4</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n]),</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">Terrain =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_sensing_imp_z<span class="sc">$</span>Y[, <span class="dv">5</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n])</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(top_vars_z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 17%">
+<col style="width: 16%">
+<col style="width: 18%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Apps_Usage</th>
+<th style="text-align: left;">Calls</th>
+<th style="text-align: left;">Music_Songs</th>
+<th style="text-align: left;">Music_Audio_Features</th>
+<th style="text-align: left;">Terrain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">daily_mean_num_unique_apps_week</td>
+<td style="text-align: left;">daily_mean_num_cont_call</td>
+<td style="text-align: left;">daily_mean_num_song</td>
+<td style="text-align: left;">mean_music_loudness</td>
+<td style="text-align: left;">daily_mean_neg_elev_change</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">daily_mean_num_unique_apps</td>
+<td style="text-align: left;">daily_mean_num_cont</td>
+<td style="text-align: left;">daily_mean_duration_music</td>
+<td style="text-align: left;">mean_music_loudness_weekday</td>
+<td style="text-align: left;">daily_mean_elev_change</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">daily_mean_num_unique_apps_weekend</td>
+<td style="text-align: left;">daily_mean_num_cont_week</td>
+<td style="text-align: left;">daily_max_num_uniq_song</td>
+<td style="text-align: left;">sd_music_loudness</td>
+<td style="text-align: left;">daily_mean_pos_elev_change</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">daily_mean_num_unique_Camera</td>
+<td style="text-align: left;">daily_mean_num_cont_call_out</td>
+<td style="text-align: left;">daily_mean_num_song_weekdays</td>
+<td style="text-align: left;">mean_music_energy</td>
+<td style="text-align: left;">daily_mean_elev_change_weekdays</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">daily_mean_num_unique_Camera_week</td>
+<td style="text-align: left;">daily_sd_num_call_in</td>
+<td style="text-align: left;">daily_mean_num_uniq_song</td>
+<td style="text-align: left;">mean_music_loudness_weekend</td>
+<td style="text-align: left;">daily_mean_elev_change_weekend</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">daily_mean_num_unique_Camera_weekend</td>
+<td style="text-align: left;">IVI_calls</td>
+<td style="text-align: left;">num_uniq_songs</td>
+<td style="text-align: left;">mean_music_acousticness</td>
+<td style="text-align: left;">daily_sd_elev_change</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">daily_mean_sum_events_daytime</td>
+<td style="text-align: left;">daily_mean_num_cont_call_miss</td>
+<td style="text-align: left;">daily_sd_num_song</td>
+<td style="text-align: left;">mean_music_energy_weekday</td>
+<td style="text-align: left;">daily_mean_num_.com.sonyericsson.home</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">daily_mean_sum_events_night</td>
+<td style="text-align: left;">daily_mean_num_cont_weekend</td>
+<td style="text-align: left;">num_songs</td>
+<td style="text-align: left;">mean_music_acousticness_weekday</td>
+<td style="text-align: left;">daily_mean_num_.com.sec.android.app.launcher</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">daily_mean_num_unique_Gallery</td>
+<td style="text-align: left;">daily_mean_num_call_out</td>
+<td style="text-align: left;">daily_mean_num_uniq_alb</td>
+<td style="text-align: left;">sd_music_acousticness</td>
+<td style="text-align: left;">daily_mean_num_.com.sec.android.gallery3d</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">daily_mean_num_unique_Gallery_week</td>
+<td style="text-align: left;">daily_mean_num_cont_call_in</td>
+<td style="text-align: left;">daily_sd_duration_music</td>
+<td style="text-align: left;">mean_music_energy_weekend</td>
+<td style="text-align: left;">daily_mean_num_.com.sonyericsson.album</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+<p>To summarize, with careful preprocessing and appropriate data standardization, PCA+VR seems to meaningfully cluster the smartphone sensing variables, as indicated by radial streaks in the estimated loading matrix <span class="math inline">\(\hat{Y}\)</span>. However, we did not find streaks in the estimated component matrix <span class="math inline">\(\hat{Z}\)</span> so we cannot necessarily have high confidence that PCA+VR was able to estimate well identified person scores on these components.</p>
+<p>The following cautionary example showcases what can happen when the smartphone sensing data is not preprocessed with enough care.</p>
+</section>
+<section id="a-cautionary-example-analysis-without-standardization" class="level3">
+<h3 class="anchored" data-anchor-id="a-cautionary-example-analysis-without-standardization">A Cautionary example: Analysis without Standardization</h3>
+<p>To simulate mindless data analysis, we do not standardize the smartphone sensing variables and use the default <code>degree_normalize = TRUE</code> in the <code>vsp</code> call, although this should not be a meaningful setting because we do not analyze binary network data here.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [18]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sensing_mat_imp <span class="ot">=</span> <span class="fu">as.matrix</span>(phonedata_sensing_imp)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sensing_mat_imp) <span class="ot">=</span> <span class="fu">colnames</span>(phonedata_sensing_imp)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>sensing_mat_imp <span class="ot">=</span> <span class="fu">as</span>(sensing_mat_imp, <span class="st">"dgCMatrix"</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot</span>(<span class="fu">vsp</span>(sensing_mat_imp, <span class="at">rank =</span> <span class="dv">50</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">degree_normalize =</span> <span class="cn">TRUE</span>, <span class="at">center =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-18-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>With these settings, the screeplot shows substantial gaps (in contrast to the previous analysis with standardization). To keep it simple, we decided to extract 5 components here, but the main insights from this exercise do not seem to depend on this number.</p>
+<p>When searching for <strong>radial streaks</strong> in the estimated component and loading matrices, we notice interesting changes compared to the analysis with standardized variables</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [19]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pca_sensing_imp <span class="ot">=</span> <span class="fu">vsp</span>(sensing_mat_imp, <span class="at">rank =</span> <span class="dv">5</span>,</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">degree_normalize =</span> <span class="cn">TRUE</span>, <span class="at">center =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="fu">as.matrix</span>(pca_sensing_imp<span class="sc">$</span>Z[, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]), <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="fu">alpha</span>(<span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>), </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Estimated components (no standardization)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-19-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>With these settings, we <em>do</em> find beautiful streaks in the estimated component matrix <span class="math inline">\(\hat{Z}\)</span>.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [20]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="fu">as.matrix</span>(pca_sensing_imp<span class="sc">$</span>Y[, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]), <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="fu">alpha</span>(<span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>), </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Estimated loadings (no standardization)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-20-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>In contrast, streaks in the estimated loading matrix <span class="math inline">\(\hat{Y}\)</span> are very extreme. To a careful analyst, this might perhaps raise some alarms that something might be wrong here…</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [21]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">20</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>top_vars <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">GPS1 =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_sensing_imp<span class="sc">$</span>Y[, <span class="dv">1</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n]),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">GPS2 =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_sensing_imp<span class="sc">$</span>Y[, <span class="dv">2</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n]),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">GPS3 =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_sensing_imp<span class="sc">$</span>Y[, <span class="dv">3</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n]),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">GPS4 =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_sensing_imp<span class="sc">$</span>Y[, <span class="dv">4</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n]),</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">GPS5 =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_sensing_imp<span class="sc">$</span>Y[, <span class="dv">5</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n])</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>red_vars <span class="ot">=</span> <span class="fu">unique</span>(<span class="fu">unlist</span>(top_vars))</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(top_vars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">GPS1</th>
+<th style="text-align: left;">GPS2</th>
+<th style="text-align: left;">GPS3</th>
+<th style="text-align: left;">GPS4</th>
+<th style="text-align: left;">GPS5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">maxDistance</td>
+<td style="text-align: left;">huberM_time_spent_home</td>
+<td style="text-align: left;">huberM_distance_covered_weekend</td>
+<td style="text-align: left;">huberM_daily_max_dist_home</td>
+<td style="text-align: left;">huberM_time_spent_home_weekend</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">max_distance_home</td>
+<td style="text-align: left;">huberM_time_spent_home_weekday</td>
+<td style="text-align: left;">huberM_distance_covered_daily</td>
+<td style="text-align: left;">huberM_daily_max_dist_home_weekday</td>
+<td style="text-align: left;">durationHome</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">rog</td>
+<td style="text-align: left;">durationHome</td>
+<td style="text-align: left;">huberM_distance_covered_weekday</td>
+<td style="text-align: left;">huberM_daily_max_dist_home_weekend</td>
+<td style="text-align: left;">huberM_time_spent_home_weekday</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SDD</td>
+<td style="text-align: left;">max_distance_home</td>
+<td style="text-align: left;">huberM_max_dist_two_points_weekend</td>
+<td style="text-align: left;">durationHome</td>
+<td style="text-align: left;">huberM_daily_max_dist_home_weekend</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SDD_daytime</td>
+<td style="text-align: left;">maxDistance</td>
+<td style="text-align: left;">huberM_max_dist_two_points_daily</td>
+<td style="text-align: left;">SDD_nighttime</td>
+<td style="text-align: left;">SDD_weekend</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SDD_weekend</td>
+<td style="text-align: left;">huberM_time_spent_home_weekend</td>
+<td style="text-align: left;">huberM_max_dist_two_points_weekday</td>
+<td style="text-align: left;">max_distance_home</td>
+<td style="text-align: left;">SDD_sat</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SDD_sat</td>
+<td style="text-align: left;">huberM_daily_max_dist_home_weekend</td>
+<td style="text-align: left;">huberM_rog_weekends</td>
+<td style="text-align: left;">maxDistance</td>
+<td style="text-align: left;">SDD_nighttime</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SDD_weekday</td>
+<td style="text-align: left;">huberM_daily_time_spent_home</td>
+<td style="text-align: left;">huberM_rog_daily</td>
+<td style="text-align: left;">SDD</td>
+<td style="text-align: left;">SDD</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SDD_nighttime</td>
+<td style="text-align: left;">huberM_daily_max_dist_home</td>
+<td style="text-align: left;">huberM_rog_weekdays</td>
+<td style="text-align: left;">rog</td>
+<td style="text-align: left;">mean_dur_wakeLeaveHome_weekend</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">huberM_daily_max_dist_home_weekday</td>
+<td style="text-align: left;">rog</td>
+<td style="text-align: left;">Qn_rog_weekends</td>
+<td style="text-align: left;">SDD_sat</td>
+<td style="text-align: left;">huberM_distance_covered_daily</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">huberM_time_spent_home_weekday</td>
+<td style="text-align: left;">huberM_distance_covered_daily</td>
+<td style="text-align: left;">huberM_rog_nightly</td>
+<td style="text-align: left;">huberM_max_dist_two_points_weekend</td>
+<td style="text-align: left;">mean_time_firstLeave</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">huberM_daily_max_dist_home_weekend</td>
+<td style="text-align: left;">huberM_daily_max_dist_home_weekday</td>
+<td style="text-align: left;">max_distance_home</td>
+<td style="text-align: left;">SDD_daytime</td>
+<td style="text-align: left;">mean_time_LeaveHome_weekday</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">huberM_time_spent_home</td>
+<td style="text-align: left;">SDD_nighttime</td>
+<td style="text-align: left;">huberM_daily_max_dist_home_weekend</td>
+<td style="text-align: left;">Qn_rog_weekends</td>
+<td style="text-align: left;">huberM_rog_weekends</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">huberM_daily_max_dist_home</td>
+<td style="text-align: left;">huberM_distance_covered_weekday</td>
+<td style="text-align: left;">SDD</td>
+<td style="text-align: left;">huberM_time_spent_home_weekend</td>
+<td style="text-align: left;">SDD_daytime</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">huberM_distance_covered_weekend</td>
+<td style="text-align: left;">huberM_distance_covered_weekend</td>
+<td style="text-align: left;">SDD_daytime</td>
+<td style="text-align: left;">huberM_daily_time_spent_home</td>
+<td style="text-align: left;">huberM_distance_covered_weekday</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">huberM_distance_covered_weekday</td>
+<td style="text-align: left;">huberM_max_dist_two_points_weekend</td>
+<td style="text-align: left;">SDD_weekday</td>
+<td style="text-align: left;">huberM_distance_covered_weekday</td>
+<td style="text-align: left;">mean_dur_wakeLeave</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">huberM_distance_covered_daily</td>
+<td style="text-align: left;">SDD_weekend</td>
+<td style="text-align: left;">SDD_nighttime</td>
+<td style="text-align: left;">huberM_distance_covered_daily</td>
+<td style="text-align: left;">mean_time_lastHome</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">huberM_max_dist_two_points_daily</td>
+<td style="text-align: left;">huberM_rog_weekends</td>
+<td style="text-align: left;">SDD_weekend</td>
+<td style="text-align: left;">huberM_rog_weekends</td>
+<td style="text-align: left;">huberM_rog_nightly</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">huberM_max_dist_two_points_weekend</td>
+<td style="text-align: left;">mean_time_lastHome</td>
+<td style="text-align: left;">maxDistance</td>
+<td style="text-align: left;">huberM_max_dist_two_points_daily</td>
+<td style="text-align: left;">mean_time_LeaveHome</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">huberM_max_dist_two_points_weekday</td>
+<td style="text-align: left;">daily_sd_elev_change</td>
+<td style="text-align: left;">SDD_sat</td>
+<td style="text-align: left;">huberM_max_dist_two_points_weekday</td>
+<td style="text-align: left;">mean_time_lastHome_weekend</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+<p>Indeed, when looking at the top variables with the highest absolute loadings on each component, they do <strong>not</strong> seem to have a simple structure and are hard to interpret.</p>
+<p>In fact, the top 20 variables loading on all components include only 36 unique variables.</p>
+<p>Most of these variables seem to be based on GPS data in some way.</p>
+<p>All of these variables have extremely high standard deviations.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [22]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(phonedata_sensing_imp[, red_vars], sd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       maxDistance                  max_distance_home 
+                      1723949.4317                       1658119.0296 
+                               rog                                SDD 
+                       593713.5051                        104176.6763 
+                       SDD_daytime                        SDD_weekend 
+                       110929.5007                        127175.3902 
+                           SDD_sat                        SDD_weekday 
+                       118107.2267                         96185.8329 
+                     SDD_nighttime huberM_daily_max_dist_home_weekday 
+                        89259.8191                        386481.1616 
+    huberM_time_spent_home_weekday huberM_daily_max_dist_home_weekend 
+                       396556.4282                        597855.8383 
+            huberM_time_spent_home         huberM_daily_max_dist_home 
+                       362331.9954                        395986.1722 
+   huberM_distance_covered_weekend    huberM_distance_covered_weekday 
+                       273597.0960                        236849.2267 
+     huberM_distance_covered_daily   huberM_max_dist_two_points_daily 
+                       228491.3102                         36548.9043 
+huberM_max_dist_two_points_weekend huberM_max_dist_two_points_weekday 
+                        51418.1852                         37995.9337 
+                      durationHome     huberM_time_spent_home_weekend 
+                       630997.9841                        356598.2761 
+      huberM_daily_time_spent_home                huberM_rog_weekends 
+                        23839.3676                         19736.6958 
+                mean_time_lastHome               daily_sd_elev_change 
+                        13992.7979                           652.7301 
+                  huberM_rog_daily                huberM_rog_weekdays 
+                        13893.6231                         15196.8947 
+                   Qn_rog_weekends                 huberM_rog_nightly 
+                        21541.5438                         15109.0978 
+    mean_dur_wakeLeaveHome_weekend               mean_time_firstLeave 
+                        13712.9354                         12298.1192 
+       mean_time_LeaveHome_weekday                 mean_dur_wakeLeave 
+                        12196.0186                         12383.4894 
+               mean_time_LeaveHome         mean_time_lastHome_weekend 
+                        12203.8207                         14425.9489 </code></pre>
+</div>
+</div></div>
+<p>In addition, all of these variables contain missing values in the original dataset and the number of missings is quite high for some of them.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [23]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(phonedata_sensing[, red_vars], <span class="cf">function</span>(x) <span class="fu">sum</span>(<span class="fu">is.na</span>(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                       maxDistance                  max_distance_home 
+                                58                                 69 
+                               rog                                SDD 
+                                63                                 60 
+                       SDD_daytime                        SDD_weekend 
+                                66                                107 
+                           SDD_sat                        SDD_weekday 
+                               114                                 82 
+                     SDD_nighttime huberM_daily_max_dist_home_weekday 
+                               110                                 91 
+    huberM_time_spent_home_weekday huberM_daily_max_dist_home_weekend 
+                                97                                204 
+            huberM_time_spent_home         huberM_daily_max_dist_home 
+                                69                                 69 
+   huberM_distance_covered_weekend    huberM_distance_covered_weekday 
+                               120                                 83 
+     huberM_distance_covered_daily   huberM_max_dist_two_points_daily 
+                                67                                 60 
+huberM_max_dist_two_points_weekend huberM_max_dist_two_points_weekday 
+                               110                                 77 
+                      durationHome     huberM_time_spent_home_weekend 
+                                69                                189 
+      huberM_daily_time_spent_home                huberM_rog_weekends 
+                                69                                133 
+                mean_time_lastHome               daily_sd_elev_change 
+                                70                                  5 
+                  huberM_rog_daily                huberM_rog_weekdays 
+                                74                                 90 
+                   Qn_rog_weekends                 huberM_rog_nightly 
+                               133                                132 
+    mean_dur_wakeLeaveHome_weekend               mean_time_firstLeave 
+                                 5                                 60 
+       mean_time_LeaveHome_weekday                 mean_dur_wakeLeave 
+                               123                                  5 
+               mean_time_LeaveHome         mean_time_lastHome_weekend 
+                                93                                230 </code></pre>
+</div>
+</div></div>
+<p>Our suspicion is that the radial streaks in the estimated component matrix <span class="math inline">\(\hat{Z}\)</span> might be a result of these GPS variables, which dominate the solution from PCA+VR without standardization but are hidden behind the remaining variables when standardization is used.</p>
+<p>To confirm some of these suspicions, we repeat PCA+VR on only these 36 variables, but now use standardization again. This results in 2 strong components with pronounced but odd-looking and not perfectly aligned streaks in both <span class="math inline">\(\hat{Z}\)</span> and <span class="math inline">\(\hat{Y}\)</span>.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [24]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sensing_mat_imp_z_red <span class="ot">=</span> <span class="fu">as.matrix</span>(<span class="fu">scale</span>(phonedata_sensing_imp[, red_vars]))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sensing_mat_imp_z_red) <span class="ot">=</span> <span class="fu">colnames</span>(phonedata_sensing_imp[, red_vars])</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>sensing_mat_imp_z_red <span class="ot">=</span> <span class="fu">as</span>(sensing_mat_imp_z_red, <span class="st">"dgCMatrix"</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">screeplot</span>(<span class="fu">vsp</span>(sensing_mat_imp_z_red, <span class="at">rank =</span> <span class="dv">20</span>,</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">degree_normalize =</span> <span class="cn">FALSE</span>, <span class="at">center =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-24-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [25]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pca_sensing_imp_z_red <span class="ot">=</span> <span class="fu">vsp</span>(sensing_mat_imp_z_red, <span class="at">rank =</span> <span class="dv">2</span>, </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">degree_normalize =</span> <span class="cn">FALSE</span>, <span class="at">center =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="fu">as.matrix</span>(pca_sensing_imp_z_red<span class="sc">$</span>Z[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]), <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="fu">alpha</span>(<span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>), </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Estimated components (reduced itemset with standardization)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-25-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [26]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="fu">as.matrix</span>(pca_sensing_imp_z_red<span class="sc">$</span>Y[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]), <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="fu">alpha</span>(<span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>), </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Estimated loadings (reduced itemset with standardization)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-26-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<div class="cell-container"><div class="cell-decorator"><pre>In [27]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>top_vars <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">GPS1 =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_sensing_imp_z_red<span class="sc">$</span>Y[, <span class="dv">1</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n]),</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">GPS2 =</span> <span class="fu">names</span>(<span class="fu">sort</span>(<span class="fu">abs</span>(pca_sensing_imp_z_red<span class="sc">$</span>Y[, <span class="dv">2</span>]), <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span>n])</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(top_vars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">GPS1</th>
+<th style="text-align: left;">GPS2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">rog</td>
+<td style="text-align: left;">mean_time_LeaveHome</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">maxDistance</td>
+<td style="text-align: left;">mean_time_LeaveHome_weekday</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">max_distance_home</td>
+<td style="text-align: left;">mean_time_firstLeave</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SDD</td>
+<td style="text-align: left;">mean_dur_wakeLeave</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SDD_daytime</td>
+<td style="text-align: left;">huberM_max_dist_two_points_daily</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SDD_weekend</td>
+<td style="text-align: left;">huberM_rog_daily</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">SDD_sat</td>
+<td style="text-align: left;">huberM_max_dist_two_points_weekday</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SDD_weekday</td>
+<td style="text-align: left;">huberM_distance_covered_daily</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">huberM_rog_daily</td>
+<td style="text-align: left;">huberM_time_spent_home_weekday</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">huberM_max_dist_two_points_weekday</td>
+<td style="text-align: left;">huberM_time_spent_home</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</section>
+</section>
+</section>
+<section id="simulation-correlated-factors" class="level1">
+<h1>Simulation: Correlated Factors</h1>
+<p>Another important aspect of psychological applications of PCA+VR are correlated factors (e.g., the personality dimensions conscientiousness and neuroticism are thought to correlate around <span class="math inline">\(-0.4\)</span>; <span class="citation" data-cites="vanderlinden2010general">Linden et al. (<a href="#ref-vanderlinden2010general" role="doc-biblioref">2010</a>)</span>), thus oblique rotations are often argued for. Interestingly, R&amp;Z show as a side result that the results of PCA+VR can be used to also estimate correlated factors in situations which are relevant for psychological measurement models.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [28]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vsp)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Matrix)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mvtnorm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<p>Here we demonstrate that <span class="math inline">\(\hat{Z}\hat{B}\)</span> (up to a change of units) estimates correlated factors simulated from a leptokurtic distribution:</p>
+<ol type="1">
+<li>Simulate correlated factor scores from a multivariate leptokurtic distribution.</li>
+</ol>
+<div class="cell-container"><div class="cell-decorator"><pre>In [29]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">3</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>rho <span class="ot">=</span> <span class="fl">0.7</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># adapted from https://github.com/RoheLab/vsp-paper/blob/master/scripts/makeFigure1.R</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>Z_star <span class="ot">=</span> <span class="fu">scale</span>(<span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="dv">1</span>), <span class="dv">2</span> <span class="sc">*</span> n, T) <span class="sc">*</span> </span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rexp</span>(n <span class="sc">*</span> <span class="dv">2</span>, <span class="at">rate =</span> <span class="dv">2</span>) <span class="sc">^</span> <span class="fl">1.3</span>, <span class="at">ncol =</span> <span class="dv">2</span>))</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>cor_mat <span class="ot">=</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, rho, rho, <span class="dv">1</span>), <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">=</span> Z_star <span class="sc">%*%</span> <span class="fu">chol</span>(cor_mat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<p>We first simulate two-dimensional uncorrelated standardized scores from a leptokurtic distribution (<span class="math inline">\(Z^*\)</span>). Correlated scores (<span class="math inline">\(Z\)</span>) are then constructed by multiplying the uncorrelated scores with the Cholesky factor of a correlation matrix with the desired correlation (<span class="math inline">\(\rho = 0.7\)</span>).</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [30]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(Z, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="fu">alpha</span>(<span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>), </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"True correlated factors"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-30-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>When plotting the simulated component scores in the <span class="math inline">\(Z\)</span> matrix, we see non-orthogonal streaks (i.e.&nbsp;oblique components).</p>
+<ol start="2" type="1">
+<li>Simulate item response data.</li>
+</ol>
+<div class="cell-container"><div class="cell-decorator"><pre>In [31]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>vpf <span class="ot">=</span> <span class="dv">20</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">=</span> vpf<span class="sc">*</span>k</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>pf_low <span class="ot">=</span> <span class="fl">0.8</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>pf_upper <span class="ot">=</span> <span class="fl">0.95</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>sf_low <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>sf_upper <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>loadings <span class="ot">=</span> <span class="cf">function</span>(k, d, vpf, pf_low, pf_upper, sf_low, sf_upper){</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">=</span> <span class="fu">runif</span>(d, pf_low, pf_upper)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">=</span> <span class="fu">runif</span>(d<span class="sc">*</span>(k<span class="dv">-1</span>) , sf_low, sf_upper)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  i <span class="ot">=</span> <span class="dv">1</span><span class="sc">:</span>(d)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>  j <span class="ot">=</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span>k, <span class="at">each =</span> vpf)</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>  L <span class="ot">=</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, d, k)</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>  L[<span class="fu">cbind</span>(i, j)] <span class="ot">=</span> x</span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>  L[<span class="fu">is.na</span>(L)] <span class="ot">=</span> y</span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>  L</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">=</span> <span class="fu">loadings</span>(k, d, vpf, pf_low, pf_upper, sf_low, sf_upper)</span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>A <span class="ot">=</span>  Z <span class="sc">%*%</span> <span class="fu">t</span>(Y) <span class="sc">+</span> <span class="fu">rnorm</span>(n <span class="sc">*</span> d, <span class="at">sd =</span> <span class="fl">0.1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<p>We create a loading matrix <span class="math inline">\(Y\)</span> with simple structure and simulate the data matrix <span class="math inline">\(A\)</span> with <span class="math inline">\(ZY^T\)</span> and add some normally distributed noise.</p>
+<ol start="3" type="1">
+<li>Perform PCA + Varimax</li>
+</ol>
+<div class="cell-container"><div class="cell-decorator"><pre>In [32]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>pca_sim <span class="ot">=</span> <span class="fu">vsp</span>(A, <span class="at">rank =</span> <span class="dv">2</span>, <span class="at">degree_normalize =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+<ol start="4" type="1">
+<li>Estimate uncorrelated component scores <span class="math inline">\(Z\)</span></li>
+</ol>
+<div class="cell-container"><div class="cell-decorator"><pre>In [33]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="fu">as.matrix</span>(pca_sim<span class="sc">$</span>Z[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]), <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="fu">alpha</span>(<span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>), </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Estimated uncorrelated factors"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-33-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>When plotting the <span class="math inline">\(\hat{Z}\)</span> matrix returned from PCA+VR, we see orthogonal streaks similar to <span class="math inline">\(Z^*\)</span>.</p>
+<ol start="5" type="1">
+<li>Estimate correlated component scores <span class="math inline">\(Z\)</span></li>
+</ol>
+<div class="cell-container"><div class="cell-decorator"><pre>In [34]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ZB_hat <span class="ot">=</span> <span class="fu">as.matrix</span>(pca_sim<span class="sc">$</span>Z) <span class="sc">%*%</span> <span class="fu">as.matrix</span>(pca_sim<span class="sc">$</span>B)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(ZB_hat, <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">col =</span> <span class="fu">alpha</span>(<span class="st">"red"</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>), </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Estimated correlated factors"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="">
+<figure class="figure">
+<p class=""><a href="electronic_supplemental_material_files/figure-html/unnamed-chunk-34-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15"><img src="electronic_supplemental_material_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div></div>
+<p>However, the matrix <span class="math inline">\(\hat{Z}\hat{B}\)</span> contains correlated components similar to <span class="math inline">\(Z\)</span>.</p>
+<ol start="6" type="1">
+<li>Estimate correlation between components</li>
+</ol>
+<div class="cell-container"><div class="cell-decorator"><pre>In [35]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(ZB_hat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          [,1]      [,2]
+[1,] 1.0000000 0.7033317
+[2,] 0.7033317 1.0000000</code></pre>
+</div>
+</div></div>
+<p>We can verify that the correlation of the scores in <span class="math inline">\(\hat{Z}\hat{B}\)</span> are close to the true correlation in <span class="math inline">\(Z\)</span> (<span class="math inline">\(\rho = 0.7\)</span>).</p>
+<p>Our simulation seems to demonstrate the results from sections <strong>7.1</strong> and <strong>7.2</strong> in R&amp;Z, which state that if scores in <span class="math inline">\(Z\)</span> are correlated; scores in <span class="math inline">\(Y\)</span> are centered, independent, and leptokurtic; and the true <span class="math inline">\(B\)</span> is proportional to the identity matrix, then the <span class="math inline">\(\hat{B}\)</span> matrix returned from PCA+VR estimates the Cholesky factor of the covariance matrix <span class="math inline">\(Z^TZ\)</span> (up to a change of unit). Note that because our scores in <span class="math inline">\(Z\)</span> were scaled, <span class="math inline">\(Z^TZ\)</span> is equal to the correlation matrix in our demonstration.</p>
+<section id="open-questions" class="level2">
+<h2 class="anchored" data-anchor-id="open-questions">Open Questions</h2>
+<p>Surprisingly, the exact scores in <span class="math inline">\(Z\)</span> (in the same unit) seem to be estimated by <span class="math inline">\(\hat{Z}\hat{B}\cdot d^{1/8}\)</span>.</p>
+<div class="cell-container"><div class="cell-decorator"><pre>In [36]:</pre></div><div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>nrows <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>compare_scores <span class="ot">=</span> <span class="fu">data.frame</span>(</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">z1 =</span> Z[<span class="dv">1</span><span class="sc">:</span>nrows, <span class="dv">1</span>],</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">z1_hat =</span> ZB_hat[<span class="dv">1</span><span class="sc">:</span>nrows, <span class="dv">1</span>] <span class="sc">*</span> d<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>),</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">z2 =</span> Z[<span class="dv">1</span><span class="sc">:</span>nrows, <span class="dv">2</span>],</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">z2_hat =</span> ZB_hat[<span class="dv">1</span><span class="sc">:</span>nrows, <span class="dv">2</span>] <span class="sc">*</span> d<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">8</span>),</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="at">row.names =</span> <span class="cn">NULL</span>)</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(compare_scores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;">z1</th>
+<th style="text-align: right;">z1_hat</th>
+<th style="text-align: right;">z2</th>
+<th style="text-align: right;">z2_hat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">-0.8175379</td>
+<td style="text-align: right;">-0.8258829</td>
+<td style="text-align: right;">0.3337107</td>
+<td style="text-align: right;">0.3052195</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.1451648</td>
+<td style="text-align: right;">0.1404835</td>
+<td style="text-align: right;">0.9071543</td>
+<td style="text-align: right;">0.9425134</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.3726275</td>
+<td style="text-align: right;">0.3342478</td>
+<td style="text-align: right;">-0.0673917</td>
+<td style="text-align: right;">-0.0741674</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-0.0312845</td>
+<td style="text-align: right;">-0.0496686</td>
+<td style="text-align: right;">1.0465835</td>
+<td style="text-align: right;">1.0630476</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.0533857</td>
+<td style="text-align: right;">0.0278354</td>
+<td style="text-align: right;">-0.0289375</td>
+<td style="text-align: right;">-0.0004230</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2.7693088</td>
+<td style="text-align: right;">2.7368688</td>
+<td style="text-align: right;">2.0474298</td>
+<td style="text-align: right;">2.0732120</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">0.6403584</td>
+<td style="text-align: right;">0.6849868</td>
+<td style="text-align: right;">0.3958977</td>
+<td style="text-align: right;">0.3967702</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">-0.5940332</td>
+<td style="text-align: right;">-0.5576306</td>
+<td style="text-align: right;">-0.1732053</td>
+<td style="text-align: right;">-0.1453989</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-0.2614659</td>
+<td style="text-align: right;">-0.2740095</td>
+<td style="text-align: right;">-0.7323451</td>
+<td style="text-align: right;">-0.7558590</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">0.6697399</td>
+<td style="text-align: right;">0.6585350</td>
+<td style="text-align: right;">0.4020305</td>
+<td style="text-align: right;">0.4119104</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+<p>Unfortunately, we were not able not determine why or whether this might be just a coincidence here. To conclude, we agree with the following comment in R&amp;Z <span class="citation" data-cites="rohe2023vintage">(<a href="#ref-rohe2023vintage" role="doc-biblioref">Rohe &amp; Zeng, 2023</a>)</span> and are looking forward to further research in this direction:</p>
+<blockquote class="blockquote">
+<p>Taken together, this all suggests that the B matrix provides a path to understanding “correlation among the factors.” Understanding this phenomenon is an active area of research in our lab.</p>
+</blockquote>
+</section>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-arendasy_manual_2011" class="csl-entry" role="listitem">
+Arendasy, M., Sommer, M., &amp; Feldhammer, M. (2011). Manual <span>Big</span>-<span>Five Structure Inventory BFSI</span>. <em>Schuhfried Gmbh, Mödling</em>.
+</div>
+<div id="ref-vanderlinden2010general" class="csl-entry" role="listitem">
+Linden, D. van der, Nijenhuis, J. te, &amp; Bakker, A. B. (2010). The <span>General</span> <span>Factor</span> of <span>Personality</span>: <span>A</span> meta-analysis of <span>Big</span> <span>Five</span> intercorrelations and a criterion-related validity study. <em>Journal of Research in Personality</em>, <em>44</em>(3), 315–327. <a href="https://doi.org/10.1016/j.jrp.2010.03.003">https://doi.org/10.1016/j.jrp.2010.03.003</a>
+</div>
+<div id="ref-pargent2023discussion" class="csl-entry" role="listitem">
+Pargent, F., Goretzko, D., &amp; Oertzen, T. von. (2023). <span class="nocase">Florian Pargent, David Goretzko and Timo von Oertzen’s contribution to the Discussion of <span>“Vintage Factor Analysis with Varimax Performs Statistical Inference”</span> by Rohe<br>
+&amp;amp; Zeng</span>. <em>Journal of the Royal Statistical Society Series B: Statistical Methodology</em>, <em>85</em>(4), 1087–1088. <a href="https://doi.org/10.1093/jrsssb/qkad054">https://doi.org/10.1093/jrsssb/qkad054</a>
+</div>
+<div id="ref-rohe2023vintage" class="csl-entry" role="listitem">
+Rohe, K., &amp; Zeng, M. (2023). <span class="nocase">Vintage factor analysis with Varimax performs statistical inference</span>. <em>Journal of the Royal Statistical Society Series B: Statistical Methodology</em>, <em>85</em>(4), 1037–1060. <a href="https://doi.org/10.1093/jrsssb/qkad029">https://doi.org/10.1093/jrsssb/qkad029</a>
+</div>
+<div id="ref-stachl2020predicting" class="csl-entry" role="listitem">
+Stachl, C., Au, Q., Schoedel, R., Gosling, S. D., Harari, G. M., Buschek, D., Völkel, S. T., Schuwerk, T., Oldemeier, M., Ullmann, T., Hussmann, H., Bischl, B., &amp; Bühner, M. (2020). Predicting personality from patterns of behavior collected with smartphones. <em>Proceedings of the National Academy of Sciences of the United States of America</em>, <em>117</em>(30), 17680–17687. <a href="https://doi.org/10.1073/pnas.1920484117">https://doi.org/10.1073/pnas.1920484117</a>
+</div>
+</div>
+</section>
+     </main>
+<!-- /main column -->  <script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>  </div> <!-- /content -->  <script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom"});
+window.onload = () => {
+  lightboxQuarto.on('slide_before_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    const href = trigger.getAttribute('href');
+    if (href !== null) {
+      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+      if (imgEl !== null) {
+        const srcAttr = imgEl.getAttribute("src");
+        if (srcAttr && srcAttr.startsWith("data:")) {
+          slideConfig.href = srcAttr;
+        }
+      }
+    } 
+  });
+
+  lightboxQuarto.on('slide_after_load', (data) => {
+    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+    if (window.Quarto?.typesetMath) {
+      window.Quarto.typesetMath(slideNode);
+    }
+  });
+
+};
+          </script> 
+  
+</body></html>
