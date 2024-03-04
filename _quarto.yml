@@ -1,0 +1,22 @@
+project: 
+  type: manuscript
+
+manuscript:
+  meca-bundle: "bundle_pargent_2023.zip"
+  notebooks:
+    - notebook: electronic_supplemental_material.qmd
+      title: Electronic Supplemental Material
+  
+format:
+  html:
+    toc: true
+    comments:
+      hypothesis: false
+    theme: pulse
+  jats: default
+  apaquarto-pdf:
+    documentmode: jou
+  apaquarto-docx: default
+
+execute:
+  freeze: true

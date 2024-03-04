@@ -1,0 +1,422 @@
+---
+title: "Electronic Supplemental Material: New Insights into PCA + Varimax for Psychological Researchers"
+subtitle: "A short commentary on Rohe & Zeng (2023)"
+author:
+  - name: Florian Pargent
+    affiliation: LMU Munich
+  - name: David Goretzko
+    affiliation: Utrecht University
+  - name: Timo von Oertzen
+    affiliation: Bundeswehr University Munich and Max Planck Institute for Human Development
+date: last-modified
+bibliography: references.bib
+csl: apa.csl
+citation:
+  type: article
+---
+
+:::{.callout-important}
+This document is **an updated copy** of a [published commentary](https://doi.org/10.1093/jrsssb/qkad054), to showcase [Quarto manuscripts](https://quarto.org/docs/manuscripts/) in our [Quarto workshop](https://florianpargent.github.io/Quarto_LMU_OSC/). The official online repository of our published commentary can be found [here](https://osf.io/5symf/).
+:::
+
+# A Short Commentary on Rohe & Zeng (2023)
+
+In their paper *“Vintage factor analysis with varimax performs statistical inference”*, Rohe and Zeng [R&Z; @rohe2023vintage] demonstrate the usefulness of principal component analysis with varimax rotation (PCA+VR), a combination they call *vintage factor analysis*. The authors show that PCA+VR can be used to estimate factor scores and factor loadings, if a certain leptokurtic condition is fulfilled that can be assessed by simple visual diagnostics. In a side result, they also imply that PCA+VR is able to estimate factor scores even if the latent factors are correlated. In our commentary *"New Insights into PCA + Varimax for Psychological Researchers"* [@pargent2023discussion], we briefly discuss some implications of these results for psychological research and note that the suggested diagnostics of “radial streaks” might give less clear results in typical psychological applications. The commentary includes extensive *electronic supplemental materials*, containing a data example and a small simulation on estimating correlated factors, that can be found at <https://osf.io/5symf/>.
+
+In the current electronic supplementary materials, we present i) an exemplary data analysis that is discussed in our comment, and ii) a small simulation demonstrating the ability of PCA+VR to estimate correlated factors.
+
+# Data Example: The PhoneStudy
+
+```{r}
+#| message: false
+library(knitr)
+library(vsp)
+library(Matrix)
+library(scales)
+```
+
+In contrast to the examples in R&Z which only deal with sparse binary network data, psychological applications (traditionally) deal with i) questionnaire items or (increasingly) ii) digital data, e.g., mobile sensing. The $A$ matrix consists of i) integer-valued responses on $d$ Likert items or ii) continuous values on $d$ sensing variables, by $n$ persons. Degree normalization discussed by R&Z does not seem suitable here and z-standardization is often required to detect meaningful factors in practice. We also do not share R&Z’s enthusiasm that "radial streaks" are common.
+
+For the following demonstration, we use the publicly available *PhoneStudy* behavioral patterns dataset, which has been used to predict human personality from smartphone usage data [@stachl2020predicting]. The *PhoneStudy* collected i) self-reported questionnaire data of personality traits measured with the German Big Five Structure Inventory [BFSI; 5 factors and 30 facets, @arendasy_manual_2011], ii) demographic variables (age, gender, education), and iii) behavioral data from smartphone sensing (e.g., communication & social behavior, app-usage, music consumption, overall phone usage, day-nighttime activity), bundled from several smaller studies. The mobile sensing data was recorded for up to 30 days on the personal smartphone of study volunteers.
+
+Item responses to the personality questionnaire are contained in the file *datasets/Items.csv* while aggregated smartphone sensing variables are contained in the file *datasets/clusterdata.RDS*. Both can be downloaded from <https://osf.io/fxv3k/download>. We include copies of the aggregated datasets in our project repository for convenience. More details on the *PhoneStudy* data can be found in @stachl2020predicting. Mobile sensing variables are described in more detail at <https://compstat-lmu.shinyapps.io/Personality_Prediction/#section-datadict>.
+
+## Item Response Data
+
+Item responses to the 300 personality items of the Big Five questionnaire are almost complete and we decided to use complete case analysis here, although imputation would be possible as well.
+
+```{r}
+#| message: false
+phonedata_items = read.csv2("datasets/Items.csv")
+phonedata_items = na.omit(phonedata_items[, 3:302])
+```
+
+As is common for psychometric analyses, we standardize the item response data with `scale` and convert the data.frame to a *dgCMatrix* that can be analyzed with `vsp` R package. However, not standardizing the items does not change the following results much here because there cannot be large outliers in item responses and item variances due to the fixed response format (all items are measured on a Likert scale with 4 labeled categories).
+
+```{r}
+items_mat_z = as.matrix(scale(phonedata_items))
+colnames(items_mat_z) = colnames(phonedata_items)
+items_mat_z = as(items_mat_z, "dgCMatrix")
+```
+
+The screeplot suggests a decrease in singular values after the 5th component. This is in line with the theory behind the questionnaire that was constructed to measure the Big Five personality factors.
+
+```{r}
+screeplot(vsp(items_mat_z, rank = 50,
+  degree_normalize = FALSE, center = FALSE))
+```
+
+Note that each Big Five factor is represented in the questionnaire by 6 lower order personality facets measured by 10 items each. Thus, theory would suggest that extracting 30 components should also be meaningful.
+
+To keep it simple, we extract only 5 components here.
+
+```{r}
+pca_items_z = vsp(items_mat_z, rank = 5,
+  degree_normalize = FALSE, center = FALSE)
+```
+
+Note that we do set `degree_normalize = FALSE` and `center = FALSE` because we do not analyze binary network data and we have already standardized our item responses.
+
+We search for **radial streaks** in the estimated component and loading matrices:
+
+```{r}
+pairs(as.matrix(pca_items_z$Z[, 1:5]), cex = 0.5, col = alpha("red", alpha = 0.2), 
+  main = "Estimated components (with standardization)")
+```
+
+We do not find streaks in the estimated component matrix $\hat{Z}$.
+
+```{r}
+pairs(as.matrix(pca_items_z$Y[, 1:5]), cex = 0.5, col = alpha("red", alpha = 0.3), 
+  main = "Estimated loadings (with standardization)")
+```
+
+However, we find noisy streaks in the estimated loading matrix $\hat{Y}$. This **simple structure** is in line with the construction process of the personality questionnaire, which has the goal that each item measures only a single Big Five factor. Streaks are even more pronounced when extracting 30 components.
+
+Finally, we interpret the components by highlighting the 10 items with the highest absolute loadings on each component.
+
+```{r}
+n = 10
+top_vars_items_z = data.frame(
+  Extraversion = names(sort(abs(pca_items_z$Y[, 1]), decreasing = TRUE)[1:n]),
+  Conscientiousness = names(sort(abs(pca_items_z$Y[, 2]), decreasing = TRUE)[1:n]),
+  Agreeableness = names(sort(abs(pca_items_z$Y[, 3]), decreasing = TRUE)[1:n]),
+  EmotionalStability = names(sort(abs(pca_items_z$Y[, 4]), decreasing = TRUE)[1:n]),
+  Openness = names(sort(abs(pca_items_z$Y[, 5]), decreasing = TRUE)[1:n])
+)
+kable(top_vars_items_z)
+```
+
+With few exceptions, the item labels indicate that the implied Big Five personality factors (*Extraversion*, *Conscientiousness*, *Agreeableness*, *Emotional Stability*, *Openness*) were recovered as expected.
+
+## Mobile Sensing Data
+
+```{r}
+phonedata_sensing = readRDS(file = "datasets/clusterdata.RDS")
+phonedata_sensing = phonedata_sensing[, c(1:1821)]
+```
+
+The smartphone sensing data contains `r ncol(phonedata_sensing)` preprocessed variables. Of these variables, `r sum(sapply(phonedata_sensing, anyNA))` contain missing values and not a single person has complete data on all variables. Thus, imputation of missing values seems a necessity when working with these data. We use very simple mean imputation here which is sufficient for the goal of our demonstration.
+
+```{r}
+phonedata_sensing_imp = phonedata_sensing
+for(col in colnames(phonedata_sensing_imp)) {
+  phonedata_sensing_imp[which(is.na(phonedata_sensing_imp[[col]])), col] <-
+    mean(phonedata_sensing_imp[[col]], na.rm = TRUE)
+}
+```
+
+However, our results are quite similar for more elaborate imputation schemes.
+For the interested reader, we prepared data imputed with the `miceRanger` package in the [sensitivity analysis document](sensitivity_analysis.qmd).
+
+If you want to use that data, you have to set `eval: true` or manually run the following chunk in the *.qmd* file.
+
+```{r}
+#| eval: false
+library(miceRanger)
+mice_obj_sensing = readRDS(file = "mice_obj_sensing.RDS")
+phonedata_sensing_imp = as.data.frame(completeData(mice_obj_sensing)[[1]])
+```
+
+### Analysis with Standardization
+
+In contrast to the item response data, there is a huge difference in the standard deviations of the smartphone sensing variables.
+
+```{r}
+round(quantile(sapply(phonedata_sensing_imp, sd)), 2)
+```
+
+Thus, it is important to standardize the variables before further analysis.
+
+```{r}
+sensing_mat_imp_z = as.matrix(scale(phonedata_sensing_imp))
+colnames(sensing_mat_imp_z) = colnames(phonedata_sensing_imp)
+sensing_mat_imp_z = as(sensing_mat_imp_z, "dgCMatrix")
+screeplot(vsp(sensing_mat_imp_z, rank = 50, 
+  degree_normalize = FALSE, center = TRUE))
+```
+
+The screeplot does not show a clear gap or elbow for the smartphone sensing data. To keep it simple, we extract only 5 components here, but higher numbers also provide meaningful insights.
+
+Again, we do not use degree normalization but we set `center = TRUE` despite standardizing the columns because row means also differ to some extent.
+
+```{r}
+pca_sensing_imp_z = vsp(sensing_mat_imp_z, rank = 5, 
+  degree_normalize = FALSE, center = TRUE)
+```
+
+We search for **radial streaks** in the estimated component and loading matrices:
+
+```{r}
+pairs(as.matrix(pca_sensing_imp_z$Z[, 1:5]), cex = 0.3, col = alpha("red", alpha = 0.1), 
+  main = "Estimated components (with standardization)")
+```
+
+We do not find a clear indication of streaks in the estimated component matrix $\hat{Z}$.
+
+```{r}
+pairs(as.matrix(pca_sensing_imp_z$Y[, 1:5]), cex = 0.3, col = alpha("red", alpha = 0.1), 
+  main = "Estimated loadings (with standardization)")
+```
+
+However, we find streaks in the estimated loading matrix $\hat{Y}$. In contrast to the items of the personality questionnaire that have been constructed with simple structure in mind, no simple structure was implied when constructing the smartphone sensing variables. Nonetheless, the streaks would suggest that the smartphone sensing variables can be meaningfully clustered in this dataset.
+
+For interpretation, we again highlight the 10 variables with the highest absolute loadings on each component.
+
+```{r}
+n = 10
+top_vars_z = data.frame(
+  Apps_Usage = names(sort(abs(pca_sensing_imp_z$Y[, 1]), decreasing = TRUE)[1:n]),
+  Calls = names(sort(abs(pca_sensing_imp_z$Y[, 2]), decreasing = TRUE)[1:n]),
+  Music_Songs = names(sort(abs(pca_sensing_imp_z$Y[, 3]), decreasing = TRUE)[1:n]),
+  Music_Audio_Features = names(sort(abs(pca_sensing_imp_z$Y[, 4]), decreasing = TRUE)[1:n]),
+  Terrain = names(sort(abs(pca_sensing_imp_z$Y[, 5]), decreasing = TRUE)[1:n])
+)
+kable(top_vars_z)
+```
+
+To summarize, with careful preprocessing and appropriate data standardization, PCA+VR seems to meaningfully cluster the smartphone sensing variables, as indicated by radial streaks in the estimated loading matrix $\hat{Y}$. However, we did not find streaks in the estimated component matrix $\hat{Z}$ so we cannot necessarily have high confidence that PCA+VR was able to estimate well identified person scores on these components.
+
+The following cautionary example showcases what can happen when the smartphone sensing data is not preprocessed with enough care.
+
+### A Cautionary example: Analysis without Standardization
+
+To simulate mindless data analysis, we do not standardize the smartphone sensing variables and use the default `degree_normalize = TRUE` in the `vsp` call, although this should not be a meaningful setting because we do not analyze binary network data here.
+
+```{r}
+sensing_mat_imp = as.matrix(phonedata_sensing_imp)
+colnames(sensing_mat_imp) = colnames(phonedata_sensing_imp)
+sensing_mat_imp = as(sensing_mat_imp, "dgCMatrix")
+screeplot(vsp(sensing_mat_imp, rank = 50,
+  degree_normalize = TRUE, center = TRUE))
+```
+
+With these settings, the screeplot shows substantial gaps (in contrast to the previous analysis with standardization). To keep it simple, we decided to extract 5 components here, but the main insights from this exercise do not seem to depend on this number.
+
+When searching for **radial streaks** in the estimated component and loading matrices, we notice interesting changes compared to the analysis with standardized variables
+
+```{r}
+pca_sensing_imp = vsp(sensing_mat_imp, rank = 5,
+  degree_normalize = TRUE, center = TRUE)
+pairs(as.matrix(pca_sensing_imp$Z[, 1:5]), cex = 0.5, col = alpha("red", alpha = 0.2), 
+  main = "Estimated components (no standardization)")
+```
+
+With these settings, we *do* find beautiful streaks in the estimated component matrix $\hat{Z}$.
+
+```{r}
+pairs(as.matrix(pca_sensing_imp$Y[, 1:5]), cex = 0.5, col = alpha("red", alpha = 0.4), 
+  main = "Estimated loadings (no standardization)")
+```
+
+In contrast, streaks in the estimated loading matrix $\hat{Y}$ are very extreme. To a careful analyst, this might perhaps raise some alarms that something might be wrong here...
+
+```{r}
+n = 20
+top_vars = data.frame(
+  GPS1 = names(sort(abs(pca_sensing_imp$Y[, 1]), decreasing = TRUE)[1:n]),
+  GPS2 = names(sort(abs(pca_sensing_imp$Y[, 2]), decreasing = TRUE)[1:n]),
+  GPS3 = names(sort(abs(pca_sensing_imp$Y[, 3]), decreasing = TRUE)[1:n]),
+  GPS4 = names(sort(abs(pca_sensing_imp$Y[, 4]), decreasing = TRUE)[1:n]),
+  GPS5 = names(sort(abs(pca_sensing_imp$Y[, 5]), decreasing = TRUE)[1:n])
+)
+red_vars = unique(unlist(top_vars))
+kable(top_vars)
+```
+
+Indeed, when looking at the top variables with the highest absolute loadings on each component, they do **not** seem to have a simple structure and are hard to interpret.
+
+In fact, the top `r n` variables loading on all components include only `r length(red_vars)` unique variables.
+
+Most of these variables seem to be based on GPS data in some way.
+
+All of these variables have extremely high standard deviations.
+
+```{r}
+sapply(phonedata_sensing_imp[, red_vars], sd)
+```
+
+In addition, all of these variables contain missing values in the original dataset and the number of missings is quite high for some of them.
+
+```{r}
+sapply(phonedata_sensing[, red_vars], function(x) sum(is.na(x)))
+```
+
+Our suspicion is that the radial streaks in the estimated component matrix $\hat{Z}$ might be a result of these GPS variables, which dominate the solution from PCA+VR without standardization but are hidden behind the remaining variables when standardization is used.
+
+To confirm some of these suspicions, we repeat PCA+VR on only these `r length(red_vars)` variables, but now use standardization again. This results in 2 strong components with pronounced but odd-looking and not perfectly aligned streaks in both $\hat{Z}$ and $\hat{Y}$.
+
+```{r}
+sensing_mat_imp_z_red = as.matrix(scale(phonedata_sensing_imp[, red_vars]))
+colnames(sensing_mat_imp_z_red) = colnames(phonedata_sensing_imp[, red_vars])
+sensing_mat_imp_z_red = as(sensing_mat_imp_z_red, "dgCMatrix")
+screeplot(vsp(sensing_mat_imp_z_red, rank = 20,
+  degree_normalize = FALSE, center = TRUE))
+```
+
+```{r}
+pca_sensing_imp_z_red = vsp(sensing_mat_imp_z_red, rank = 2, 
+  degree_normalize = FALSE, center = TRUE)
+pairs(as.matrix(pca_sensing_imp_z_red$Z[, 1:2]), cex = 0.5, col = alpha("red", alpha = 0.2), 
+  main = "Estimated components (reduced itemset with standardization)")
+```
+
+```{r}
+pairs(as.matrix(pca_sensing_imp_z_red$Y[, 1:2]), cex = 0.5, col = alpha("red", alpha = 0.6), 
+  main = "Estimated loadings (reduced itemset with standardization)")
+```
+
+```{r}
+n = 10
+top_vars = data.frame(
+  GPS1 = names(sort(abs(pca_sensing_imp_z_red$Y[, 1]), decreasing = TRUE)[1:n]),
+  GPS2 = names(sort(abs(pca_sensing_imp_z_red$Y[, 2]), decreasing = TRUE)[1:n])
+)
+kable(top_vars)
+```
+
+# Simulation: Correlated Factors
+
+Another important aspect of psychological applications of PCA+VR are correlated factors (e.g., the personality dimensions conscientiousness and neuroticism are thought to correlate around $-0.4$; @vanderlinden2010general), thus oblique rotations are often argued for. Interestingly, R&Z show as a side result that the results of PCA+VR can be used to also estimate correlated factors in situations which are relevant for psychological measurement models.
+
+```{r}
+#| message: false
+library(vsp)
+library(Matrix)
+library(scales)
+library(mvtnorm)
+```
+
+Here we demonstrate that $\hat{Z}\hat{B}$ (up to a change of units) estimates correlated factors simulated from a leptokurtic distribution:
+
+1.  Simulate correlated factor scores from a multivariate leptokurtic distribution.
+
+```{r}
+#| message: false
+set.seed(3)
+
+n = 10000
+rho = 0.7
+# adapted from https://github.com/RoheLab/vsp-paper/blob/master/scripts/makeFigure1.R
+Z_star = scale(matrix(sample(c(-1,1), 2 * n, T) * 
+    rexp(n * 2, rate = 2) ^ 1.3, ncol = 2))
+cor_mat = matrix(c(1, rho, rho, 1), ncol = 2)
+Z = Z_star %*% chol(cor_mat)
+```
+
+We first simulate two-dimensional uncorrelated standardized scores from a leptokurtic distribution ($Z^*$). Correlated scores ($Z$) are then constructed by multiplying the uncorrelated scores with the Cholesky factor of a correlation matrix with the desired correlation ($\rho = `r rho`$).
+
+```{r}
+pairs(Z, cex = 0.5, col = alpha("red", alpha = 0.2), 
+  main = "True correlated factors")
+```
+
+When plotting the simulated component scores in the $Z$ matrix, we see non-orthogonal streaks (i.e. oblique components).
+
+2.  Simulate item response data.
+
+```{r}
+k = 2
+vpf = 20
+d = vpf*k
+
+pf_low = 0.8
+pf_upper = 0.95
+sf_low = 0
+sf_upper = 0
+
+loadings = function(k, d, vpf, pf_low, pf_upper, sf_low, sf_upper){
+  x = runif(d, pf_low, pf_upper)
+  y = runif(d*(k-1) , sf_low, sf_upper)
+  i = 1:(d)
+  j = rep(1:k, each = vpf)
+  L = matrix(NA, d, k)
+  L[cbind(i, j)] = x
+  L[is.na(L)] = y
+  L
+}
+
+Y = loadings(k, d, vpf, pf_low, pf_upper, sf_low, sf_upper)
+A =  Z %*% t(Y) + rnorm(n * d, sd = 0.1)
+```
+
+We create a loading matrix $Y$ with simple structure and simulate the data matrix $A$ with $ZY^T$ and add some normally distributed noise.
+
+3.  Perform PCA + Varimax
+
+```{r}
+pca_sim = vsp(A, rank = 2, degree_normalize = FALSE)
+```
+
+4.  Estimate uncorrelated component scores $Z$
+
+```{r}
+pairs(as.matrix(pca_sim$Z[, 1:2]), cex = 0.5, col = alpha("red", alpha = 0.2), 
+  main = "Estimated uncorrelated factors")
+```
+
+When plotting the $\hat{Z}$ matrix returned from PCA+VR, we see orthogonal streaks similar to $Z^*$.
+
+5.  Estimate correlated component scores $Z$
+
+```{r}
+ZB_hat = as.matrix(pca_sim$Z) %*% as.matrix(pca_sim$B)
+pairs(ZB_hat, cex = 0.5, col = alpha("red", alpha = 0.2), 
+  main = "Estimated correlated factors")
+```
+
+However, the matrix $\hat{Z}\hat{B}$ contains correlated components similar to $Z$.
+
+6.  Estimate correlation between components
+
+```{r}
+cor(ZB_hat)
+```
+
+We can verify that the correlation of the scores in $\hat{Z}\hat{B}$ are close to the true correlation in $Z$ ($\rho = `r rho`$).
+
+Our simulation seems to demonstrate the results from sections **7.1** and **7.2** in R&Z, which state that if scores in $Z$ are correlated; scores in $Y$ are centered, independent, and leptokurtic; and the true $B$ is proportional to the identity matrix, then the $\hat{B}$ matrix returned from PCA+VR estimates the Cholesky factor of the covariance matrix $Z^TZ$ (up to a change of unit). Note that because our scores in $Z$ were scaled, $Z^TZ$ is equal to the correlation matrix in our demonstration.
+
+## Open Questions
+
+Surprisingly, the exact scores in $Z$ (in the same unit) seem to be estimated by $\hat{Z}\hat{B}\cdot d^{1/8}$.
+
+```{r}
+nrows = 10
+compare_scores = data.frame(
+  z1 = Z[1:nrows, 1],
+  z1_hat = ZB_hat[1:nrows, 1] * d^(1/8),
+  z2 = Z[1:nrows, 2],
+  z2_hat = ZB_hat[1:nrows, 2] * d^(1/8),
+row.names = NULL)
+kable(compare_scores)
+```
+
+Unfortunately, we were not able not determine why or whether this might be just a coincidence here. To conclude, we agree with the following comment in R&Z [@rohe2023vintage] and are looking forward to further research in this direction:
+
+> Taken together, this all suggests that the B matrix provides a path to understanding “correlation among the factors.” Understanding this phenomenon is an active area of research in our lab.
+
+# References
+
+::: {#refs}
+:::
