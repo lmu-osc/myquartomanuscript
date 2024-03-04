@@ -1,0 +1,17 @@
+{
+  "hash": "d7499a62c44cc748460ce01808e8a810",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Sensitivity Analysis: Impute Sensing Data with MiceRanger\"\nsubtitle: \"Sensitivity Analysis\"\nauthor:\n  - name: Florian Pargent\n    affiliation: LMU Munich\n  - name: David Goretzko\n    affiliation: Utrecht University\n  - name: Timo von Oertzen\n    affiliation: Bundeswehr University Munich and Max Planck Institute for Human Development\ndate: last-modified\nbibliography: references.bib\ncsl: apa.csl\n---\n\n\n\n:::{.callout-important}\nThis document is **an updated copy** of a [published commentary](https://doi.org/10.1093/jrsssb/qkad054), to showcase [Quarto manuscripts](https://quarto.org/docs/manuscripts/) in our [Quarto workshop](https://florianpargent.github.io/Quarto_LMU_OSC/). The official online repository of our published commentary can be found [here](https://osf.io/5symf/).\n:::\n\nThe analysis presented in the [electronic supplemental material document](electronic_supplemental_material.qmd) are quite similar for more elaborate imputation schemes. For the interested reader, we prepared data imputed with the `miceRanger` package.\n\n\n\n::: {.cell}\n\n```{.r .cell-code .hidden}\n#| eval: true\nlibrary(miceRanger)\nphonedata_sensing = readRDS(file = \"datasets/clusterdata.RDS\")\nphonedata_sensing = phonedata_sensing[, c(1:1821)]\nset.seed(42)\nmice_obj_sensing = miceRanger(phonedata_sensing, m = 1, maxiter = 1, \n  valueSelector = \"meanMatch\", verbose = FALSE)\nsaveRDS(mice_obj_sensing, file = \"mice_obj_sensing.RDS\")\n```\n:::\n\n\n\nSee the instructions on how to use this imputed dataset in the [electronic supplemental materials](electronic_supplemental_material.qmd#mobile-sensing-data).\n\n",
+    "supporting": [
+      "sensitivity_analysis_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": null,
+    "postProcess": false
+  }
+}
