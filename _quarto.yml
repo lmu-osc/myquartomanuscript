@@ -6,6 +6,8 @@ manuscript:
   notebooks:
     - notebook: electronic_supplemental_material.qmd
       title: Electronic Supplemental Material
+    - notebook: sensitivity_analysis.qmd
+      title: Sensitivity Analysis
   
 format:
   html:
