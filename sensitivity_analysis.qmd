@@ -32,5 +32,5 @@ mice_obj_sensing = miceRanger(phonedata_sensing, m = 1, maxiter = 1,
 saveRDS(mice_obj_sensing, file = "mice_obj_sensing.RDS")
 ```
 
-See the instructions on how to use this imputed dataset in the [electronic supplemental materials](electronic_supplemental_material.qmd).
+See the instructions on how to use this imputed dataset in the [electronic supplemental materials](electronic_supplemental_material.qmd#mobile-sensing-data).
 
