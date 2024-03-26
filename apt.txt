@@ -1,2 +1,4 @@
 zip
 cmake
+libharfbuzz-dev
+libfribidi-dev
