@@ -11,7 +11,7 @@ author:
     affiliation: Utrecht University
   - name: Timo von Oertzen
     affiliation: Bundeswehr University Munich and Max Planck Institute for Human Development
-date: last-modified
+date: today
 bibliography: references.bib
 csl: apa.csl
 citation:

@@ -3,6 +3,7 @@ project:
 
 manuscript:
   meca-bundle: "bundle_pargent_2023.zip"
+  code-links: [binder, repo]
   notebooks:
     - notebook: electronic_supplemental_material.qmd
       title: Electronic Supplemental Material
@@ -21,4 +22,4 @@ format:
   apaquarto-docx: default
 
 execute:
-  freeze: true
+  freeze: auto
