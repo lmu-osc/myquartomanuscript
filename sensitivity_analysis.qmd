@@ -14,7 +14,7 @@ csl: apa.csl
 ---
 
 :::{.callout-important}
-This document is **an updated copy** of a [published commentary](https://doi.org/10.1093/jrsssb/qkad054), to showcase [Quarto manuscripts](https://quarto.org/docs/manuscripts/) in our [Quarto workshop](https://florianpargent.github.io/Quarto_LMU_OSC/). The official online repository of our published commentary can be found [here](https://osf.io/5symf/).
+This document is **an updated copy** of a [published commentary](https://doi.org/10.1093/jrsssb/qkad054), to showcase [Quarto manuscripts](https://quarto.org/docs/manuscripts/) in our [Quarto workshop](https://lmu-osc.github.io/introduction-to-Quarto/). The official online repository of our published commentary can be found [here](https://osf.io/5symf/).
 :::
 
 The analysis presented in the [electronic supplemental material document](electronic_supplemental_material.qmd) are quite similar for more elaborate imputation schemes. For the interested reader, we prepared data imputed with the `miceRanger` package.

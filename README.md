@@ -1,1 +1,1 @@
-This repository showcases the result of the [Quarto Manuscripts advanced exercise](https://florianpargent.github.io/Quarto_LMU_OSC/quarto_manuscripts.html) of our [Quarto workshop](https://florianpargent.github.io/Quarto_LMU_OSC/).
+This repository showcases the result of the [Quarto Manuscripts advanced exercise](https://lmu-osc.github.io/introduction-to-Quarto/quarto_manuscripts.html) of our [Quarto workshop](https://lmu-osc.github.io/introduction-to-Quarto/).
